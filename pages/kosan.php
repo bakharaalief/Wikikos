@@ -25,7 +25,6 @@
                 <img src="./image/map-icon.png" width="20" height="20" alt="">
                 <p class="kos-lokasi">Kampus Menara 165, Lantai 18 & 19, Jl. Tb. Simatupang Kav. 1, Cilandak Timur, Pasar Minggu, RT.3/RW.3, Cilandak Tim., Kec. Ps. Minggu, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12560</p>
             </div>
-            <button type="submit" onclick="location.href='?p=profile'" class="btn btn-primary">Login</button>
         </div>
     </div>
 
