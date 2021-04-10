@@ -9,7 +9,7 @@ class Telp_User
     {
         $this->idNoTelp = $idNoTelp;
         $this->NoTelp = $NoTelp;
-        $this->idUser = $idKosan;
+        $this->idUser = $idUser;
     }
 
     //automatic create get
