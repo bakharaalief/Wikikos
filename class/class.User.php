@@ -1,6 +1,7 @@
 <?php
 
-class User{
+class User
+{
     private $idUser;
     private $username;
     private $password;
@@ -18,7 +19,7 @@ class User{
         $nama,
         $NIK,
         $level,
-    ){
+    ) {
         $this->idUser = $idUser;
         $this->username = $username;
         $this->password = $password;
@@ -29,13 +30,14 @@ class User{
     }
 
     //automatic create get
-    public function __get($atribute){
-        if(property_exists($this, $atribute)){
+    public function __get($atribute)
+    {
+        if (property_exists($this, $atribute)) {
             return $this->$atribute;
         }
     }
 
-    
+    public function wadaw()
+    {
+    }
 }
-
-?>
