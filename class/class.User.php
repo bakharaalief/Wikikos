@@ -1,7 +1,6 @@
 <?php
 
-class User
-{
+class User{
     private $idUser;
     private $username;
     private $password;
@@ -26,7 +25,7 @@ class User
         $this->email = $email;
         $this->nama = $nama;
         $this->NIK = $NIK;
-        $this->level = $idUser;
+        $this->level = $level;
     }
 
     //automatic create get
@@ -37,7 +36,7 @@ class User
         }
     }
 
-    public function wadaw()
-    {
-    }
+
 }
+
+?>
