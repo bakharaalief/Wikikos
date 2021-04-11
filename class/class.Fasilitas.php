@@ -2,13 +2,13 @@
 class Fasilitas
 {
     private $idFasilitas;
-    private $fasilitas;
+    private $namaFasilitas;
     private $idKosan;
 
     public function __construct($idFasilitas, $fasilitas, $idKosan)
     {
         $this->idFasilitas = $idFasilitas;
-        $this->fasilitas = $fasilitas;
+        $this->namaFasilitas = $namaFasilitas;
         $this->idKosan = $idKosan;
     }
 
