@@ -1,2 +1,7 @@
 <?php
-$conn = mysqli_connect('localhost', 'root', '', 'wikikos_db');
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "wikikos_db";
+
+$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

@@ -1,9 +1,23 @@
 <div class="container" id="profile">
+
+    <!-- info tentang nama dan status user -->
     <div class="info1">
-        <h1>Bakhara Alief</h1>
-        <p>Pemilik Kos</p>
+        <?php
+        echo "<h1>" . ucwords($user->nama) . "</h1>";
+
+        if ($user->level == 0) {
+            echo "<p>Admin</p>";
+        }
+        if ($user->level == 1) {
+            echo "<p>Pemilik Kos</p>";
+        }
+        if ($user->level == 2) {
+            echo "<p>Pengguna</p>";
+        }
+        ?>
     </div>
 
+    <!-- table kosan -->
     <div class="Semua-kosan">
         <div class="data1">
             <h1>Kosan Dimiliki</h1>

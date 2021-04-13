@@ -12,17 +12,20 @@
                 <h4>Find a mate and your comfort space with WikiKos.</h4>
 
                 <!-- login form -->
-                <form action="" method="GET">
+                <form action="./action/profile/login.php" method="Post">
+                    <!-- Email address -->
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <label>Username</label>
+                        <input type="text" class="form-control" placeholder="Email" name="username" required>
                     </div>
+
+                    <!-- Password -->
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <label>Password</label>
+                        <input type="password" class="form-control" placeholder="Password" name="password" required>
                     </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
                 </form>
-                <button type="submit" onclick="location.href='?p=profile'" class="btn btn-primary">Login</button>
             </div>
         </div>
     </div>

@@ -1,13 +1,20 @@
 <?php
+require_once("./class/class.User.php");
+
 if (!isset($_SESSION)) {
     session_start();
 }
 
-if (isset($_SESSION["level"])) {
-    echo '<script>window.location = "dashboard.php";</script>';
-}
-?>
+$id_user = $_SESSION['id_user'];
+$username = $_SESSION['username'];
+$password = $_SESSION['password'];
+$email = $_SESSION['email'];
+$fullname = $_SESSION['fullname'];
+$nik = $_SESSION['NIK'];
+$level = $_SESSION['level'];
 
+$user = new User($id_user, $username, $password, $email, $fullname, $nik, $level);
+?>
 
 <html lang="en">
 
@@ -34,7 +41,7 @@ if (isset($_SESSION["level"])) {
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="">
+            <a class="navbar-brand" href="./dashboard.php">
                 <img src="./image/logo.png" width="60" height="60" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,10 +50,14 @@ if (isset($_SESSION["level"])) {
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item-login">
-                        <a class="nav-link" href="?p=login">Login</a>
+                        <a class="nav-link" href="./action/profile/logout.php">logout</a>
                     </li>
                     <li class="nav-item-create">
-                        <a class="nav-link" href="?p=create-user">Daftar</a>
+                        <a class="nav-link" href="?p=profile">
+                            <?php
+                            echo $user->nama;
+                            ?>
+                        </a>
                     </li>
                 </ul>
             </div>

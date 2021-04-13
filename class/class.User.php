@@ -1,6 +1,7 @@
 <?php
 
-class User{
+class User
+{
     private $idUser;
     private $username;
     private $password;
@@ -35,8 +36,4 @@ class User{
             return $this->$atribute;
         }
     }
-
-
 }
-
-?>

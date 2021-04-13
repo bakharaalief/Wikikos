@@ -5,7 +5,7 @@ class Fasilitas
     private $namaFasilitas;
     private $idKosan;
 
-    public function __construct($idFasilitas, $fasilitas, $idKosan)
+    public function __construct($idFasilitas, $namaFasilitas, $idKosan)
     {
         $this->idFasilitas = $idFasilitas;
         $this->namaFasilitas = $namaFasilitas;

@@ -11,29 +11,52 @@
                 <h1>Create</h1>
                 <h4>Find a mate and your comfort space with WikiKos.</h4>
 
-                <!-- login form -->
-                <form action="" method="GET">
+                <!-- Register form -->
+                <form action="./action/create-user/create-user-db.php" method="Post">
+
+                    <!-- full name -->
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Full Name</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <label>Nama Lengkap</label>
+                        <input type="text" class="form-control" placeholder="Nama Lengkap" name="namaLengkap" required>
                     </div>
+
+                    <!-- NIK -->
                     <div class="form-group">
-                        <label for="exampleFormControlSelect1">Menjadi</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>Pemilik</option>
-                            <option>Pengguna Kos</option>
+                        <label>NIK</label>
+                        <input type="text" class="form-control" placeholder="NIK" name="NIK" required>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" placeholder="Email" name="email" required>
+                    </div>
+
+                    <!-- Mau Jadi Apa -->
+                    <div class="form-group">
+                        <label>Menjadi</label>
+                        <select class="form-control" name="level">
+                            <option value="1">Pemilik</option>
+                            <option value="2">Pengguna Kos</option>
                         </select>
                     </div>
+
+                    <!-- Username -->
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <label>Username</label>
+                        <input type="text" class="form-control" placeholder="Username" name="username" required>
                     </div>
+
+                    <!-- password -->
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <label>Password</label>
+                        <input type="password" class="form-control" placeholder="Password" name="password" required>
                     </div>
+
+                    <!-- button input -->
+                    <button type="submit" class="btn btn-primary">Create</button>
                 </form>
-                <button type="submit" onclick="location.href='?p=profile'" class="btn btn-primary">Login</button>
+
             </div>
         </div>
     </div>
