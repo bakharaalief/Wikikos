@@ -1,5 +1,6 @@
 <?php
 require_once("./class/class.User.php");
+require_once("./connection.php");
 
 if (!isset($_SESSION)) {
     session_start();

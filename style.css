@@ -342,16 +342,38 @@ body{
 }
 
 /* profile */
-#profile .info1{
-    margin-top: 20px;
-}
-
-#profile .info1 h1{
+#profile #info1 h1{
     font-weight: 600;
     color: var(--orange);
 }
-#profile .info1 p{
+
+#profile #info1 p{
     color: var(--orange);
+    margin-bottom: 0px;
+}
+
+#profile #nomor-telpon label{
+    color: var(--orange);
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#profile #nomor-telpon a{
+    margin-bottom: 15px;
+    background: var(--orange);
+    border-radius: 10px;
+    border: 1px solid var(--orange);
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+#profile #nomor-telpon #nomor-telpon-data a{
+    margin-bottom: 0px;
+    margin-top: 0px;
+    background: var(--orange);
+    border-radius: 10px;
+    font-size: 12px;
+    border: 1px solid var(--orange);
 }
 
 #profile .semua-kosan{
@@ -388,7 +410,12 @@ body{
 #create-kosan form .form-group input{
     margin-bottom: 15px;
     border: 1px solid var(--orange);
-    width: 400px;
+    border-radius: 10px;
+}
+
+#create-kosan form .form-group select{
+    margin-bottom: 15px;
+    border: 1px solid var(--orange);
     border-radius: 10px;
 }
 
@@ -404,6 +431,12 @@ body{
     color: var(--orange);
     font-weight: bold;
     margin-bottom: 5px;
+}
+
+#create-kosan #fasilitas-gambar textarea{
+    margin-bottom: 15px;
+    border: 1px solid var(--orange);
+    border-radius: 10px;
 }
 
 #create-kosan #fasilitas-gambar a{

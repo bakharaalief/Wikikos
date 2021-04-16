@@ -5,33 +5,50 @@
             <!-- info kosan -->
             <div class="col">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Nama</label>
-                    <input type="email" class="form-control" name="nama" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    <label>Nama</label>
+                    <input type="text" class="form-control" name="nama-kos" placeholder="Nama Kos" required>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Description</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <label>Tipe</label>
+                    <select class="form-control" name="tipe-kos">
+                        <option>Campur</option>
+                        <option>Laki</option>
+                        <option>Perempuan</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Fasilitas</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <label>Ukuran</label>
+                    <input type="text" class="form-control" name="ukuran-kos" placeholder="Ukuran Kos" required>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Kapasitas</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <label>Kapasitas</label>
+                    <input type="number" class="form-control" name="kapasitas-kos" placeholder="Kapasitas Kos" required>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Tipe Kos</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <label>Harga</label>
+                    <input type="number" class="form-control" name="harga-kos" placeholder="Harga Kos" required>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Lokasi</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <label>Alamat</label>
+                    <input type="text" class="form-control" name="jalan-kos" placeholder="Nama Jalan" required>
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" name="kecamatan-kos" placeholder="Nama Kecamatan" required>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" name="kota-kos" placeholder="Nama Kota" required>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- gambar dan fasilitas -->
             <div class="col" id="fasilitas-gambar">
+                <div class="form-group">
+                    <label>Deskripsi</label>
+                    <textarea class="form-control" name="deskripsi-kos" rows="3" required></textarea>
+                </div>
+
                 <label id="fasilitas-aa">Fasilitas</label>
                 <table class="table" id="fasilitas-data">
                     <thead>
