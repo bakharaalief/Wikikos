@@ -4,8 +4,8 @@
         <form action="./action/reset-pass/reset-pass-success.php" method="Post">
                  
                     <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" class="form-control" placeholder="Email" name="username" required>
+                        <label>email</label>
+                        <input type="text" class="form-control" placeholder="Email" name="email" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>
