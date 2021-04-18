@@ -84,10 +84,8 @@ else {
 
         echo "<script>
         alert('Berhasil Mendaftarkan Kosan')
-        window.location = '/kuliah/project/?p=profile';
+        window.location = '/kuliah/project/dashboard.php?p=profile';
         </script>";
-
-        echo "Berhasil masukin fasilitas";
     } catch (PDOException $e) {
         echo "<script>
         alert('Gagal Mendaftarkan kosan, Pastikan semua data benar')
