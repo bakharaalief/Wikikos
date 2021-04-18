@@ -386,14 +386,29 @@ body{
     align-items: center;
 }
 
-#profile .semua-kosan .data1 button{
-    height: 40px;
+#profile .semua-kosan .data1 h1{
+    font-weight: 600;
+    color: var(--orange);
 }
 
-#profile .semua-kosan table{
+#profile .semua-kosan .data1 a{
+    background: var(--orange);
+    border-radius: 10px;
+    border: 1px solid var(--orange);
+}
+
+#profile .semua-kosan #data-kosan{
     margin-top: 40px;
     text-align: center;
 }
+
+#profile .semua-kosan #data-kosan a{
+    background: var(--orange);
+    border-radius: 10px;
+    font-size: 15px;
+    border: 1px solid var(--orange);
+}
+
 
 /* create-kosan */
 #create-kosan h1{

@@ -83,31 +83,61 @@
     <div class="Semua-kosan">
         <div class="data1">
             <h1>Kosan Dimiliki</h1>
-            <button onclick="location.href='?p=create-kos'">Tambah Kosan</button>
+            <a class="btn btn-primary" href=<?php echo "?p=create-kos&id_user=$user->idUser" ?>>Tambah Kosan</a>
         </div>
-        <table class="table">
+        <table class="table" id="data-kosan">
             <thead>
                 <tr>
-                    <th scope="col">No</th>
                     <th scope="col">Kosan</th>
+                    <th scope="col">Tipe</th>
                     <th scope="col">Harga</th>
-                    <th scope="col">Rating</th>
                     <th scope="col">Kapasitas</th>
-                    <th scope="col">Aksi</th>
+                    <th scope="col">Anggota</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Kosan Bu Haji</td>
-                    <td>Rp. 200.000</td>
-                    <td>4/5</td>
-                    <td>20/50</td>
-                    <td>
-                        <button type="button" class="button btn-primary">Edit</button>
-                        <button type="button" class="button ">Delete</button>
-                    </td>
-                </tr>
+                <?php
+                require_once("./class/class.Kos.php");
+
+                $idUser = $user->idUser;
+
+                $sql = "SELECT * FROM kosan WHERE id_user = :id_user";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':id_user', $idUser);
+                $stmt->execute();
+
+                //hitung row kosan
+                $count = $stmt->rowCount();
+
+                while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $nomor = 1;
+                    $idKos = $result['id_kosan'];
+                    $namaKos = $result['nama_kosan'];
+                    $tipeKos = $result['tipe_kos'];
+                    $ukuranKos = $result['ukuran'];
+                    $hargaKos = $result['harga'];
+                    $kapasitasKos = $result['kapasitas'];
+                    $namaJalan = $result['nama_jalan'];
+                    $kecamatan = $result['kecamatan'];
+                    $kota = $result['kota'];
+                    $detail = $result['deskripsi'];
+
+                    $kos = new Kos($idKos, $namaKos, $tipeKos, $ukuranKos, $hargaKos, $kapasitasKos, $detail, $namaJalan, $kecamatan, $kota, $idUser);
+
+                    echo "<tr>";
+                    echo "<td>$kos->namaKos</td>";
+                    echo "<td>$kos->tipe</td>";
+                    echo "<td>$kos->harga</td>";
+                    echo "<td>$kos->kapasitas</td>";
+                    echo "<td><button type='button' class='button'>Anggota</button></td>";
+                    echo "<td><button type='button' class='button'>Edit</button></td>";
+                    echo "<td><a class='btn btn-primary'>Delete</a></td>";
+                    echo "<tr>";
+                }
+
+                ?>
             </tbody>
         </table>
     </div>

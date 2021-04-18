@@ -5,7 +5,6 @@ class Kos
     private $namaKos;
     private $tipe;
     private $ukuran;
-    private $foto;
     private $harga;
     private $kapasitas;
     private $detail;
@@ -20,7 +19,6 @@ class Kos
         $namaKos,
         $tipe,
         $ukuran,
-        $foto,
         $harga,
         $kapasitas,
         $detail,
@@ -33,7 +31,6 @@ class Kos
         $this->namaKos = $namaKos;
         $this->tipe = $tipe;
         $this->ukuran = $ukuran;
-        $this->foto = $foto;
         $this->harga = $harga;
         $this->kapasitas = $kapasitas;
         $this->detail = $detail;

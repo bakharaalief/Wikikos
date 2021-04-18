@@ -1,6 +1,12 @@
+<?php
+//get id user
+$id_user =  $_GET['id_user'];
+?>
+
+
 <div class="container" id="create-kosan">
     <h1>Buat Kosan</h1>
-    <form action="" method="post">
+    <form action="./action/create-kos/create-kos-db.php" method="post" enctype="multipart/form-data">
         <div class="row align-items-start">
             <!-- info kosan -->
             <div class="col">
@@ -11,9 +17,9 @@
                 <div class="form-group">
                     <label>Tipe</label>
                     <select class="form-control" name="tipe-kos">
-                        <option>Campur</option>
-                        <option>Laki</option>
-                        <option>Perempuan</option>
+                        <option value="campur">Campur</option>
+                        <option value="laki">Laki</option>
+                        <option value="perempuan">Perempuan</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -62,11 +68,15 @@
                 </table>
                 <a class="btn btn-primary" id="muncul-fasilitas-modal">Tambah Fasilitas</a>
                 <br>
+
                 <label>Gambar</label>
-                <input type="file" id="gambar-kos" class="form-control" name="fasilitas" />
+                <input type="file" id="gambar-kos" class="form-control" name="gambar-input" required />
                 <img id="image-crop" src="" alt="your image" />
 
                 <br>
+
+                <input type="text" class="form-control" name="id-user" value='<?php echo $id_user; ?>' hidden />
+
                 <button type="submit" class="btn btn-primary">Buat</button>
             </div>
         </div>
