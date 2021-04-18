@@ -559,3 +559,23 @@ font-size: 38px;
 line-height: 46px;
 text-align: center;
 }
+
+.submitreset{
+
+position: absolute;
+width: 227.33px;
+height: 66px;
+left: 606px;
+top: 537px;
+
+}
+
+
+.logowiki{
+    
+position: absolute;
+left: 46.53%;
+right: 46.6%;
+top: 11.06%;
+bottom: 77.94%;
+}
