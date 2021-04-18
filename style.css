@@ -532,3 +532,30 @@ body{
     margin-top: 20px;
     width: 100px;
 }
+
+/* bagiann dari reset pass page */
+.resetpass{
+    position: relative;
+    width: 1440px;
+    height: 922px;
+    
+    background: #F9F5F4;
+}
+
+.resetbyemail{
+    /* Input E-mail */
+
+
+position: absolute;
+width: 304px;
+height: 45px;
+left: 562px;
+top: 318px;
+
+font-family: Montserrat;
+font-style: normal;
+font-weight: 600;
+font-size: 38px;
+line-height: 46px;
+text-align: center;
+}
