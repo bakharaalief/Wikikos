@@ -1,14 +1,17 @@
 <div class="resetpass">
-    <div class="logowiki">
-        <img src="./image/logo.png" width="20" height="20" alt="">
-    </div>
-    <div id="reserbyemail" class="container">
+    <div id="resetbyemail" class="container">
         <form action="./action/pass/reset-pass-success.php" method="Post">
             <div class="form-group">
-                <label>email</label>
-                <input type="text" class="form-control" placeholder="Email" name="email" required>
+                <div class="inputemail">
+                    <label>Input E-Mail</label>
+                    <div id="inputemail">
+                        <input type="text" class="form-control" placeholder="Email" name="email" required>
+                    </div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <div class="submitreset">
+                <button type="submit" class="btn btn-primary">SUBMIT</button>
+            </div>
         </form>
     </div>
 </div>

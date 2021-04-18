@@ -558,9 +558,7 @@ body{
 }
 
 .resetbyemail{
-    /* Input E-mail */
-
-
+    /* Input email */
 position: absolute;
 width: 304px;
 height: 45px;
@@ -576,15 +574,14 @@ text-align: center;
 }
 
 .submitreset{
-
-position: absolute;
-width: 227.33px;
-height: 66px;
-left: 606px;
-top: 537px;
+    position: absolute;
+    width: 227.33px;
+    height: 66px;
+    left: 606px;
+    top: 537px;
+    
 
 }
-
 
 .logowiki{
     
@@ -593,4 +590,21 @@ left: 46.53%;
 right: 46.6%;
 top: 11.06%;
 bottom: 77.94%;
+}
+
+.inputemail{
+position: absolute;
+width: 304px;
+height: 45px;
+left: 562px;
+top: 318px;
+
+font-family: Montserrat;
+font-style: normal;
+font-weight: 600;
+font-size: 38px;
+line-height: 46px;
+text-align: center;
+
+color: #CE4525;
 }
