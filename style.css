@@ -546,7 +546,6 @@ body {
   width: 100px;
 }
 
-/* bagiann dari reset pass page */
 .resetpass {
   position: relative;
   width: 1440px;
@@ -572,16 +571,22 @@ body {
   position: absolute;
   width: 227.33px;
   height: 66px;
-  left: 606px;
-  top: 537px;
+  left: 130px;
+  top: 250px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  text-align: center;
 
+  color: #f9f5f4;
   background: #cf4427;
   border-radius: 76px;
 }
 
 .inputemail {
   position: absolute;
-  top: 1300%;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: Montserrat;
@@ -603,11 +608,4 @@ body {
   border: 2px solid #ce4525;
   box-sizing: border-box;
   border-radius: 71.5px;
-}
-
-.container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
