@@ -556,19 +556,16 @@ body {
 }
 
 .resetbyemail {
-  /* Input email */
   position: absolute;
-  width: 304px;
-  height: 45px;
-  left: 562px;
-  top: 318px;
+  width: 816px;
+  height: 70px;
+  left: 312px;
+  top: 415px;
 
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 38px;
-  line-height: 46px;
-  text-align: center;
+  background: #f8f5f4;
+  border: 2px solid #ce4525;
+  box-sizing: border-box;
+  border-radius: 71.5px;
 }
 
 .submitreset {
@@ -577,23 +574,16 @@ body {
   height: 66px;
   left: 606px;
   top: 537px;
-}
 
-.logowiki {
-  position: absolute;
-  left: 46.53%;
-  right: 46.6%;
-  top: 11.06%;
-  bottom: 77.94%;
+  background: #cf4427;
+  border-radius: 76px;
 }
 
 .inputemail {
   position: absolute;
-  width: 304px;
-  height: 45px;
-  left: 562px;
-  top: 318px;
-
+  top: 1300%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
@@ -602,4 +592,22 @@ body {
   text-align: center;
 
   color: #ce4525;
+}
+
+.kotakinput {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+
+  background: #f8f5f4;
+  border: 2px solid #ce4525;
+  box-sizing: border-box;
+  border-radius: 71.5px;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
