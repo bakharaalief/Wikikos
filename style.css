@@ -554,37 +554,7 @@ body {
   background: #f9f5f4;
 }
 
-.resetbyemail {
-  position: absolute;
-  width: 816px;
-  height: 70px;
-  left: 312px;
-  top: 415px;
-
-  background: #f8f5f4;
-  border: 2px solid #ce4525;
-  box-sizing: border-box;
-  border-radius: 71.5px;
-}
-
-.submitreset {
-  position: absolute;
-  width: 227.33px;
-  height: 66px;
-  left: 130px;
-  top: 250px;
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 22px;
-  text-align: center;
-
-  color: #f9f5f4;
-  background: #cf4427;
-  border-radius: 76px;
-}
-
-.inputemail {
+#resetbyemail form h1 {
   position: absolute;
   top: 10%;
   left: 50%;
@@ -599,13 +569,34 @@ body {
   color: #ce4525;
 }
 
-.kotakinput {
-  position: relative;
-  justify-content: center;
-  align-items: center;
+#resetbyemail form input {
+  position: absolute;
+  width: 816px;
+  height: 70px;
+  left: 312px;
+  top: 200px;
 
   background: #f8f5f4;
   border: 2px solid #ce4525;
   box-sizing: border-box;
   border-radius: 71.5px;
+}
+
+#resetbyemail form button {
+  position: absolute;
+  width: 227.33px;
+  height: 66px;
+  left: 606px;
+  top: 350px;
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 33px;
+  text-align: center;
+
+  background: #cf4427;
+  border-radius: 76px;
+  color: #f9f5f4;
 }
