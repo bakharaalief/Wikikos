@@ -112,7 +112,6 @@
                 $count = $stmt->rowCount();
 
                 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $nomor = 1;
                     $idKos = $result['id_kosan'];
                     $namaKos = $result['nama_kosan'];
                     $tipeKos = $result['tipe_kos'];
@@ -132,12 +131,13 @@
                     echo "<td>$kos->harga</td>";
                     echo "<td>$kos->kapasitas</td>";
                     echo "<td><button type='button' class='button'>Anggota</button></td>";
-                    echo "<td><button type='button' class='button'>Edit</button></td>";
-                    echo "<td><a class='btn btn-primary'>Delete</a></td>";
+                    echo "<td><a class='btn btn-primary' class='button' href='?p=edit-kos&id-kos=$kos->idKosan'</a>Edit</a></td>";
+                    echo "<td><a class='btn btn-primary' onclick='confirmData($kos->idKosan)'>Delete</a></td>";
                     echo "<tr>";
                 }
-
                 ?>
+
+                <a></a>
             </tbody>
         </table>
     </div>
@@ -168,3 +168,11 @@
 </div>
 
 <script src="./action/profile/create-nomor-telpon.js" type="text/javascript"></script>
+<script>
+    function confirmData(id) {
+        var data = confirm("Apakah anda ingin menghapus kosan ?");
+        if (data) {
+            window.location = "./action/kosan/remove-kos-db.php?id-kos=" + id;
+        }
+    }
+</script>
