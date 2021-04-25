@@ -64,7 +64,7 @@ else {
         $new_destination = $folder . $nama_file;
 
         //save photo location to db jika diperbaharui
-        if (isset($lokasi_file)) {
+        if ($lokasi_file != "") {
             $sql = "UPDATE foto_kos SET lokasi_foto='$new_destination', id_kosan='$idKos' 
         WHERE id_foto='$idFoto'";
             $conn->exec($sql);
@@ -76,7 +76,6 @@ else {
         $stmt->bindParam(':id_kosan', $idKos);
         $stmt->execute();
 
-        // $fasilitasSekarang = $stmt->rowCount();
         $sql = "DELETE FROM fasilitas_kos WHERE id_fasilitas = :id_fasilitas";
         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $idFasilitas = $result['id_fasilitas'];
@@ -88,16 +87,17 @@ else {
             $statement->execute($data);
         }
 
-        // $sql = "DELETE FROM fasilitas_kos WHERE id_fasilitas = :id_fasilitas";
-        // $stmt = $conn->prepare($sql);
-        // $stmt->bindParam(':id_fasilitas', $idFasilitas);
-        // $stmt->execute();
+        $sql = "DELETE FROM fasilitas_kos WHERE id_fasilitas = :id_fasilitas";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':id_fasilitas', $idFasilitas);
+        $stmt->execute();
 
         //insert multiple fasilitas
         $jumlah_fasilitas = count($_POST['hidden_fasilitas_nama']); //jumlah fasilitas
-        $query = "INSERT INTO fasilitas_kos(nama_fasilitas, id_kosan) VALUES (:nama_fasilitas, :id_kosan)";
+        $query = "INSERT INTO fasilitas_kos(id_fasilitas, nama_fasilitas, id_kosan) VALUES (:id_fasilitas, :nama_fasilitas, :id_kosan)";
         for ($count = 0; $count < $jumlah_fasilitas; $count++) {
             $data = array(
+                ':id_fasilitas' => 'K' . $idKos . 'F' . ($count + 1),
                 ':nama_fasilitas' => $_POST['hidden_fasilitas_nama'][$count],
                 ':id_kosan' => $idKos,
             );
@@ -111,11 +111,9 @@ else {
         window.location = '/kuliah/project/dashboard.php?p=profile';
         </script>";
     } catch (PDOException $e) {
-        // echo "<script>
-        // alert('Gagal Memperbaharui kosan, Pastikan semua data benar')
-        // window.location = '/kuliah/project/dashboard.php?p=edit-kos&id-kos=$idKos';
-        // </script>";
-
-        echo $e;
+        echo "<script>
+        alert('Gagal Memperbaharui kosan, Pastikan semua data benar')
+        window.location = '/kuliah/project/dashboard.php?p=edit-kos&id-kos=$idKos';
+        </script>";
     }
 }

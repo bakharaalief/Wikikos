@@ -53,7 +53,7 @@ if ($count2 == 1) {
 
 <div class="container" id="create-kosan">
     <h1>Edit Kosan</h1>
-    <form action="./action/kosan/edit-kos-db.php" method="post">
+    <form action="./action/kosan/edit-kos-db.php" method="post" enctype="multipart/form-data">
         <div class="row align-items-start">
             <!-- info kosan -->
             <div class="col">
@@ -155,7 +155,7 @@ if ($count2 == 1) {
                 <label>Gambar</label>
                 <br>
                 <img id="image-crop" src="<?php echo substr($fotoKos->Foto, 4); ?>" alt="your image" />
-                <input type="file" id="gambar-kos" class="form-control" name="fasilitas" />
+                <input type="file" id="gambar-kos" class="form-control" name="gambar-input" />
                 <input type="hidden" name='id-foto' value="<?php echo $fotoKos->idFoto; ?>" />
 
                 <input type="hidden" name="id-kos" value="<?php echo $kos->idKosan; ?>" />

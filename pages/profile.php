@@ -130,7 +130,7 @@
                     echo "<td>$kos->tipe</td>";
                     echo "<td>$kos->harga</td>";
                     echo "<td>$kos->kapasitas</td>";
-                    echo "<td><button type='button' class='button'>Anggota</button></td>";
+                    echo "<td><a class='btn btn-primary' href='?p=anggota-kos&id-kos=$kos->idKosan'>Anggota</a></td>";
                     echo "<td><a class='btn btn-primary' class='button' href='?p=edit-kos&id-kos=$kos->idKosan'</a>Edit</a></td>";
                     echo "<td><a class='btn btn-primary' onclick='confirmData($kos->idKosan)'>Delete</a></td>";
                     echo "<tr>";

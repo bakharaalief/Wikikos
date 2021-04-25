@@ -71,9 +71,10 @@ else {
 
         //insert multiple fasilitas
         $jumlah_fasilitas = count($_POST['hidden_fasilitas_nama']); //jumlah fasilitas
-        $query = "INSERT INTO fasilitas_kos(nama_fasilitas, id_kosan) VALUES (:nama_fasilitas, :id_kosan)";
+        $query = "INSERT INTO fasilitas_kos(id_fasilitas, nama_fasilitas, id_kosan) VALUES (:id_fasilitas, :nama_fasilitas, :id_kosan)";
         for ($count = 0; $count < $jumlah_fasilitas; $count++) {
             $data = array(
+                ':id_fasilitas' => 'K' . $last_id . 'F' . ($count + 1),
                 ':nama_fasilitas' => $_POST['hidden_fasilitas_nama'][$count],
                 ':id_kosan' => $last_id,
             );
