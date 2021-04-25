@@ -1,6 +1,7 @@
 <?php
 include("../../connection.php");
 
+
 $fullName = $_POST['namaLengkap'];
 $NIK = $_POST['NIK'];
 $email = $_POST['email'];
@@ -22,9 +23,9 @@ else {
         $sql = "INSERT INTO user(fullname, NIK, email, level, username, password) 
         VALUES ('$fullName', '$NIK', '$email', '$level', '$username', '$password')";
         $conn->exec($sql);
-
+        include("../../register-mail.php");
         echo "<script>
-        alert('Berhasil Mendaftarkan user, silahkan login kembali')
+        alert('Berhasil Mendaftarkan user, silahkan cek email anda untuk verifikasi')
         window.location = '/kuliah/project/?p=login';
         </script>";
     } catch (PDOException $e) {

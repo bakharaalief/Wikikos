@@ -491,7 +491,7 @@ body {
 }
 
 /* anggota */
-#anggota .info1{
+#anggota .info1 {
   display: flex;
   justify-content: space-between;
 }
