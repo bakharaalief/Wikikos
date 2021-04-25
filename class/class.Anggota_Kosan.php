@@ -1,12 +1,14 @@
 <?php
 class Anggota_Kosan
 {
+    private $idAnggota;
     private $NIKAnggota;
     private $NamaAnggota;
     private $idKosan;
 
-    public function __construct($NIKAnggota, $NamaAnggota, $idKosan)
+    public function __construct($idAnggota, $NIKAnggota, $NamaAnggota, $idKosan)
     {
+        $this->idAnggota = $idAnggota;
         $this->NIKAnggota = $NIKAnggota;
         $this->NamaAnggota = $NamaAnggota;
         $this->idKosan = $idKosan;

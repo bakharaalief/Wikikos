@@ -490,6 +490,57 @@ body {
   border: 1px solid var(--orange);
 }
 
+/* anggota */
+#anggota .info1{
+  display: flex;
+  justify-content: space-between;
+}
+
+#anggota .info1 h1 {
+  font-weight: 600;
+  color: var(--orange);
+}
+
+#anggota .info1 p {
+  color: var(--orange);
+  margin-bottom: 0px;
+}
+
+#anggota .info1 a {
+  margin-bottom: 15px;
+  background: var(--orange);
+  border-radius: 10px;
+  border: 1px solid var(--orange);
+  margin-top: 10px;
+  margin-bottom: 40px;
+  height: fit-content;
+  align-self: center;
+}
+
+#anggota .info1 #a2 {
+  margin-bottom: 15px;
+  background: #8f301d;
+  border-radius: 10px;
+  border: 1px solid #8f301d;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  height: fit-content;
+  align-self: center;
+}
+
+#anggota #data-anggota {
+  margin-top: 40px;
+  text-align: center;
+}
+
+#anggota #data-anggota a {
+  background: var(--orange);
+  border-radius: 10px;
+  font-size: 15px;
+  border: 1px solid var(--orange);
+  align-self: center;
+}
+
 /* kosan */
 #kosan #col-1 .kos-photo {
   width: 600px;

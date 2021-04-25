@@ -11,7 +11,7 @@ $hargaKos = $_POST['harga-kos'];
 $jalanKos = $_POST['jalan-kos'];
 $kecamatanKos = $_POST['kecamatan-kos'];
 $kotaKos = $_POST['kota-kos'];
-$deskripsiKos = $_POST['kota-kos'];
+$deskripsiKos = $_POST['deskripsi-kos'];
 $idUser = $_POST['id-user'];
 
 //photo kos
