@@ -122,6 +122,7 @@
                     $kecamatan = $result['kecamatan'];
                     $kota = $result['kota'];
                     $detail = $result['deskripsi'];
+                    $idUser = $result['id_user'];
 
                     $kos = new Kos($idKos, $namaKos, $tipeKos, $ukuranKos, $hargaKos, $kapasitasKos, $detail, $namaJalan, $kecamatan, $kota, $idUser);
 

@@ -1,4 +1,6 @@
 <?php
+require_once("./connection.php");
+
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -68,7 +70,7 @@ if (isset($_SESSION["level"])) {
             echo "Halaman Tidak Ditemukan";
         }
     } else {
-        include "./pages/home.php";
+        include "./pages/home2.php";
     }
     ?>
 </body>

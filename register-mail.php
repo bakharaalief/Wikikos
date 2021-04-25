@@ -12,6 +12,7 @@ $mail->SMTPDebug = 0;
 $mail->isSMTP();
 $mail->Host = 'smtp.gmail.com';
 $mail->SMTPAuth = true;
+
 //ganti dengan email dan password yang akan di gunakan sebagai email pengirim
 $mail->Username = 'zhirosec@gmail.com';
 $mail->Password = 'faizthunder13+';

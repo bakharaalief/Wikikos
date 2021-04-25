@@ -13,9 +13,8 @@
                 <p>-Jane Austen</p>
 
                 <!-- search form -->
-                <form action="/kuliah/project/dashboard.php" method="get">
+                <form action="/kuliah/project/index.php" method="get">
                     <div class="input-group">
-                        <!-- kalau bingung lihat url -->
                         <input type="text" class="form-control" placeholder="Cari Tempat" name="p" value="search" hidden>
                         <input type="text" class="form-control" placeholder="Cari Tempat" name="search-data">
                         <div class="input-group-append">

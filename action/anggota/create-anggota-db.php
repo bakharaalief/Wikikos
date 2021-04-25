@@ -6,10 +6,6 @@ $NIK = $_POST['NIK'];
 $namaAnggota = $_POST['nama'];
 $idKos = $_POST['id_kos'];
 
-echo $NIK;
-echo $namaAnggota;
-echo $idKos;
-
 // is data empty
 if (empty($NIK) | empty($namaAnggota) | empty($idKos)) {
     echo "<script>
