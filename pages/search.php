@@ -69,16 +69,16 @@ $search = $_GET['search-data'];
             //info kos lokasi
             echo "<div class='card-info'>";
             echo "<img src='./image/map-icon.png' width='20' height='20' alt=''>";
-            echo "<p>$kos->kota</p>";
+            echo "<p>$kos->namaJalan, $kos->kecamatan, $kos->kota </p>";
             echo "</div>";
 
             //info kos harga
             echo "<div class='card-info'>";
             echo "<img src='./image/money-icon.png' width='20' height='20' alt=''>";
-            echo "<p>1500000</p>";
+            echo "<p>$kos->hargaKos</p>";
             echo "</div>";
 
-            //info kos harga
+            //info mhs aktif
             echo "<div class='card-info'>";
             echo "<img src='./image/person-icon.png' width='20' height='20' alt=''>";
             echo "<p>3 Aktif</p>";
