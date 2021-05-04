@@ -18,7 +18,7 @@ $search = $_GET['search-data'];
     require_once("./class/class.Kos.php");
 
     //ini querynya
-    $sql = "SELECT * FROM kosan WHERE nama_kosan LIKE :search_data";
+    $sql = "SELECT * FROM kosan WHERE nama_kosan LIKE Concat(:search_data, '%')";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':search_data', $search);
     $stmt->execute();
@@ -75,7 +75,7 @@ $search = $_GET['search-data'];
             //info kos harga
             echo "<div class='card-info'>";
             echo "<img src='./image/money-icon.png' width='20' height='20' alt=''>";
-            echo "<p>$kos->hargaKos</p>";
+            echo "<p>Rp $kos->harga</p>";
             echo "</div>";
 
             //info mhs aktif

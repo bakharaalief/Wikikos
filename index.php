@@ -1,5 +1,6 @@
 <?php
 require_once("./connection.php");
+require("./inc.connection2.php");
 
 if (!isset($_SESSION)) {
     session_start();

@@ -1,6 +1,6 @@
 <?php
-include("../../connection.php");
-
+// include("../../connection.php");
+require_once("./class/class.User2.php");
 
 $fullName = $_POST['namaLengkap'];
 $NIK = $_POST['NIK'];
@@ -19,16 +19,25 @@ if (empty($fullName) | empty($NIK) | empty($email) | empty($username) | empty($p
 
 //not empty
 else {
-    try {
-        $sql = "INSERT INTO user(fullname, NIK, email, level, username, password) 
-        VALUES ('$fullName', '$NIK', '$email', '$level', '$username', '$password')";
-        $conn->exec($sql);
-        include("../../register-mail.php");
+    $user2 = new User2();
+
+    $user2->fullname = $fullName;
+    $user2->email = $email;
+    $user2->username = $username;
+    $user2->password = $password;
+    $user2->NIK = $NIK;
+    $user2->level = $level;
+
+    $hasil = $user2->createUser();
+
+    if ($hasil == "berhasil daftar") {
+        // include("../../register-mail.php");
+
         echo "<script>
         alert('Berhasil Mendaftarkan user, silahkan cek email anda untuk verifikasi')
         window.location = '/kuliah/project/?p=login';
         </script>";
-    } catch (PDOException $e) {
+    } else {
         echo "<script>
         alert('Gagal Mendaftarkan user, Pastikan semua data benar')
         window.location = '/kuliah/project/?p=create-user';

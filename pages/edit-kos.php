@@ -5,55 +5,15 @@ require_once("./class/class.Foto_Kosan.php");
 $idKos = $_GET['id-kos'];
 
 //fetch data kosan by id
-$sql = "SELECT * FROM kosan WHERE id_kosan = :id_kosan";
-$stmt = $conn->prepare($sql);
-$stmt->bindParam(':id_kosan', $idKos);
-$stmt->execute();
-
-$count = $stmt->rowCount(); ///menghitung row
-
-// jika rownya ada
-if ($count == 1) {
-
-    $result   = $stmt->fetch(PDO::FETCH_ASSOC);
-    $idKos = $result['id_kosan'];
-    $namaKos = $result['nama_kosan'];
-    $tipeKos = $result['tipe_kos'];
-    $ukuranKos = $result['ukuran'];
-    $hargaKos = $result['harga'];
-    $kapasitasKos = $result['kapasitas'];
-    $namaJalan = $result['nama_jalan'];
-    $kecamatan = $result['kecamatan'];
-    $kota = $result['kota'];
-    $detail = $result['deskripsi'];
-    $idUser = $result['id_user'];
-
-    $kos = new Kos($idKos, $namaKos, $tipeKos, $ukuranKos, $hargaKos, $kapasitasKos, $detail, $namaJalan, $kecamatan, $kota, $idUser);
-}
-
-//fetch foto kosan by id
-$sql = "SELECT * FROM foto_kos WHERE id_kosan = :id_kosan";
-$stmt = $conn->prepare($sql);
-$stmt->bindParam(':id_kosan', $idKos);
-$stmt->execute();
-
-$count2 = $stmt->rowCount();
-
-if ($count2 == 1) {
-
-    $result   = $stmt->fetch(PDO::FETCH_ASSOC);
-    $idFoto = $result['id_foto'];
-    $lokasiFoto = $result['lokasi_foto'];
-    $idKos = $result['id_kosan'];
-
-    $fotoKos = new Foto_Kosan($idFoto, $lokasiFoto, $idKos);
-}
+$kos = new Kos();
+$kos->idKos = $idKos;
+$kos->getKosanData();
 
 ?>
 
 <div class="container" id="create-kosan">
     <h1>Edit Kosan</h1>
-    <form action="./action/kosan/edit-kos-db.php" method="post" enctype="multipart/form-data">
+    <form action="?p=edit-kos-action" method="post" enctype="multipart/form-data">
         <div class="row align-items-start">
             <!-- info kosan -->
             <div class="col">
@@ -140,11 +100,6 @@ if ($count2 == 1) {
                             '</tr>';
 
                             echo $output;
-
-                            // echo "<tr>";
-                            // echo "<td>$namaFasilitas</td>";
-                            // echo "<td><a type='button' class='btn btn-danger btn-xs' onclick='confirmData($fasilitas->idFasilitas, $fasilitas->idKosan)''>Hapus</a></td>";
-                            // echo "<tr>";
                         }
 
                         ?>
@@ -152,13 +107,31 @@ if ($count2 == 1) {
                 </table>
                 <a class="btn btn-primary" id="muncul-fasilitas-modal">Tambah Fasilitas</a>
                 <br>
+
+                <!-- gambar kosan -->
                 <label>Gambar</label>
                 <br>
-                <img id="image-crop" src="<?php echo substr($fotoKos->Foto, 4); ?>" alt="your image" />
-                <input type="file" id="gambar-kos" class="form-control" name="gambar-input" />
-                <input type="hidden" name='id-foto' value="<?php echo $fotoKos->idFoto; ?>" />
 
-                <input type="hidden" name="id-kos" value="<?php echo $kos->idKosan; ?>" />
+                <?php
+                //fetch foto kosan by id
+                $allFoto = $kos->getAllPhoto();
+
+                //kosong
+                if ($allFoto == "kosong") {
+                    return;
+                }
+
+                //selain itu
+                else {
+                    foreach ($allFoto as $dataFoto) {
+                        echo '<img id="image-crop" src="' . substr($dataFoto->Foto, 0) . '" alt="your image" />';
+                        echo '<input type="file" id="gambar-kos" class="form-control" name="gambar-input" />';
+                        echo '<input type="hidden" name="id-foto" value="' . $dataFoto->idFoto . '" />';
+                    }
+                }
+                ?>
+
+                <input type="hidden" name="id-kos" value="<?php echo $kos->idKos; ?>" />
                 <input type="hidden" name="id-user" value="<?php echo $kos->idUser; ?>" />
                 <input type="hidden" id="jumlah-fasilitas" value="<?php echo $jumlahFasilitas; ?>" />
 
@@ -178,26 +151,6 @@ if ($count2 == 1) {
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Fasilitas</h5>
                     <button type="button" class="btn btn-secondary" id="close-fasilitas-modal">Close</button>
                 </div>
-                <!-- <form action="./action/kosan/add-fasilitas-db.php" method="POST">
-                    <div class="modal-body">
-                        <input list="fasilitas" id="fasilitas-kos" class="form-control" name="fasilitas" required />
-                        <datalist id="fasilitas">
-                            <option value="AC">
-                            <option value="Kulkas">
-                            <option value="Gym">
-                            <option value="Kasur">
-                            <option value="Meja Belajar">
-                            <option value="Lemari">
-                            <option value="Kamar Mandi Dalam">
-                            <option value="Kamar Mandi Luar">
-                        </datalist>
-                        <span id="error_fasilitas_kos" class="text-danger"></span>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="hidden" name="id-kos" value="<?php echo $kos->idKosan; ?>" />
-                        <button type="submit" class="btn btn-primary" id="tambah-fasilitas">Tambah Fasilitas</button>
-                    </div>
-                </form> -->
 
                 <div class="modal-body">
                     <input list="fasilitas" id="fasilitas-kos" class="form-control" name="fasilitas" required />
@@ -214,7 +167,7 @@ if ($count2 == 1) {
                     <span id="error_fasilitas_kos" class="text-danger"></span>
                 </div>
                 <div class="modal-footer">
-                    <!-- <input type="hidden" name="id-kos" value="<?php echo $kos->idKosan; ?>" /> -->
+                    <input type="hidden" name="id-kos" value="<?php echo $kos->idKos; ?>" />
                     <button type="submit" class="btn btn-primary" id="tambah-fasilitas">Tambah Fasilitas</button>
                 </div>
             </div>
@@ -222,7 +175,7 @@ if ($count2 == 1) {
     </div>
 </div>
 
-<script src="./action/kosan/edit-kosan.js"></script>
+<script src="./js/edit-kos.js"></script>
 <script>
     function confirmData(id, idKos) {
         var data = confirm("Apakah anda ingin menghapus Fasilitas ?");

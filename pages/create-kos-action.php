@@ -1,6 +1,4 @@
 <?php
-require_once("../../connection.php");
-
 //kos info
 $namaKos = $_POST['nama-kos'];
 $tipeKos = $_POST['tipe-kos'];
@@ -15,11 +13,9 @@ $idUser = $_POST['id-user'];
 
 //photo kos
 $lokasi_file = @$_FILES['gambar-input']['tmp_name'];
-$nama_file = @$_FILES['gambar-input']['name'];
 $ukuran_file = @$_FILES['gambar-input']['size'];
 $type_file = @$_FILES['gambar-input']['type'];
-$folder = '../../upload/';
-
+$folder = './upload/';
 
 // is data empty
 if (
@@ -50,44 +46,30 @@ else if (!isset($_POST['hidden_fasilitas_nama'])) {
 
 //not empty
 else {
-    try {
-        //insert bio to kosan
-        $sql = "INSERT INTO kosan(nama_kosan, tipe_kos, ukuran, harga, kapasitas, nama_jalan, kecamatan, kota, deskripsi, id_user) 
-        VALUES ('$namaKos', '$tipeKos', '$ukuranKos', '$hargaKos', '$kapasitasKos', '$jalanKos', 
-        '$kecamatanKos', '$kotaKos', '$deskripsiKos', '$idUser')";
-        $conn->exec($sql);
+    $hasil = $user2->createKos(
+        $namaKos,
+        $tipeKos,
+        $ukuranKos,
+        $hargaKos,
+        $kapasitasKos,
+        $jalanKos,
+        $kecamatanKos,
+        $kotaKos,
+        $deskripsiKos,
+        $lokasi_file,
+        $folder
+    );
 
-        //last id insert
-        $last_id = $conn->lastInsertId();
-
-        //move photo to foto folder
-        $succes_move = move_uploaded_file($lokasi_file, $folder . $nama_file);
-        $new_destination = $folder . $nama_file;
-
-        //save photo location to db
-        $sql = "INSERT INTO foto_kos(lokasi_foto, id_kosan) 
-        VALUES ('$new_destination', '$last_id')";
-        $conn->exec($sql);
-
-        //insert multiple fasilitas
-        $jumlah_fasilitas = count($_POST['hidden_fasilitas_nama']); //jumlah fasilitas
-        $query = "INSERT INTO fasilitas_kos(id_fasilitas, nama_fasilitas, id_kosan) VALUES (:id_fasilitas, :nama_fasilitas, :id_kosan)";
-        for ($count = 0; $count < $jumlah_fasilitas; $count++) {
-            $data = array(
-                ':id_fasilitas' => 'K' . $last_id . 'F' . ($count + 1),
-                ':nama_fasilitas' => $_POST['hidden_fasilitas_nama'][$count],
-                ':id_kosan' => $last_id,
-            );
-
-            $statement = $conn->prepare($query);
-            $statement->execute($data);
-        }
-
+    //berhasil membuat
+    if ($hasil == "berhasil membuat") {
         echo "<script>
         alert('Berhasil Mendaftarkan Kosan')
         window.location = '/kuliah/project/dashboard.php?p=profile';
         </script>";
-    } catch (PDOException $e) {
+    }
+
+    //gagal membuat
+    else {
         echo "<script>
         alert('Gagal Mendaftarkan kosan, Pastikan semua data benar')
         window.location = '/kuliah/project/dashboard.php?p=create-kos&id_user=$idUser';

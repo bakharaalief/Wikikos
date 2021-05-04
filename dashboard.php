@@ -1,12 +1,12 @@
 <?php
-require_once("./class/class.User.php");
-require_once("./connection.php");
+require("./inc.connection2.php");
+require_once("./class/class.User2.php");
 
 if (!isset($_SESSION)) {
     session_start();
 }
 
-$id_user = $_SESSION['id_user'];
+$idUser = $_SESSION['id_user'];
 $username = $_SESSION['username'];
 $password = $_SESSION['password'];
 $email = $_SESSION['email'];
@@ -14,7 +14,9 @@ $fullname = $_SESSION['fullname'];
 $nik = $_SESSION['NIK'];
 $level = $_SESSION['level'];
 
-$user = new User($id_user, $username, $password, $email, $fullname, $nik, $level);
+//user object
+$user2 = new User2();
+$user2->idUser = $idUser;
 ?>
 
 <html lang="en">
@@ -51,12 +53,12 @@ $user = new User($id_user, $username, $password, $email, $fullname, $nik, $level
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item-login">
-                        <a class="nav-link" href="./action/profile/logout.php">logout</a>
+                        <a class="nav-link" href="?p=logout-action">logout</a>
                     </li>
                     <li class="nav-item-create">
                         <a class="nav-link" href="?p=profile">
                             <?php
-                            echo $user->nama;
+                            echo $fullname;
                             ?>
                         </a>
                     </li>

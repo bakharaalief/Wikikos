@@ -4,42 +4,19 @@ require_once("./class/class.Kos.php");
 $idKos = $_GET['id-kos'];
 
 //get data for kapasitas kos
-//fetch data kosan by id
-$sql = "SELECT * FROM kosan WHERE id_kosan = :id_kosan";
-$stmt = $conn->prepare($sql);
-$stmt->bindParam(':id_kosan', $idKos);
-$stmt->execute();
+$kos = new Kos();
+$kos->idKos = $idKos;
+$kos->getKosanData();
 
-$count = $stmt->rowCount(); ///menghitung row
-
-// jika rownya ada
-if ($count == 1) {
-
-    $result   = $stmt->fetch(PDO::FETCH_ASSOC);
-    $idKos = $result['id_kosan'];
-    $namaKos = $result['nama_kosan'];
-    $tipeKos = $result['tipe_kos'];
-    $ukuranKos = $result['ukuran'];
-    $hargaKos = $result['harga'];
-    $kapasitasKos = $result['kapasitas'];
-    $namaJalan = $result['nama_jalan'];
-    $kecamatan = $result['kecamatan'];
-    $kota = $result['kota'];
-    $detail = $result['deskripsi'];
-    $idUser = $result['id_user'];
-
-    $kos = new Kos($idKos, $namaKos, $tipeKos, $ukuranKos, $hargaKos, $kapasitasKos, $detail, $namaJalan, $kecamatan, $kota, $idUser);
-}
-
-
-// get data anggota for kosan
-$sql = "SELECT * FROM anggota_kos WHERE id_kosan = :id_kosan";
-$stmt = $conn->prepare($sql);
-$stmt->bindParam(':id_kosan', $idKos);
-$stmt->execute();
+$allAnggota = $kos->getAllAnggota();
+$count = 0;
 
 //hitung banyaknya anggota di kosan
-$count = $stmt->rowCount();
+if ($allAnggota == "kosong") {
+    $count = 0;
+} else {
+    $count = count($allAnggota);
+}
 ?>
 
 <div class="container" id="anggota">
@@ -72,23 +49,17 @@ $count = $stmt->rowCount();
         <tbody>
             <!-- anggota from db -->
             <?php
-            require_once("./class/class.Anggota_Kosan.php");
+            // require_once("./class/class.Anggota_Kosan.php");
 
-            //looping to load no telp same with user id
-            while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $idAnggota = $result['id_anggota'];
-                $NIK = $result['NIK'];
-                $namaAnggota = $result['nama_anggota'];
-                $idKosan = $result['id_kosan'];
-
-                $anggota = new Anggota_Kosan($idAnggota, $NIK, $namaAnggota, $idKosan);
-
-                echo "<tr>";
-                echo "<td>" . $anggota->NIKAnggota . "</td>";
-                echo "<td>" . $anggota->NamaAnggota . "</td>";
-                echo "<td><a type='button' class='btn btn-primary btn-xs' id='muncul-edit-anggota-modal' onclick='editData(" . $anggota->idAnggota .  "," . $anggota->NIKAnggota . ",\"" . $anggota->NamaAnggota . "\");'>Edit</a></td>";
-                echo "<td><a type='button' class='btn btn-primary btn-xs' onclick='confirmData($anggota->idAnggota, $kos->idKosan)'>Delete</a></td>";
-                echo "<tr>";
+            if (!$count == 0) {
+                foreach ($allAnggota as $dataAnggota) {
+                    echo "<tr>";
+                    echo "<td>" . $dataAnggota->NIK . "</td>";
+                    echo "<td>" . $dataAnggota->Nama . "</td>";
+                    echo "<td><a type='button' class='btn btn-primary btn-xs' id='muncul-edit-anggota-modal' onclick='editData(" . $dataAnggota->idAnggota .  "," . $dataAnggota->NIK . ",\"" . $dataAnggota->Nama . "\");'>Edit</a></td>";
+                    echo "<td><a type='button' class='btn btn-primary btn-xs' onclick='confirmData($dataAnggota->idAnggota, $kos->idKos)'>Delete</a></td>";
+                    echo "<tr>";
+                }
             }
             ?>
         </tbody>
@@ -103,7 +74,7 @@ $count = $stmt->rowCount();
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Anggota</h5>
                 <button type="button" class="btn btn-secondary" id="close-anggota-modal">Close</button>
             </div>
-            <form action="./action/anggota/create-anggota-db.php" method="post">
+            <form action="?p=create-anggota-action" method="post">
                 <div class="modal-body">
                     <input type="text" id="NIK-anggota" class="form-control" name="NIK" placeholder="NIK" required />
                     <span id="error_NIK_anggota_kos" class="text-danger"></span>
@@ -129,7 +100,7 @@ $count = $stmt->rowCount();
                 <h5 class="modal-title" id="exampleModalLabel">Edit Anggota</h5>
                 <button type="button" class="btn btn-secondary" id="close-edit-anggota-modal">Close</button>
             </div>
-            <form action="./action/anggota/edit-anggota-db.php" method="post">
+            <form action="?p=edit-anggota-action" method="post">
                 <div class="modal-body">
                     <input type="text" id="NIK-anggota-edit" class="form-control" name="NIK" placeholder="NIK" required />
                     <span id="error_NIK_anggota_kos" class="text-danger"></span>
@@ -148,12 +119,12 @@ $count = $stmt->rowCount();
     </div>
 </div>
 
-<script src="./action/anggota/create-anggota.js" type="text/javascript"></script>
+<script src="./js/create-anggota.js" type="text/javascript"></script>
 <script>
     function confirmData(id, idKosan) {
         var data = confirm("Apakah anda ingin menghapus Anggota ?");
         if (data) {
-            window.location = href = './action/anggota/remove-anggota-db.php?id-anggota=' + id + '&id-kos=' + idKosan;
+            window.location = href = '?p=remove-anggota-action&id-anggota=' + id + '&id-kos=' + idKosan;
         }
     }
 

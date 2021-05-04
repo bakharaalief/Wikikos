@@ -3,10 +3,9 @@
 $id_user =  $_GET['id_user'];
 ?>
 
-
 <div class="container" id="create-kosan">
     <h1>Buat Kosan</h1>
-    <form action="./action/kosan/create-kos-db.php" method="post" enctype="multipart/form-data">
+    <form action="?p=create-kos-action" method="post" enctype="multipart/form-data">
         <div class="row align-items-start">
             <!-- info kosan -->
             <div class="col">
@@ -114,4 +113,4 @@ $id_user =  $_GET['id_user'];
     </div>
 </div>
 
-<script src="./action/kosan/create-kosan.js" type="text/javascript"></script>
+<script src="./js/create-kos.js" type="text/javascript"></script>

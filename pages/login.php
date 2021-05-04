@@ -12,7 +12,7 @@
                 <h4>Find a mate and your comfort space with WikiKos.</h4>
 
                 <!-- login form -->
-                <form action="./action/profile/login.php" method="Post">
+                <form action="?p=login-action" method="Post">
                     <!-- Email address -->
                     <div class="form-group">
                         <label>Username</label>

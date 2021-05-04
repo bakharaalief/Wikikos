@@ -1,5 +1,5 @@
 <?php
-include("../../connection.php");
+require_once("./class/class.User2.php");
 
 //get 
 $nomor =  $_POST['nomor'];
@@ -15,16 +15,14 @@ if (empty($nomor) | empty($id_user)) {
 
 //not empty
 else {
-    try {
-        $sql = "INSERT INTO telpon(nomor_telpon, id_user) 
-        VALUES ('$nomor', '$id_user')";
-        $conn->exec($sql);
+    $result = $user2->addTelpon($nomor);
 
+    if ($result == "berhasil") {
         echo "<script>
         alert('Berhasil Menambahkan Nomor Telpon')
         window.location = '/kuliah/project/dashboard.php?p=profile';
         </script>";
-    } catch (PDOException $e) {
+    } else {
         echo "<script>
         alert('Gagal Menambahkan Nomor Telpon')
         window.location = '/kuliah/project/dashboard.php?p=profile';

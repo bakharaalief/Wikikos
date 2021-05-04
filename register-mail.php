@@ -18,6 +18,7 @@ $mail->Username = 'zhirosec@gmail.com';
 $mail->Password = 'faizthunder13+';
 $mail->SMTPSecure = 'ssl';
 $mail->Port = 465;
+
 //ganti dengan email yg akan di gunakan sebagai email pengirim
 $mail->setFrom('zhirosec@gmail.com', 'Admin Wikikos');
 $mail->addAddress($_POST['email'], $_POST['namaLengkap']);

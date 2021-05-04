@@ -3,17 +3,17 @@
         <!-- info tentang nama dan status user -->
         <div class="col" id="info1">
             <?php
-            echo "<h1>" . ucwords($user->nama) . "</h1>";
-            if ($user->level == 0) {
+            echo "<h1>" . ucwords($fullname) . "</h1>";
+            if ($level == 0) {
                 echo "<p>Admin</p>";
             }
-            if ($user->level == 1) {
+            if ($level == 1) {
                 echo "<p>Pemilik Kos</p>";
             }
-            if ($user->level == 2) {
+            if ($level == 2) {
                 echo "<p>Pengguna</p>";
             }
-            echo "<p> ID " . $user->idUser . "</p>";
+            echo "<p> ID " . $idUser . "</p>";
             ?>
         </div>
 
@@ -30,30 +30,26 @@
                 <tbody>
                     <!-- nomor telpon get from db -->
                     <?php
-                    require_once("./class/class.Telp_User.php");
 
-                    $idUser = $user->idUser;
+                    $allTelpon = $user2->getAllTelpon();
 
-                    $sql = "SELECT * FROM telpon WHERE id_user = :id_user";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bindParam(':id_user', $idUser);
-                    $stmt->execute();
-
-                    //hitung row nomor telpon
-                    $count = $stmt->rowCount();
-
-                    //looping to load no telp same with user id
-                    while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        $idTelpon = $result['id_telpon'];
-                        $nmrTelpon = $result['nomor_telpon'];
-                        $idUser = $result['id_user'];
-
-                        $telpon = new Telp_User($idTelpon, $nmrTelpon, $idUser);
-
+                    //nomor telpon kosong
+                    if ($allTelpon == "kosong") {
                         echo "<tr>";
-                        echo "<td>" . $telpon->NoTelp . "</td>";
-                        echo '<td><a type="button" class="btn btn-danger btn-xs" href="./action/profile/remove-nomor-telpon.php?id_telpon=' . $telpon->idNoTelp . '">Delete</a></td>';
+                        echo "<td><p>Maaf Data Kosong</p></td>";
                         echo "<tr>";
+                        $count = 0;
+                    }
+
+                    //nomor telpon ada
+                    else {
+                        $count = count($allTelpon);
+                        foreach ($allTelpon as $dataTelpon) {
+                            echo "<tr>";
+                            echo "<td>" . $dataTelpon->NoTelp . "</td>";
+                            echo '<td><a type="button" class="btn btn-danger btn-xs" href="?p=remove-telpon-action&id_telpon=' . $dataTelpon->idNoTelp . '">Delete</a></td>';
+                            echo "<tr>";
+                        }
                     }
                     ?>
                 </tbody>
@@ -61,15 +57,15 @@
 
             <!-- control add nomor telpon button -->
             <?php
-            if ($user->level == 0) {
+            if ($level == 0) {
                 echo '<a class="btn btn-primary" id="muncul-nomor-telpon-modal">Tambah Nomor</a>';
             }
-            if ($user->level == 1) {
+            if ($level == 1) {
                 if ($count < 2) {
                     echo '<a class="btn btn-primary" id="muncul-nomor-telpon-modal">Tambah Nomor</a>';
                 }
             }
-            if ($user->level == 2) {
+            if ($level == 2) {
                 if ($count < 1) {
                     echo '<a class="btn btn-primary" id="muncul-nomor-telpon-modal">Tambah Nomor</a>';
                 }
@@ -83,7 +79,7 @@
     <div class="Semua-kosan">
         <div class="data1">
             <h1>Kosan Dimiliki</h1>
-            <a class="btn btn-primary" href=<?php echo "?p=create-kos&id_user=$user->idUser" ?>>Tambah Kosan</a>
+            <a class="btn btn-primary" href=<?php echo "?p=create-kos&id_user=$idUser" ?>>Tambah Kosan</a>
         </div>
         <table class="table" id="data-kosan">
             <thead>
@@ -98,43 +94,33 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- kosan get from db -->
                 <?php
-                require_once("./class/class.Kos.php");
 
-                $idUser = $user->idUser;
+                $allKos = $user2->getAllKos();
 
-                $sql = "SELECT * FROM kosan WHERE id_user = :id_user";
-                $stmt = $conn->prepare($sql);
-                $stmt->bindParam(':id_user', $idUser);
-                $stmt->execute();
-
-                //hitung row kosan
-                $count = $stmt->rowCount();
-
-                while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $idKos = $result['id_kosan'];
-                    $namaKos = $result['nama_kosan'];
-                    $tipeKos = $result['tipe_kos'];
-                    $ukuranKos = $result['ukuran'];
-                    $hargaKos = $result['harga'];
-                    $kapasitasKos = $result['kapasitas'];
-                    $namaJalan = $result['nama_jalan'];
-                    $kecamatan = $result['kecamatan'];
-                    $kota = $result['kota'];
-                    $detail = $result['deskripsi'];
-                    $idUser = $result['id_user'];
-
-                    $kos = new Kos($idKos, $namaKos, $tipeKos, $ukuranKos, $hargaKos, $kapasitasKos, $detail, $namaJalan, $kecamatan, $kota, $idUser);
-
+                //kosan kosong
+                if ($allKos == "kosong") {
                     echo "<tr>";
-                    echo "<td>$kos->namaKos</td>";
-                    echo "<td>$kos->tipe</td>";
-                    echo "<td>$kos->harga</td>";
-                    echo "<td>$kos->kapasitas</td>";
-                    echo "<td><a class='btn btn-primary' href='?p=anggota-kos&id-kos=$kos->idKosan'>Anggota</a></td>";
-                    echo "<td><a class='btn btn-primary' class='button' href='?p=edit-kos&id-kos=$kos->idKosan'</a>Edit</a></td>";
-                    echo "<td><a class='btn btn-primary' onclick='confirmData($kos->idKosan)'>Delete</a></td>";
+                    echo "<td><p>Maaf Data Kosong</p></td>";
                     echo "<tr>";
+                    $count = 0;
+                }
+
+                //kosan ada
+                else {
+                    $count = count($allKos);
+                    foreach ($allKos as $dataKos) {
+                        echo "<tr>";
+                        echo "<td>$dataKos->namaKos</td>";
+                        echo "<td>$dataKos->tipe</td>";
+                        echo "<td>$dataKos->harga</td>";
+                        echo "<td>$dataKos->kapasitas</td>";
+                        echo "<td><a class='btn btn-primary' href='?p=anggota-kos&id-kos=$dataKos->idKos'>Anggota</a></td>";
+                        echo "<td><a class='btn btn-primary' class='button' href='?p=edit-kos&id-kos=$dataKos->idKos'</a>Edit</a></td>";
+                        echo "<td><a class='btn btn-primary' onclick='confirmData($dataKos->idKos)'>Delete</a></td>";
+                        echo "<tr>";
+                    }
                 }
                 ?>
 
@@ -152,10 +138,9 @@
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Nomor</h5>
                 <button type="button" class="btn btn-secondary" id="close-nomor-telpon-modal">Close</button>
             </div>
-            <form action="./action/profile/add-nomor-telpon.php" method="post">
+            <form action="?p=add-telpon-action" method="post">
                 <div class="modal-body">
                     <input type="text" id="nomor-telpon-kos" class="form-control" name="nomor" required />
-                    <input type="text" id="id-user" value="<?php echo $user->idUser; ?>" name="id_user" hidden>
                     <span id="error_nomor_telpon_kos" class="text-danger"></span>
                 </div>
                 <div class="modal-footer">
@@ -168,12 +153,12 @@
     </div>
 </div>
 
-<script src="./action/profile/create-nomor-telpon.js" type="text/javascript"></script>
+<script src="./js/create-nomor-telpon.js" type="text/javascript"></script>
 <script>
     function confirmData(id) {
         var data = confirm("Apakah anda ingin menghapus kosan ?");
         if (data) {
-            window.location = "./action/kosan/remove-kos-db.php?id-kos=" + id;
+            window.location = "?p=remove-kos-action&id-kos=" + id;
         }
     }
 </script>

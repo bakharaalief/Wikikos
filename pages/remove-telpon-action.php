@@ -1,5 +1,4 @@
 <?php
-include("../../connection.php");
 
 //get 
 $id_telpon =  $_GET['id_telpon'];
@@ -14,18 +13,16 @@ if (empty($id_telpon)) {
 
 //not empty
 else {
-    try {
-        $sql = "DELETE FROM telpon WHERE id_telpon = :id_telpon";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':id_telpon', $id_telpon);
-        $stmt->execute();
+    $telponUser = new Telp_User();
+    $telponUser->idNoTelp = $id_telpon;
+    $status = $telponUser->removeTelpon();
 
+    if ($status == "berhasil menghapus") {
         echo "<script>
         alert('Berhasil Menghapus Nomor Telpon')
         window.location = '/kuliah/project/dashboard.php?p=profile';
         </script>";
-    } catch (PDOException $e) {
-
+    } else {
         echo "<script>
         alert('Gagal Menghapus Nomor Telpon')
         window.location = '/kuliah/project/dashboard.php?p=profile';

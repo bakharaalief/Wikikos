@@ -1,5 +1,5 @@
 <?php
-require_once("../../connection.php");
+require_once("./class/class.Anggota_Kosan.php");
 
 //anggota info
 $NIK = $_POST['NIK'];
@@ -16,17 +16,24 @@ if (empty($NIK) | empty($namaAnggota) | empty($idKos)) {
 
 //not empty
 else {
-    try {
-        //insert bio to kosan
-        $sql = "INSERT INTO anggota_kos(NIK, nama_anggota, id_kosan) 
-        VALUES ('$NIK', '$namaAnggota', '$idKos')";
-        $conn->exec($sql);
 
+    $anggotaKos = new Anggota_Kosan();
+    $anggotaKos->NIK = $NIK;
+    $anggotaKos->Nama = $namaAnggota;
+    $anggotaKos->idKos = $idKos;
+
+    $hasil = $anggotaKos->createAnggota();
+
+    //berasil mendaftar
+    if ($hasil == "berhasil mendaftar") {
         echo "<script>
         alert('Berhasil Mendaftarkan Anggota')
         window.location = '/kuliah/project/dashboard.php?p=anggota-kos&id-kos=$idKos';
         </script>";
-    } catch (PDOException $e) {
+    }
+
+    //gagal mendaftar
+    else {
         echo "<script>
         alert('Gagal Mendaftarkan Anggota, Pastikan semua data benar')
         window.location = '/kuliah/project/dashboard.php?p=anggota-kos&id-kos=$idKos';

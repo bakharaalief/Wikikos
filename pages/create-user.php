@@ -12,7 +12,7 @@
                 <h4>Find a mate and your comfort space with WikiKos.</h4>
 
                 <!-- Register form -->
-                <form action="./action/user/create-user-db.php" method="Post">
+                <form action="?p=create-user-action" method="Post">
 
                     <!-- full name -->
                     <div class="form-group">
