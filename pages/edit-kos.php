@@ -74,34 +74,32 @@ $kos->getKosanData();
                         <?php
                         require_once("./class/class.Fasilitas.php");
 
-                        $sql = "SELECT * FROM fasilitas_kos WHERE id_kosan = :id_kosan";
-                        $stmt = $conn->prepare($sql);
-                        $stmt->bindParam(':id_kosan', $idKos);
-                        $stmt->execute();
+                        $allFasilitas = $kos->getAllFasilitas();
 
-                        //hitung row kosan
-                        $count = $stmt->rowCount();
-
-                        $jumlahFasilitas = 0;
-
-                        while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                            $idFasilitas = $result['id_fasilitas'];
-                            $namaFasilitas = $result['nama_fasilitas'];
-                            $idKosan = $result['id_kosan'];
-
-                            $fasilitas = new Fasilitas($idFasilitas, $namaFasilitas, $idKosan);
-
-                            $jumlahFasilitas++;
-
-
-                            $output = "<tr id='row_$jumlahFasilitas'>
-                            <td>$namaFasilitas<input type='hidden' name='hidden_fasilitas_nama[]' id='fasilitas_nama$jumlahFasilitas' class='fasilitas_nama' value='$namaFasilitas'/></td>
-                            <td><a type='button' name='remove_fasilitas_nama' class='btn btn-danger btn-xs remove_fasilitas_nama' id='$jumlahFasilitas'>Hapus</a></td>";
-                            '</tr>';
-
-                            echo $output;
+                        //kosan kosong
+                        if ($allFasilitas == "kosong") {
+                            echo "<tr>";
+                            echo "<td><p>Maaf Data Kosong</p></td>";
+                            echo "<tr>";
+                            $count = 0;
                         }
 
+                        //kosan ada
+                        else {
+                            $count = count($allFasilitas);
+                            $jumlahFasilitas = 0;
+                            foreach ($allFasilitas as $dataFasilitas) {
+
+                                $jumlahFasilitas++;
+
+                                $output = "<tr id='row_$jumlahFasilitas'>
+                                <td>$dataFasilitas->nama<input type='hidden' name='hidden_fasilitas_nama[]' id='fasilitas_nama$jumlahFasilitas' class='fasilitas_nama' value='$dataFasilitas->nama'/></td>
+                                <td><a type='button' name='remove_fasilitas_nama' class='btn btn-danger btn-xs remove_fasilitas_nama' id='$jumlahFasilitas'>Hapus</a></td>";
+                                '</tr>';
+
+                                echo $output;
+                            }
+                        }
                         ?>
                     </tbody>
                 </table>
@@ -141,7 +139,6 @@ $kos->getKosanData();
             </div>
         </div>
     </form>
-
 
     <!-- Modal fasilitas -->
     <div class="modal fade" id="fasilitas-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

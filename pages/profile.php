@@ -4,9 +4,6 @@
         <div class="col" id="info1">
             <?php
             echo "<h1>" . ucwords($fullname) . "</h1>";
-            if ($level == 0) {
-                echo "<p>Admin</p>";
-            }
             if ($level == 1) {
                 echo "<p>Pemilik Kos</p>";
             }
@@ -79,7 +76,7 @@
     <div class="Semua-kosan">
         <div class="data1">
             <h1>Kosan Dimiliki</h1>
-            <a class="btn btn-primary" href=<?php echo "?p=create-kos&id_user=$idUser" ?>>Tambah Kosan</a>
+            <a class="btn btn-primary" href=<?php echo "?p=create-kos" ?>>Tambah Kosan</a>
         </div>
         <table class="table" id="data-kosan">
             <thead>

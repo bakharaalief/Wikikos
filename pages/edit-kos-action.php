@@ -1,6 +1,4 @@
 <?php
-// require_once("../../connection.php");
-
 //kos info
 $idKos = $_POST['id-kos'];
 $namaKos = $_POST['nama-kos'];
@@ -42,7 +40,6 @@ else if (!isset($_POST['hidden_fasilitas_nama'])) {
 
 //not empty
 else {
-
     $kos = new Kos();
     $kos->idKos = $idKos;
     $kos->namaKos = $namaKos;
@@ -63,10 +60,20 @@ else {
     $hasil = $kos->editKos();
 
     if ($hasil == "berhasil mengedit") {
-        echo "<script>
-        alert('Berhasil Memperbaharui Kosan')
-        window.location = '/kuliah/project/dashboard.php?p=profile';
-        </script>";
+        //admin
+        if ($level == 0) {
+            echo "<script>
+            alert('Berhasil Memperbaharui Kosan');
+            window.location = '/kuliah/project/dashboard.php?p=admin';
+            </script>";
+        }
+        //else
+        else {
+            echo "<script>
+            alert('Berhasil Memperbaharui Kosan');
+            window.location = '/kuliah/project/dashboard.php?p=profile';
+            </script>";
+        }
     } else {
         echo "<script>
         alert('Gagal Memperbaharui kosan, Pastikan semua data benar')

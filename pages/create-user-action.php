@@ -1,5 +1,4 @@
 <?php
-// include("../../connection.php");
 require_once("./class/class.User2.php");
 
 $fullName = $_POST['namaLengkap'];

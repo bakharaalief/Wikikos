@@ -3,10 +3,9 @@ require_once("./class/class.User2.php");
 
 //get 
 $nomor =  $_POST['nomor'];
-$id_user = $_POST['id_user'];
 
 //is data empty
-if (empty($nomor) | empty($id_user)) {
+if (empty($nomor)) {
     echo "<script>
     alert('Gagal Menambahkan Nomor Telpon')
     window.location = '/kuliah/project/dashboard.php?p=profile';

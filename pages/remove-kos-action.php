@@ -1,5 +1,4 @@
 <?php
-
 //id kos
 $idKos = $_GET['id-kos'];
 
@@ -19,10 +18,20 @@ else {
 
     //berhasil menghapus
     if ($hasil == "berhasil menghapus") {
-        echo "<script>
-        alert('Berhasil Menghapus Kosan')
-        window.location = '/kuliah/project/dashboard.php?p=profile';
-        </script>";
+        //admin
+        if ($level == 0) {
+            echo "<script>
+            alert('Berhasil Menghapus Kosan');
+            window.location = '/kuliah/project/dashboard.php?p=admin';
+            </script>";
+        }
+        //else
+        else {
+            echo "<script>
+            alert('Berhasil Menghapus Kosan')
+            window.location = '/kuliah/project/dashboard.php?p=profile';
+            </script>";
+        }
     }
 
     //gagal menghapus

@@ -1,8 +1,3 @@
-<?php
-//get id user
-$id_user =  $_GET['id_user'];
-?>
-
 <div class="container" id="create-kosan">
     <h1>Buat Kosan</h1>
     <form action="?p=create-kos-action" method="post" enctype="multipart/form-data">
@@ -73,8 +68,6 @@ $id_user =  $_GET['id_user'];
                 <img id="image-crop" src="" alt="your image" />
 
                 <br>
-
-                <input type="text" class="form-control" name="id-user" value='<?php echo $id_user; ?>' hidden />
 
                 <button type="submit" class="btn btn-primary">Buat</button>
             </div>

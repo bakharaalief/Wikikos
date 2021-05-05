@@ -81,6 +81,58 @@ class User2 extends Connection2
         }
     }
 
+    //get user data
+    public function getUserData()
+    {
+        $sql = "SELECT * FROM user WHERE id_user = :id_user";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id_user', $this->idUser);
+        $stmt->execute();
+
+        $count = $stmt->rowCount();
+
+        if ($count == 1) {
+            $result   = $stmt->fetch(PDO::FETCH_ASSOC);
+            $this->idUser = $result['id_user']; // set sesion dengan variabel username
+            $this->username = $result['username'];
+            $this->password = $result['password'];
+            $this->email = $result['email'];
+            $this->fullname = $result['fullname'];
+            $this->NIK = $result['NIK'];
+            $this->level = $result['level'];
+        }
+    }
+
+    //edit user data
+    public function editUserData()
+    {
+        try {
+            $sql = "UPDATE user SET username='$this->username', password='$this->password', email='$this->email', 
+                    fullname='$this->fullname', NIK='$this->NIK', level='$this->level'
+                    WHERE id_user=$this->idUser";
+            $this->conn->exec($sql);
+
+            return "berhasil mengedit";
+        } catch (PDOException $e) {
+            return "gagal mengedit";
+        }
+    }
+
+    //edit user data
+    public function deleteUserData()
+    {
+        try {
+            $sql = "DELETE FROM user WHERE id_user = :id_user";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':id_user', $this->idUser);
+            $stmt->execute();
+
+            return "berhasil menghapus";
+        } catch (PDOException $e) {
+            return "gagal menghapus";
+        }
+    }
+
     //get all nomor telpon
     public function getAllTelpon()
     {
@@ -130,6 +182,8 @@ class User2 extends Connection2
         //gagal nambah nomor telpon
         catch (PDOException $e) {
             return "gagal";
+
+            echo $e;
         }
     }
 
@@ -151,30 +205,6 @@ class User2 extends Connection2
             while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
                 $kosUser = new Kos();
-                //private $idKosan;
-                // private $namaKos;
-                // private $tipe;
-                // private $ukuran;
-                // private $harga;
-                // private $kapasitas;
-                // private $detail;
-                // private $namaJalan;
-                // private $kecamatan;
-                // private $kota;
-                // private $idUser;
-
-                //     $idKos = $result['id_kosan'];
-                //     $namaKos = $result['nama_kosan'];
-                //     $tipeKos = $result['tipe_kos'];
-                //     $ukuranKos = $result['ukuran'];
-                //     $hargaKos = $result['harga'];
-                //     $kapasitasKos = $result['kapasitas'];
-                //     $namaJalan = $result['nama_jalan'];
-                //     $kecamatan = $result['kecamatan'];
-                //     $kota = $result['kota'];
-                //     $detail = $result['deskripsi'];
-                //     $idUser = $result['id_user'];
-
                 $kosUser->idKos = $result['id_kosan'];
                 $kosUser->namaKos = $result['nama_kosan'];
                 $kosUser->tipe = $result['tipe_kos'];
@@ -250,6 +280,44 @@ class User2 extends Connection2
         //gagal membuat kosan
         catch (PDOException $e) {
             return "gagal membuat";
+        }
+    }
+
+    //get all user
+    public function getAllUser()
+    {
+        $sql = "SELECT * FROM user";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+
+        $count = $stmt->rowCount();
+        $cnt = 0;
+
+        //ada
+        if ($count > 0) {
+            $arrResult  = array();
+
+            while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+
+                $user = new User2();
+                $user->idUser = $result['id_user']; // set sesion dengan variabel username
+                $user->username = $result['username'];
+                $user->password = $result['password'];
+                $user->email = $result['email'];
+                $user->fullname = $result['fullname'];
+                $user->NIK = $result['NIK'];
+                $user->level = $result['level'];
+
+                $arrResult[$cnt] = $user;
+                $cnt++;
+            }
+
+            return $arrResult;
+        }
+
+        //tidak ada
+        else {
+            return $arrResult = "kosong";
         }
     }
 }

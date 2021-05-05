@@ -14,6 +14,11 @@ class Kos extends Connection2
     private $kota;
     private $idUser;
 
+    //user info
+
+    private $pemilik;
+
+    //foto
     private $lokasi_file;
     private $folder;
     private $idFoto;
@@ -57,6 +62,45 @@ class Kos extends Connection2
             $this->kota = $result['kota'];
             $this->detail = $result['deskripsi'];
             $this->idUser = $result['id_user'];
+        }
+    }
+
+    //get all kos
+    public function getAllKos()
+    {
+        $sql = "SELECT * FROM kosan INNER JOIN user ON kosan.id_user=user.id_user";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+
+        $count = $stmt->rowCount();
+        $cnt = 0;
+
+        //ada
+        if ($count > 0) {
+            $arrResult  = array();
+
+            while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+
+                $kosUser = new Kos();
+                $kosUser->idKos = $result['id_kosan'];
+                $kosUser->namaKos = $result['nama_kosan'];
+                $kosUser->tipe = $result['tipe_kos'];
+                $kosUser->harga = $result['harga'];
+                $kosUser->kapasitas = $result['kapasitas'];
+                $kosUser->kota = $result['kota'];
+                $kosUser->idUser = $result['id_user'];
+                $kosUser->pemilik = $result['username'];
+
+                $arrResult[$cnt] = $kosUser;
+                $cnt++;
+            }
+
+            return $arrResult;
+        }
+
+        //tidak ada
+        else {
+            return $arrResult = "kosong";
         }
     }
 
@@ -208,6 +252,41 @@ class Kos extends Connection2
                 $anggotaKos->idKosan = $result['id_kosan'];
 
                 $arrResult[$cnt] = $anggotaKos;
+                $cnt++;
+            }
+
+            return $arrResult;
+        }
+
+        //tidak ada
+        else {
+            return $arrResult = "kosong";
+        }
+    }
+
+    //get all anggota kosan
+    public function getAllFasilitas()
+    {
+        $sql = "SELECT * FROM fasilitas_kos WHERE id_kosan = :id_kosan";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id_kosan', $this->idKos);
+        $stmt->execute();
+
+        $count = $stmt->rowCount();
+        $cnt = 0;
+
+        //ada
+        if ($count > 0) {
+            $arrResult  = array();
+
+            while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+
+                $fasilitas = new Fasilitas();
+                $fasilitas->idFasilitas = $result['id_fasilitas'];
+                $fasilitas->nama = $result['nama_fasilitas'];
+                $fasilitas->idKosan = $result['id_kosan'];
+
+                $arrResult[$cnt] = $fasilitas;
                 $cnt++;
             }
 

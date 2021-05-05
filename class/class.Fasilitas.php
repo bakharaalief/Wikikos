@@ -2,21 +2,22 @@
 class Fasilitas
 {
     private $idFasilitas;
-    private $namaFasilitas;
+    private $nama;
     private $idKosan;
-
-    public function __construct($idFasilitas, $namaFasilitas, $idKosan)
-    {
-        $this->idFasilitas = $idFasilitas;
-        $this->namaFasilitas = $namaFasilitas;
-        $this->idKosan = $idKosan;
-    }
 
     //automatic create get
     public function __get($atribute)
     {
         if (property_exists($this, $atribute)) {
             return $this->$atribute;
+        }
+    }
+
+    //auto set
+    public function __set($atribut, $value)
+    {
+        if (property_exists($this, $atribut)) {
+            $this->$atribut = $value;
         }
     }
 }

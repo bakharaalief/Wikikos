@@ -1,5 +1,4 @@
 <?php
-require_once("./connection.php");
 require("./inc.connection2.php");
 
 if (!isset($_SESSION)) {
@@ -10,7 +9,6 @@ if (isset($_SESSION["level"])) {
     echo '<script>window.location = "dashboard.php";</script>';
 }
 ?>
-
 
 <html lang="en">
 

@@ -261,6 +261,38 @@ body {
   width: 70%;
 }
 
+/* edit-user */
+#edit-user h1 {
+  color: var(--orange);
+  font-weight: 600;
+}
+
+#edit-user form .form-group label {
+  color: var(--orange);
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#edit-user form .form-group input {
+  margin-bottom: 15px;
+  border: 1px solid var(--orange);
+  border-radius: 10px;
+}
+
+#edit-user form .form-group select {
+  margin-bottom: 15px;
+  border: 1px solid var(--orange);
+  border-radius: 10px;
+}
+
+#edit-user form button {
+  margin-bottom: 15px;
+  background: var(--orange);
+  border-radius: 10px;
+  border: 1px solid var(--orange);
+  margin-top: 10px;
+}
+
 /* search */
 #search .input-group {
   background-color: var(--orange);
@@ -650,4 +682,45 @@ body {
   background: #cf4427;
   border-radius: 76px;
   color: #f9f5f4;
+}
+
+/* admin */
+#admin #info1{
+  text-align: center;
+}
+
+#admin #info1 h1 {
+  font-weight: 600;
+  color: var(--orange);
+}
+
+#admin #info1 p {
+  color: var(--orange);
+  margin-bottom: 0px;
+}
+
+#admin #myTab {
+  margin-top: 20px;
+}
+
+#admin #myTab .nav-link{
+  color:  var(--orange);
+  font-weight: bold;
+  background-color: var(--brown);
+}
+
+#admin #myTab .nav-link.active{
+  background-color: var(--orange);
+  color: white;
+}
+
+#admin #myTabContent{
+  margin-top: 40px;
+}
+
+#admin #myTabContent #data-kosan a{
+  background: var(--orange);
+  border-radius: 10px;
+  font-size: 15px;
+  border: 1px solid var(--orange);
 }
