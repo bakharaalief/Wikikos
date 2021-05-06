@@ -25,9 +25,14 @@
                         <input type="password" class="form-control" placeholder="Password" name="password" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Login</button>
-                </form>
+
+                    <!-- Reset Pass -->
+                    <a class="btn btn-primary" href="?p=reset-pass">Lupa Password?</a>
             </div>
+
         </div>
+
     </div>
+
     <div class="shape2"></div>
 </div>

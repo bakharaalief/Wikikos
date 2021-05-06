@@ -85,6 +85,7 @@
                     <th scope="col">Tipe</th>
                     <th scope="col">Harga</th>
                     <th scope="col">Kapasitas</th>
+                    <th scope="col">Terisi</th>
                     <th scope="col">Anggota</th>
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
@@ -106,18 +107,27 @@
 
                 //kosan ada
                 else {
-                    $count = count($allKos);
                     foreach ($allKos as $dataKos) {
+                        //untuk mencari tahu yang terisi
+                        $data = $dataKos->getAllAnggota();
+                        if ($data == "kosong") {
+                            $jumlahTerisi = 0;
+                        } else {
+                            $jumlahTerisi = count($data);
+                        }
+
                         echo "<tr>";
                         echo "<td>$dataKos->namaKos</td>";
                         echo "<td>$dataKos->tipe</td>";
                         echo "<td>$dataKos->harga</td>";
                         echo "<td>$dataKos->kapasitas</td>";
+                        echo "<td>$jumlahTerisi</td>";
                         echo "<td><a class='btn btn-primary' href='?p=anggota-kos&id-kos=$dataKos->idKos'>Anggota</a></td>";
                         echo "<td><a class='btn btn-primary' class='button' href='?p=edit-kos&id-kos=$dataKos->idKos'</a>Edit</a></td>";
                         echo "<td><a class='btn btn-primary' onclick='confirmData($dataKos->idKos)'>Delete</a></td>";
                         echo "<tr>";
                     }
+                    $count = count($allKos);
                 }
                 ?>
 

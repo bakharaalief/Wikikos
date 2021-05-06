@@ -30,7 +30,7 @@ else {
     $hasil = $user2->createUser();
 
     if ($hasil == "berhasil daftar") {
-        // include("../../register-mail.php");
+        include("./register-mail.php");
 
         echo "<script>
         alert('Berhasil Mendaftarkan user, silahkan cek email anda untuk verifikasi')

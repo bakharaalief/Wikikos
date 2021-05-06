@@ -44,6 +44,21 @@ class User2 extends Connection2
         }
     }
 
+    //reset pass user
+    public function resetUser()
+    {
+        try {
+            $sql = "SELECT * FROM user WHERE email = :email ";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':email', $this->email);
+            $stmt->execute();
+            return "berhasil reset email";
+        } catch (PDOException $e) {
+            return "gagal reset email";
+        }
+    }
+
+
     //login function
     public function login($username, $password)
     {

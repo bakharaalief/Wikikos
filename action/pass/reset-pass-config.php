@@ -1,5 +1,7 @@
 <?php
-// include("../../connection.php");
+
+
+// include("../../inc.connection2.php");
 // $email = $_POST['email'];
 // //is data email tidak ditemukan
 // if (empty($email)) {
