@@ -685,7 +685,7 @@ body {
 }
 
 /* admin */
-#admin #info1{
+#admin #info1 {
   text-align: center;
 }
 
@@ -703,22 +703,22 @@ body {
   margin-top: 20px;
 }
 
-#admin #myTab .nav-link{
-  color:  var(--orange);
+#admin #myTab .nav-link {
+  color: var(--orange);
   font-weight: bold;
   background-color: var(--brown);
 }
 
-#admin #myTab .nav-link.active{
+#admin #myTab .nav-link.active {
   background-color: var(--orange);
   color: white;
 }
 
-#admin #myTabContent{
+#admin #myTabContent {
   margin-top: 40px;
 }
 
-#admin #myTabContent #data-kosan a{
+#admin #myTabContent #data-kosan a {
   background: var(--orange);
   border-radius: 10px;
   font-size: 15px;
