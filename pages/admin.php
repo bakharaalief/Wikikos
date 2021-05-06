@@ -15,9 +15,6 @@
         <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#user" role="tab" aria-controls="user" aria-selected="false">User</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#anggota" role="tab" aria-controls="anggota" aria-selected="false">Anggota</a>
-        </li>
     </ul>
 
     <!-- tab content -->
@@ -32,7 +29,8 @@
                         <th scope="col">Tipe</th>
                         <th scope="col">Harga</th>
                         <th scope="col">Kapasitas</th>
-                        <th scope="col">Daerah</th>
+                        <th scope="col">Terisi</th>
+                        <th scope="col">Kota</th>
                         <th scope="col">Anggota</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
@@ -55,13 +53,23 @@
                     //kosan ada
                     else {
                         $count = count($allKos);
+
                         foreach ($allKos as $dataKos) {
+                            //untuk mencari tahu yang terisi
+                            $data = $dataKos->getAllAnggota();
+                            if ($data == "kosong") {
+                                $jumlahTerisi = 0;
+                            } else {
+                                $jumlahTerisi = count($data);
+                            }
+
                             echo "<tr>";
                             echo "<td>$dataKos->pemilik</td>";
                             echo "<td>$dataKos->namaKos</td>";
                             echo "<td>$dataKos->tipe</td>";
                             echo "<td>$dataKos->harga</td>";
                             echo "<td>$dataKos->kapasitas</td>";
+                            echo "<td>$jumlahTerisi</td>";
                             echo "<td>$dataKos->kota</td>";
                             echo "<td><a class='btn btn-primary' href='?p=anggota-kos&id-kos=$dataKos->idKos'>Anggota</a></td>";
                             echo "<td><a class='btn btn-primary' class='button' href='?p=edit-kos&id-kos=$dataKos->idKos'</a>Edit</a></td>";
@@ -132,10 +140,6 @@
                     <a></a>
                 </tbody>
             </table>
-        </div>
-
-        <!-- user anggota -->
-        <div class="tab-pane fade" id="anggota" role="tabpanel" aria-labelledby="contact-tab">
         </div>
     </div>
 

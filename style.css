@@ -718,6 +718,10 @@ body {
   margin-top: 40px;
 }
 
+#admin #myTabContent #data-kosan {
+  text-align: center;
+}
+
 #admin #myTabContent #data-kosan a{
   background: var(--orange);
   border-radius: 10px;
