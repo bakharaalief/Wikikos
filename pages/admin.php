@@ -5,6 +5,12 @@
         echo "<h1>" . ucwords($fullname) . "</h1>";
         echo "<p>ID " . $idUser . "</p>";
         ?>
+
+        <div class="aa">
+            <a class="btn btn-primary" href=<?php echo "?p=create-user-admin" ?>>Tambah User</a>
+            <a class="btn btn-primary" href=<?php echo "?p=create-fasilitas" ?>>Tambah Fasilitas</a>
+        </div>
+
     </div>
 
     <!-- tab -->
@@ -14,6 +20,9 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#user" role="tab" aria-controls="user" aria-selected="false">User</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#fasilitas" role="tab" aria-controls="fasilitas" aria-selected="false">Fasilitas</a>
         </li>
     </ul>
 
@@ -86,6 +95,7 @@
 
         <!-- user data -->
         <div class="tab-pane fade" id="user" role="tabpanel" aria-labelledby="profile-tab">
+
             <table class="table" id="data-kosan">
                 <thead>
                     <tr>
@@ -141,7 +151,52 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- fasilitas data -->
+        <div class="tab-pane fade" id="fasilitas" role="tabpanel" aria-labelledby="profile-tab">
+
+            <table class="table" id="data-kosan">
+                <thead>
+                    <tr>
+                        <th scope="col">Nama Fasilitas</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Fasilitas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- kosan get from db -->
+                    <?php
+                    require_once("./class/class.Fasilitas.php");
+
+                    $fasilitas = new Fasilitas();
+                    $allFasilitas = $fasilitas->getAllFasilitas();
+
+                    //kosan kosong
+                    if ($allFasilitas == "kosong") {
+                        echo "<tr>";
+                        echo "<td><p>Maaf Data Kosong</p></td>";
+                        echo "<tr>";
+                        $count = 0;
+                    }
+
+                    //kosan ada
+                    else {
+                        $count = count($allFasilitas);
+                        foreach ($allFasilitas as $dataFasilitas) {
+                            echo "<tr>";
+                            echo "<td>$dataFasilitas->nama</td>";
+                            echo "<td><a class='btn btn-primary' class='button' href='?p=edit-fasilitas&id-fasilitas=$dataFasilitas->idFasilitas'</a>Edit</a></td>";
+                            echo "<td><a class='btn btn-primary' onclick='confirmDataFasilitas($dataFasilitas->idFasilitas)'>Delete</a></td>";
+                            echo "<tr>";
+                        }
+                    }
+                    ?>
+                    <a></a>
+                </tbody>
+            </table>
+        </div>
     </div>
+</div>
 
 </div>
 
@@ -158,6 +213,13 @@
         var data = confirm("Apakah anda ingin menghapus User Ini ?");
         if (data) {
             window.location = "?p=remove-user-action&id-user=" + id;
+        }
+    }
+
+    function confirmDataFasilitas(id) {
+        var data = confirm("Apakah anda ingin menghapus Fasilitas Ini ?");
+        if (data) {
+            window.location = "?p=remove-fasilitas-action&id_fasilitas=" + id;
         }
     }
 </script>

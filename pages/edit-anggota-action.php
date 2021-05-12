@@ -11,7 +11,7 @@ $idKos = $_POST['id-kos'];
 if (empty($idAnggota) | empty($NIK) | empty($namaAnggota) | empty($idKos)) {
     echo "<script>
     alert('Gagal Memperbaharui Anggita, Pastikan semua data benar')
-    window.location = '/kuliah/project/dashboard.php?p=anggota-kos&id-kos=$idKos';
+    window.location = '?p=anggota-kos&id-kos=$idKos';
     </script>";
 }
 
@@ -28,12 +28,12 @@ else {
     if ($hasil == "berhasil mengedit") {
         echo "<script>
         alert('Berhasil Memperbaharui Anggota')
-        window.location = '/kuliah/project/dashboard.php?p=anggota-kos&id-kos=$idKos';
+        window.location = '?p=anggota-kos&id-kos=$idKos';
         </script>";
     } else {
         echo "<script>
         alert('Gagal Memperbaharui Anggota, Pastikan semua data benar')
-        window.location = '/kuliah/project/dashboard.php?p=anggota-kos&id-kos=$idKos';
+        window.location = '?p=anggota-kos&id-kos=$idKos';
         </script>";
     }
 }

@@ -164,6 +164,15 @@ body {
   border-radius: 10px;
 }
 
+#login #col-1 a {
+  margin-bottom: 15px;
+  background: var(--orange);
+  border-radius: 10px;
+  border: 1px solid var(--orange);
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
 #login #col-1 form button {
   margin-bottom: 15px;
   background: var(--orange);
@@ -696,8 +705,21 @@ body {
 
 #admin #info1 p {
   color: var(--orange);
-  margin-bottom: 0px;
+  margin-bottom: 20px;
 }
+
+#admin #info1 .aa{
+  margin-bottom: 30px;
+}
+
+#admin #info1 .aa a{
+  margin-inline: 20px;
+   background: var(--orange);
+  border-radius: 10px;
+  font-size: 15px;
+  border: 1px solid var(--orange);
+}
+
 
 #admin #myTab {
   margin-top: 20px;
@@ -714,7 +736,8 @@ body {
   color: white;
 }
 
-#admin #myTabContent {
+#admin #myTabContent #data-kosan{
+  text-align: center;
   margin-top: 40px;
 }
 

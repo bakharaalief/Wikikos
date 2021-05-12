@@ -24,7 +24,7 @@ else {
 
         echo "<script>
         alert('Berhasil reset email user, silahkan cek email anda untuk reset link anda')
-        window.location = '/kuliah/project/?p=login';
+        window.location = '?p=login';
         </script>";
     } else {
         echo "<script>
