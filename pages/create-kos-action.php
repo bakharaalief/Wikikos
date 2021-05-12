@@ -23,7 +23,7 @@ if (
 ) {
     echo "<script>
     alert('Gagal Mendaftarkan kosan, Pastikan semua data benar')
-    window.location = '/kuliah/project/dashboard.php?p=create-kos&id_user=$idUser';
+    window.location = 'dashboard.php?p=create-kos&id_user=$idUser';
     </script>";
 }
 
@@ -31,7 +31,7 @@ if (
 else if ($type_file != "image/gif" and $type_file != "image/jpeg" and $type_file != "image/png") {
     echo "<script>
     alert('Gagal Mendaftarkan kosan, Pastikan yang dimasukkan gambar')
-    window.location = '/kuliah/project/dashboard.php?p=create-kos&id_user=$idUser';
+    window.location = 'dashboard.php?p=create-kos&id_user=$idUser';
     </script>";
 }
 
@@ -39,7 +39,7 @@ else if ($type_file != "image/gif" and $type_file != "image/jpeg" and $type_file
 else if (!isset($_POST['hidden_fasilitas_nama'])) {
     echo "<script>
     alert('Gagal Mendaftarkan kosan, Pastikan fasilitas diisi');
-    window.location = '/kuliah/project/dashboard.php?p=create-kos&id_user=$idUser';
+    window.location = 'dashboard.php?p=create-kos&id_user=$idUser';
     </script>";
 }
 
@@ -63,7 +63,7 @@ else {
     if ($hasil == "berhasil membuat") {
         echo "<script>
         alert('Berhasil Mendaftarkan Kosan')
-        window.location = '/kuliah/project/dashboard.php?p=profile';
+        window.location = 'dashboard.php?p=profile';
         </script>";
     }
 
@@ -71,7 +71,7 @@ else {
     else {
         echo "<script>
         alert('Gagal Mendaftarkan kosan, Pastikan semua data benar')
-        window.location = '/kuliah/project/dashboard.php?p=create-kos&id_user=$idUser';
+        window.location = 'dashboard.php?p=create-kos&id_user=$idUser';
         </script>";
     }
 }

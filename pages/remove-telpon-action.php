@@ -7,7 +7,7 @@ $id_telpon =  $_GET['id_telpon'];
 if (empty($id_telpon)) {
     echo "<script>
     alert('Gagal Menghapus Nomor Telpon')
-    window.location = '/kuliah/project/dashboard.php?p=profile';
+    window.location = 'dashboard.php?p=profile';
     </script>";
 }
 
@@ -20,12 +20,12 @@ else {
     if ($status == "berhasil menghapus") {
         echo "<script>
         alert('Berhasil Menghapus Nomor Telpon')
-        window.location = '/kuliah/project/dashboard.php?p=profile';
+        window.location = 'dashboard.php?p=profile';
         </script>";
     } else {
         echo "<script>
         alert('Gagal Menghapus Nomor Telpon')
-        window.location = '/kuliah/project/dashboard.php?p=profile';
+        window.location = 'dashboard.php?p=profile';
         </script>";
     }
 }

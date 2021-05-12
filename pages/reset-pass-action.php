@@ -7,7 +7,7 @@ $email = $_POST['email'];
 if (empty($email)) {
     echo "<script>
     alert('Gagal Mendapatkan email, Pastikan semua data benar')
-    window.location = '/kuliah/project/?p=reset-pass';
+    window.location = '?p=reset-pass';
     </script>";
 }
 
@@ -29,7 +29,7 @@ else {
     } else {
         echo "<script>
         alert('Gagal reset user, Pastikan semua data benar')
-        window.location = '/kuliah/project/?p=reset-pass';
+        window.location = '?p=reset-pass';
         </script>";
     }
 }

@@ -8,7 +8,7 @@ $password = $_POST['password'];
 if (empty($username) | empty($password)) {
     echo "<script>
     alert('Gagal login, Pastikan semua data diisi dengan benar')
-    window.location = '/kuliah/project/?p=login';
+    window.location = '?p=login';
     </script>";
 }
 
@@ -37,7 +37,7 @@ else {
         // lempar variabel ke tampilan profile.php
         echo "<script>
                 alert('Selamat Datang " . $user2->username . "');
-                window.location = '/kuliah/project/dashboard.php';
+                window.location = 'dashboard.php';
             </script>";
     }
 
@@ -45,7 +45,7 @@ else {
     else if ($user2->hasil == "tidak ditemukan") {
         echo "<script>
             alert('Maaf Password anda salah')
-            window.location = '/kuliah/project/?p=login';
+            window.location = '?p=login';
             </script>";
     }
 
@@ -53,7 +53,7 @@ else {
     else if ($user2->hasil == "gagal login") {
         echo "<script>
             alert('Gagal Login')
-            window.location = '/kuliah/project/?p=login';
+            window.location = '?p=login';
             </script>";
     }
 }

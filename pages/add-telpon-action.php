@@ -8,7 +8,7 @@ $nomor =  $_POST['nomor'];
 if (empty($nomor)) {
     echo "<script>
     alert('Gagal Menambahkan Nomor Telpon')
-    window.location = '/kuliah/project/dashboard.php?p=profile';
+    window.location = 'dashboard.php?p=profile';
     </script>";
 }
 
@@ -19,12 +19,12 @@ else {
     if ($result == "berhasil") {
         echo "<script>
         alert('Berhasil Menambahkan Nomor Telpon')
-        window.location = '/kuliah/project/dashboard.php?p=profile';
+        window.location = 'dashboard.php?p=profile';
         </script>";
     } else {
         echo "<script>
         alert('Gagal Menambahkan Nomor Telpon')
-        window.location = '/kuliah/project/dashboard.php?p=profile';
+        window.location = 'dashboard.php?p=profile';
         </script>";
     }
 }

@@ -64,20 +64,20 @@ else {
         if ($level == 0) {
             echo "<script>
             alert('Berhasil Memperbaharui Kosan');
-            window.location = '/kuliah/project/dashboard.php?p=admin';
+            window.location = 'dashboard.php?p=admin';
             </script>";
         }
         //else
         else {
             echo "<script>
             alert('Berhasil Memperbaharui Kosan');
-            window.location = '/kuliah/project/dashboard.php?p=profile';
+            window.location = 'dashboard.php?p=profile';
             </script>";
         }
     } else {
         echo "<script>
         alert('Gagal Memperbaharui kosan, Pastikan semua data benar')
-        window.location = '/kuliah/project/dashboard.php?p=edit-kos&id-kos=$idKos';
+        window.location = 'dashboard.php?p=edit-kos&id-kos=$idKos';
         </script>";
     }
 }

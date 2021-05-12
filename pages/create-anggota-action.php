@@ -10,7 +10,7 @@ $idKos = $_POST['id_kos'];
 if (empty($NIK) | empty($namaAnggota) | empty($idKos)) {
     echo "<script>
     alert('Gagal Mendaftarkan Anggota, Pastikan semua data benar')
-    window.location = '/kuliah/project/dashboard.php?p=create-kos&id_user=$idUser';
+    window.location = 'dashboard.php?p=create-kos&id_user=$idUser';
     </script>";
 }
 
@@ -28,7 +28,7 @@ else {
     if ($hasil == "berhasil mendaftar") {
         echo "<script>
         alert('Berhasil Mendaftarkan Anggota')
-        window.location = '/kuliah/project/dashboard.php?p=anggota-kos&id-kos=$idKos';
+        window.location = 'dashboard.php?p=anggota-kos&id-kos=$idKos';
         </script>";
     }
 
@@ -36,7 +36,7 @@ else {
     else {
         echo "<script>
         alert('Gagal Mendaftarkan Anggota, Pastikan semua data benar')
-        window.location = '/kuliah/project/dashboard.php?p=anggota-kos&id-kos=$idKos';
+        window.location = 'dashboard.php?p=anggota-kos&id-kos=$idKos';
         </script>";
     }
 }

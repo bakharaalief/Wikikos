@@ -13,7 +13,7 @@ $idUser = $_POST['id-user'];
 if (empty($fullName) | empty($NIK) | empty($email) | empty($username) | empty($password)) {
     echo "<script>
     alert('Gagal Memperbaharui User, Pastikan semua data diiisi')
-    window.location = '/kuliah/project/dashboard.php?p=edit-user&id-user=$idUser';
+    window.location = 'dashboard.php?p=edit-user&id-user=$idUser';
     </script>";
 }
 
@@ -33,7 +33,7 @@ else {
     if ($hasil == "berhasil mengedit") {
         echo "<script>
         alert('Berhasil memperbaharui User')
-        window.location = '/kuliah/project/dashboard.php?p=admin';
+        window.location = 'dashboard.php?p=admin';
         </script>";
     }
 
@@ -41,7 +41,7 @@ else {
     else {
         echo "<script>
         alert('Gagal Memperbaharui User, Pastikan semua data benar')
-        window.location = '/kuliah/project/dashboard.php?p=edit-user&id-user=$idUser';
+        window.location = 'dashboard.php?p=edit-user&id-user=$idUser';
         </script>";
     }
 }

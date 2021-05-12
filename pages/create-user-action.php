@@ -12,7 +12,7 @@ $password = $_POST['password'];
 if (empty($fullName) | empty($NIK) | empty($email) | empty($username) | empty($password)) {
     echo "<script>
     alert('Gagal Mendaftarkan user, Pastikan semua data benar')
-    window.location = '/kuliah/project/?p=create-user';
+    window.location = '?p=create-user';
     </script>";
 }
 
@@ -34,12 +34,12 @@ else {
 
         echo "<script>
         alert('Berhasil Mendaftarkan user, silahkan cek email anda untuk verifikasi')
-        window.location = '/kuliah/project/?p=login';
+        window.location = '?p=login';
         </script>";
     } else {
         echo "<script>
         alert('Gagal Mendaftarkan user, Pastikan semua data benar')
-        window.location = '/kuliah/project/?p=create-user';
+        window.location = '?p=create-user';
         </script>";
     }
 }

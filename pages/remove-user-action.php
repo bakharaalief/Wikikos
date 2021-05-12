@@ -7,7 +7,7 @@ $idUser = $_GET['id-user'];
 if (empty($idUser)) {
     echo "<script>
     alert('Gagal Menghapus User, Pastikan semua data diiisi')
-    window.location = '/kuliah/project/dashboard.php?p=admin';
+    window.location = 'dashboard.php?p=admin';
     </script>";
 }
 
@@ -21,7 +21,7 @@ else {
     if ($hasil == "berhasil menghapus") {
         echo "<script>
         alert('Berhasil menghapus User')
-        window.location = '/kuliah/project/dashboard.php?p=admin';
+        window.location = 'dashboard.php?p=admin';
         </script>";
     }
 
@@ -29,7 +29,7 @@ else {
     else {
         echo "<script>
         alert('Gagal menghapus User, Pastikan semua data benar')
-        window.location = '/kuliah/project/dashboard.php?p=admin';
+        window.location = 'dashboard.php?p=admin';
         </script>";
     }
 }

@@ -6,7 +6,7 @@ $idKos = $_GET['id-kos'];
 if (empty($idKos)) {
     echo "<script>
     alert('Gagal Menghapus Kos')
-    window.location = '/kuliah/project/dashboard.php?p=profile';
+    window.location = 'dashboard.php?p=profile';
     </script>";
 }
 
@@ -22,14 +22,14 @@ else {
         if ($level == 0) {
             echo "<script>
             alert('Berhasil Menghapus Kosan');
-            window.location = '/kuliah/project/dashboard.php?p=admin';
+            window.location = 'dashboard.php?p=admin';
             </script>";
         }
         //else
         else {
             echo "<script>
             alert('Berhasil Menghapus Kosan')
-            window.location = '/kuliah/project/dashboard.php?p=profile';
+            window.location = 'dashboard.php?p=profile';
             </script>";
         }
     }
@@ -38,7 +38,7 @@ else {
     else {
         echo "<script>
         alert('Gagal Menghapus Kosan')
-        window.location = '/kuliah/project/dashboard.php?p=profile';
+        window.location = 'dashboard.php?p=profile';
         </script>";
     }
 }
