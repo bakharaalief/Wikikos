@@ -11,7 +11,6 @@ class User2 extends Connection2
     private $password;
     private $email;
     private $fullname;
-    private $NIK;
     private $level;
 
     //auto get
@@ -83,7 +82,6 @@ class User2 extends Connection2
                 $this->password = $row['password'];
                 $this->email = $row['email'];
                 $this->fullname = $row['fullname'];
-                $this->NIK = $row['NIK'];
                 $this->level = $row['level'];
             }
 
@@ -123,7 +121,7 @@ class User2 extends Connection2
     {
         try {
             $sql = "UPDATE user SET username='$this->username', password='$this->password', email='$this->email', 
-                    fullname='$this->fullname', NIK='$this->NIK', level='$this->level'
+                    fullname='$this->fullname', level='$this->level'
                     WHERE id_user=$this->idUser";
             $this->conn->exec($sql);
 
@@ -226,7 +224,6 @@ class User2 extends Connection2
                 $kosUser->harga = $result['harga'];
                 $kosUser->kapasitas = $result['kapasitas'];
                 $kosUser->idUser = $result['id_user'];
-
                 $arrResult[$cnt] = $kosUser;
                 $cnt++;
             }
@@ -320,7 +317,6 @@ class User2 extends Connection2
                 $user->password = $result['password'];
                 $user->email = $result['email'];
                 $user->fullname = $result['fullname'];
-                $user->NIK = $result['NIK'];
                 $user->level = $result['level'];
 
                 $arrResult[$cnt] = $user;

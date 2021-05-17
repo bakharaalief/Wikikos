@@ -1,8 +1,9 @@
 <?php
 class Fasilitas extends Connection2
 {
-    private $idFasilitas;
+    private $idFasilitasKos;
     private $nama;
+    private $idFasilitas;
     private $idKosan;
 
     //automatic create get

@@ -10,12 +10,6 @@
                     <input type="text" class="form-control" placeholder="Nama Lengkap" name="namaLengkap" required>
                 </div>
 
-                <!-- NIK -->
-                <div class="form-group">
-                    <label>NIK</label>
-                    <input type="text" class="form-control" placeholder="NIK" name="NIK" required>
-                </div>
-
                 <!-- Email -->
                 <div class="form-group">
                     <label>Email</label>

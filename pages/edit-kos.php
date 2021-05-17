@@ -84,16 +84,15 @@ $kos->getKosanData();
                             $count = 0;
                         }
 
-                        //kosan ada
+                        //fasilitas ada
                         else {
                             $count = count($allFasilitas);
                             $jumlahFasilitas = 0;
                             foreach ($allFasilitas as $dataFasilitas) {
 
                                 $jumlahFasilitas++;
-
                                 $output = "<tr id='row_$jumlahFasilitas'>
-                                <td>$dataFasilitas->nama<input type='hidden' name='hidden_fasilitas_nama[]' id='fasilitas_nama$jumlahFasilitas' class='fasilitas_nama' value='$dataFasilitas->nama'/></td>
+                                <td>$dataFasilitas->nama<input type='hidden' name='hidden_fasilitas_nama[]' id='fasilitas_nama$jumlahFasilitas' class='fasilitas_nama' value='$dataFasilitas->idFasilitas'/></td>
                                 <td><a type='button' name='remove_fasilitas_nama' class='btn btn-danger btn-xs remove_fasilitas_nama' id='$jumlahFasilitas'>Hapus</a></td>";
                                 '</tr>';
 
@@ -150,7 +149,33 @@ $kos->getKosanData();
                 </div>
 
                 <div class="modal-body">
-                    <input list="fasilitas" id="fasilitas-kos" class="form-control" name="fasilitas" required />
+
+                    <!-- yg baru -->
+                    <select class="form-control" id="fasilitas-kos" name="fasilitas">
+                        <?php
+                        require_once("./class/class.Fasilitas.php");
+
+                        $fasilitas = new Fasilitas();
+                        $allFasilitas = $fasilitas->getAllFasilitas();
+
+                        //nomor telpon kosong
+                        if ($allFasilitas == "kosong") {
+                            echo "<option>Maaf Data Kosong</option>";
+                            $count = 0;
+                        }
+
+                        //nomor telpon ada
+                        else {
+                            $count = count($allFasilitas);
+                            foreach ($allFasilitas as $dataFasilitas) {
+                                echo "<option value='" . $dataFasilitas->nama . '-' . $dataFasilitas->idFasilitas . "' >" . $dataFasilitas->nama . "</option>";
+                            }
+                        }
+                        ?>
+                    </select>
+
+                    <!-- yg lama -->
+                    <!-- <input list="fasilitas" id="fasilitas-kos" class="form-control" name="fasilitas" required />
                     <datalist id="fasilitas">
                         <option value="AC">
                         <option value="Kulkas">
@@ -160,12 +185,24 @@ $kos->getKosanData();
                         <option value="Lemari">
                         <option value="Kamar Mandi Dalam">
                         <option value="Kamar Mandi Luar">
-                    </datalist>
+                    </datalist> -->
+
                     <span id="error_fasilitas_kos" class="text-danger"></span>
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" name="id-kos" value="<?php echo $kos->idKos; ?>" />
-                    <button type="submit" class="btn btn-primary" id="tambah-fasilitas">Tambah Fasilitas</button>
+
+                    <!-- handle tambah fasilitas button -->
+                    <?php
+                    if ($count == 0) {
+                        echo '<button type="submit" class="btn btn-primary" id="tambah-fasilitas2" disabled>Tambah Fasilitas</button>';
+                    } else {
+                        echo '<button type="submit" class="btn btn-primary" id="tambah-fasilitas">Tambah Fasilitas</button>';
+                    }
+                    ?>
+
+                    <!-- yg lama -->
+                    <!-- <button type="submit" class="btn btn-primary" id="tambah-fasilitas">Tambah Fasilitas</button> -->
                 </div>
             </div>
         </div>

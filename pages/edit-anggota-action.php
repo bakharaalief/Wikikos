@@ -3,12 +3,11 @@ require_once("./class/class.Anggota_Kosan.php");
 
 //anggota info
 $idAnggota = $_POST['id-anggota'];
-$NIK = $_POST['NIK'];
 $namaAnggota = $_POST['nama'];
 $idKos = $_POST['id-kos'];
 
 //data empty
-if (empty($idAnggota) | empty($NIK) | empty($namaAnggota) | empty($idKos)) {
+if (empty($idAnggota) | empty($namaAnggota) | empty($idKos)) {
     echo "<script>
     alert('Gagal Memperbaharui Anggita, Pastikan semua data benar')
     window.location = '?p=anggota-kos&id-kos=$idKos';
@@ -19,7 +18,6 @@ if (empty($idAnggota) | empty($NIK) | empty($namaAnggota) | empty($idKos)) {
 else {
     $anggotaKos = new Anggota_Kosan();
     $anggotaKos->idAnggota = $idAnggota;
-    $anggotaKos->NIK = $NIK;
     $anggotaKos->Nama = $namaAnggota;
     $anggotaKos->idKos = $idKos;
 

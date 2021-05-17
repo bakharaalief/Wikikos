@@ -11,7 +11,6 @@ $username = $_SESSION['username'];
 $password = $_SESSION['password'];
 $email = $_SESSION['email'];
 $fullname = $_SESSION['fullname'];
-$nik = $_SESSION['NIK'];
 $level = $_SESSION['level'];
 
 //user object
@@ -58,11 +57,15 @@ $user2->level = $level;
                         <a class="nav-link" href="?p=logout-action">logout</a>
                     </li>
                     <li class="nav-item-create">
-                        <a class="nav-link" href="?p=profile">
-                            <?php
-                            echo $fullname;
-                            ?>
-                        </a>
+                        <?php
+                        if ($level == 0) {
+                            echo '<a class="nav-link" href="">' . $fullname .
+                                '</a>';
+                        } else {
+                            echo '<a class="nav-link" href="?p=profile">' . $fullname .
+                                '</a>';
+                        }
+                        ?>
                     </li>
                 </ul>
             </div>

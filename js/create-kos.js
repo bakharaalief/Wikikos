@@ -29,9 +29,11 @@ $(document).ready(function(){
     else{
       fasilitas_nama = $('#fasilitas-kos').val()
 
+      var nPembatas = fasilitas_nama.search("-");
+
       count += $('#fasilitas-kos').val();
       output = '<tr id="row_' + count + '">';
-      output += '<td>' + fasilitas_nama + ' <input type="hidden" name="hidden_fasilitas_nama[]" id="fasilitas_nama' + count + '" class="fasilitas_nama" value="' + fasilitas_nama + '" /></td>';
+      output += '<td>' + fasilitas_nama.substring(0, nPembatas) + ' <input type="hidden" name="hidden_fasilitas_nama[]" id="fasilitas_nama' + count + '" class="fasilitas_nama" value="' + fasilitas_nama.substring(nPembatas+1) + '" /></td>';
       output += '<td><a type="button" name="remove_fasilitas_nama" class="btn btn-danger btn-xs remove_fasilitas_nama" id="' + count + '">Hapus</a></td>';
       output += '</tr>';
 
@@ -43,7 +45,7 @@ $(document).ready(function(){
   //remove fasilitas
   $(document).on('click', '.remove_fasilitas_nama', function() {
     var row_id = $(this).attr("id");
-    if (confirm("Are you sure you want to remove this row data?")) {
+    if (confirm("Yakin Ingin Menghapus Fasilitas Ini?")) {
         $('#row_' + row_id + '').remove();
     } else {
         return false;

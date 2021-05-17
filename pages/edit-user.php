@@ -20,12 +20,6 @@ $user->getUserData();
                     <input type="text" class="form-control" placeholder="Nama Lengkap" name="namaLengkap" value="<?php echo $user->fullname; ?>" required>
                 </div>
 
-                <!-- NIK -->
-                <div class="form-group">
-                    <label>NIK</label>
-                    <input type="text" class="form-control" placeholder="NIK" name="NIK" value="<?php echo $user->NIK; ?>" required>
-                </div>
-
                 <!-- Email -->
                 <div class="form-group">
                     <label>Email</label>

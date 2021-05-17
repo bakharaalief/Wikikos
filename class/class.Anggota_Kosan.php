@@ -2,17 +2,8 @@
 class Anggota_Kosan extends Connection2
 {
     private $idAnggota;
-    private $NIK;
     private $Nama;
     private $idKos;
-
-    // public function __construct($idAnggota, $NIKAnggota, $NamaAnggota, $idKosan)
-    // {
-    //     $this->idAnggota = $idAnggota;
-    //     $this->NIKAnggota = $NIKAnggota;
-    //     $this->NamaAnggota = $NamaAnggota;
-    //     $this->idKosan = $idKosan;
-    // }
 
     //automatic create get
     public function __get($atribute)
@@ -34,8 +25,8 @@ class Anggota_Kosan extends Connection2
     public function createAnggota()
     {
         try {
-            $sql = "INSERT INTO anggota_kos(NIK, nama_anggota, id_kosan) 
-            VALUES ('$this->NIK', '$this->Nama', '$this->idKos')";
+            $sql = "INSERT INTO anggota_kos(nama_anggota, id_kosan) 
+            VALUES ('$this->Nama', '$this->idKos')";
             $this->conn->exec($sql);
 
             return "berhasil mendaftar";
@@ -64,7 +55,7 @@ class Anggota_Kosan extends Connection2
     {
         try {
             //update to anggota
-            $sql = "UPDATE anggota_kos SET NIK='$this->NIK', nama_anggota='$this->Nama', id_kosan='$this->idKos'
+            $sql = "UPDATE anggota_kos SET nama_anggota='$this->Nama', id_kosan='$this->idKos'
             WHERE id_anggota=$this->idAnggota";
             $this->conn->exec($sql);
 

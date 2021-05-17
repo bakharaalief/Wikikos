@@ -83,7 +83,33 @@
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Fasilitas</h5>
                 </div>
                 <div class="modal-body">
-                    <input list="fasilitas" id="fasilitas-kos" class="form-control" name="fasilitas" />
+
+                    <!-- yg baru -->
+                    <select class="form-control" id="fasilitas-kos" name="fasilitas">
+                        <?php
+                        require_once("./class/class.Fasilitas.php");
+
+                        $fasilitas = new Fasilitas();
+                        $allFasilitas = $fasilitas->getAllFasilitas();
+
+                        //nomor telpon kosong
+                        if ($allFasilitas == "kosong") {
+                            echo "<option>Maaf Data Kosong</option>";
+                            $count = 0;
+                        }
+
+                        //nomor telpon ada
+                        else {
+                            $count = count($allFasilitas);
+                            foreach ($allFasilitas as $dataFasilitas) {
+                                echo "<option value='" . $dataFasilitas->nama . '-' . $dataFasilitas->idFasilitas . "' >" . $dataFasilitas->nama . "</option>";
+                            }
+                        }
+                        ?>
+                    </select>
+
+                    <!-- yg lama -->
+                    <!-- <input list="fasilitas" id="fasilitas-kos" class="form-control" name="fasilitas" />
                     <datalist id="fasilitas">
                         <option value="AC">
                         <option value="Kulkas">
@@ -93,13 +119,25 @@
                         <option value="Lemari">
                         <option value="Kamar Mandi Dalam">
                         <option value="Kamar Mandi Luar">
-                    </datalist>
+                    </datalist> -->
+
                     <span id="error_fasilitas_kos" class="text-danger"></span>
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" name="row_id" id="hidden_row_id" />
                     <button type="button" class="btn btn-secondary" id="close-fasilitas-modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="tambah-fasilitas">Tambah Fasilitas</button>
+
+                    <!-- handle tambah fasilitas button -->
+                    <?php
+                    if ($count == 0) {
+                        echo '<button type="submit" class="btn btn-primary" id="tambah-fasilitas2" disabled>Tambah Fasilitas</button>';
+                    } else {
+                        echo '<button type="submit" class="btn btn-primary" id="tambah-fasilitas">Tambah Fasilitas</button>';
+                    }
+                    ?>
+
+                    <!-- button lama -->
+                    <!-- <button type="submit" class="btn btn-primary" id="tambah-fasilitas">Tambah Fasilitas</button> -->
                 </div>
             </div>
         </div>

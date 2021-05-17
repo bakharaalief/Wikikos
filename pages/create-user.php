@@ -8,8 +8,8 @@
 
             <!-- right-side -->
             <div class="col" id="col-1">
-                <h1>Create</h1>
-                <h4>Find a mate and your comfort space with WikiKos.</h4>
+                <h1>Daftar</h1>
+                <h4>Ayo Gabung Bersama Wikikos</h4>
 
                 <!-- Register form -->
                 <form action="?p=create-user-action" method="Post">
@@ -20,12 +20,6 @@
                         <input type="text" class="form-control" placeholder="Nama Lengkap" name="namaLengkap" required>
                     </div>
 
-                    <!-- NIK -->
-                    <div class="form-group">
-                        <label>NIK</label>
-                        <input type="text" class="form-control" placeholder="NIK" name="NIK" required>
-                    </div>
-
                     <!-- Email -->
                     <div class="form-group">
                         <label>Email</label>
@@ -33,13 +27,7 @@
                     </div>
 
                     <!-- Mau Jadi Apa -->
-                    <div class="form-group">
-                        <label>Menjadi</label>
-                        <select class="form-control" name="level">
-                            <option value="1">Pemilik</option>
-                            <option value="2">Pengguna Kos</option>
-                        </select>
-                    </div>
+                    <input type="text" class="form-control" name="level" value="1" hidden>
 
                     <!-- Username -->
                     <div class="form-group">

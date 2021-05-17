@@ -31,7 +31,6 @@ else {
         $_SESSION['password'] = $user2->password;
         $_SESSION['email'] = $user2->email;
         $_SESSION['fullname'] = $user2->fullname;
-        $_SESSION['NIK'] = $user2->NIK;
         $_SESSION['level'] = $user2->level;
 
         // lempar variabel ke tampilan profile.php

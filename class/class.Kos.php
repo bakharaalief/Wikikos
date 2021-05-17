@@ -171,11 +171,11 @@ class Kos extends Connection2
 
             //insert multiple fasilitas
             $jumlah_fasilitas = count($_POST['hidden_fasilitas_nama']); //jumlah fasilitas
-            $query = "INSERT INTO fasilitas_kos(id_fasilitas, nama_fasilitas, id_kosan) VALUES (:id_fasilitas, :nama_fasilitas, :id_kosan)";
+            $query = "INSERT INTO fasilitas_kos(id_fasilitas_kos, id_fasilitas, id_kosan) VALUES (:id_fasilitas_kos, :id_fasilitas, :id_kosan)";
             for ($count = 0; $count < $jumlah_fasilitas; $count++) {
                 $data = array(
-                    ':id_fasilitas' => 'K' . $this->idKos . 'F' . ($count + 1),
-                    ':nama_fasilitas' => $_POST['hidden_fasilitas_nama'][$count],
+                    ':id_fasilitas_kos' => 'K' . $this->idKos . 'F' . ($count + 1),
+                    ':id_fasilitas' => $_POST['hidden_fasilitas_nama'][$count],
                     ':id_kosan' => $this->idKos,
                 );
 
@@ -247,7 +247,6 @@ class Kos extends Connection2
 
                 $anggotaKos = new Anggota_Kosan();
                 $anggotaKos->idAnggota = $result['id_anggota'];
-                $anggotaKos->NIK = $result['NIK'];
                 $anggotaKos->Nama = $result['nama_anggota'];
                 $anggotaKos->idKosan = $result['id_kosan'];
 
@@ -267,7 +266,7 @@ class Kos extends Connection2
     //get all anggota kosan
     public function getAllFasilitas()
     {
-        $sql = "SELECT * FROM fasilitas_kos WHERE id_kosan = :id_kosan";
+        $sql = "SELECT fk.id_fasilitas_kos, fk.id_fasilitas, fk.id_kosan, f.nama_fasilitas FROM fasilitas_kos fk INNER JOIN fasilitas f ON  fk.id_fasilitas= f.id_fasilitas WHERE id_kosan = :id_kosan";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id_kosan', $this->idKos);
         $stmt->execute();
@@ -282,6 +281,7 @@ class Kos extends Connection2
             while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
                 $fasilitas = new Fasilitas();
+                $fasilitas->idFasilitasKos = $result['id_fasilitas_kos'];
                 $fasilitas->idFasilitas = $result['id_fasilitas'];
                 $fasilitas->nama = $result['nama_fasilitas'];
                 $fasilitas->idKosan = $result['id_kosan'];

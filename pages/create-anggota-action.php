@@ -2,12 +2,11 @@
 require_once("./class/class.Anggota_Kosan.php");
 
 //anggota info
-$NIK = $_POST['NIK'];
 $namaAnggota = $_POST['nama'];
 $idKos = $_POST['id_kos'];
 
 // is data empty
-if (empty($NIK) | empty($namaAnggota) | empty($idKos)) {
+if (empty($namaAnggota) | empty($idKos)) {
     echo "<script>
     alert('Gagal Mendaftarkan Anggota, Pastikan semua data benar')
     window.location = 'dashboard.php?p=create-kos&id_user=$idUser';
@@ -18,7 +17,6 @@ if (empty($NIK) | empty($namaAnggota) | empty($idKos)) {
 else {
 
     $anggotaKos = new Anggota_Kosan();
-    $anggotaKos->NIK = $NIK;
     $anggotaKos->Nama = $namaAnggota;
     $anggotaKos->idKos = $idKos;
 

@@ -30,12 +30,16 @@ $(document).ready(function(){
 
     // not empty
     else{
-      fasilitas_nama = $('#fasilitas-kos').val()
       jumlah_fasilitas = $('#jumlah-fasilitas').val()
-
       jumlah_fasilitas += 1;
+
+      fasilitas_nama = $('#fasilitas-kos').val()
+
+      var nPembatas = fasilitas_nama.search("-");
+
+      count += $('#fasilitas-kos').val();
       output = '<tr id="row_' + count + '">';
-      output += '<td>' + fasilitas_nama + ' <input type="hidden" name="hidden_fasilitas_nama[]" id="fasilitas_nama' + count + '" class="fasilitas_nama" value="' + fasilitas_nama + '" /></td>';
+      output += '<td>' + fasilitas_nama.substring(0, nPembatas) + ' <input type="hidden" name="hidden_fasilitas_nama[]" id="fasilitas_nama' + count + '" class="fasilitas_nama" value="' + fasilitas_nama.substring(nPembatas+1) + '" /></td>';
       output += '<td><a type="button" name="remove_fasilitas_nama" class="btn btn-danger btn-xs remove_fasilitas_nama" id="' + count + '">Hapus</a></td>';
       output += '</tr>';
 

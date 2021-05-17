@@ -40,7 +40,6 @@ if ($allAnggota == "kosong") {
     <table class="table" id="data-anggota">
         <thead>
             <tr>
-                <th scope="col">NIK</th>
                 <th scope="col">Nama</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
@@ -49,14 +48,11 @@ if ($allAnggota == "kosong") {
         <tbody>
             <!-- anggota from db -->
             <?php
-            // require_once("./class/class.Anggota_Kosan.php");
-
             if (!$count == 0) {
                 foreach ($allAnggota as $dataAnggota) {
                     echo "<tr>";
-                    echo "<td>" . $dataAnggota->NIK . "</td>";
                     echo "<td>" . $dataAnggota->Nama . "</td>";
-                    echo "<td><a type='button' class='btn btn-primary btn-xs' id='muncul-edit-anggota-modal' onclick='editData(" . $dataAnggota->idAnggota .  "," . $dataAnggota->NIK . ",\"" . $dataAnggota->Nama . "\");'>Edit</a></td>";
+                    echo "<td><a type='button' class='btn btn-primary btn-xs' id='muncul-edit-anggota-modal' onclick='editData(" . $dataAnggota->idAnggota .  ", \"" . $dataAnggota->Nama . "\");'>Edit</a></td>";
                     echo "<td><a type='button' class='btn btn-primary btn-xs' onclick='confirmData($dataAnggota->idAnggota, $kos->idKos)'>Delete</a></td>";
                     echo "<tr>";
                 }
@@ -76,9 +72,6 @@ if ($allAnggota == "kosong") {
             </div>
             <form action="?p=create-anggota-action" method="post">
                 <div class="modal-body">
-                    <input type="text" id="NIK-anggota" class="form-control" name="NIK" placeholder="NIK" required />
-                    <span id="error_NIK_anggota_kos" class="text-danger"></span>
-                    </br>
                     <input type="text" id="nama-anggota" class="form-control" name="nama" placeholder="Nama Lengkap" required />
                     <span id="error_nama_anggota_kos" class="text-danger"></span>
                     <input type="text" id="id-kos" value="<?php echo $idKos; ?>" name="id_kos" hidden>
@@ -102,9 +95,6 @@ if ($allAnggota == "kosong") {
             </div>
             <form action="?p=edit-anggota-action" method="post">
                 <div class="modal-body">
-                    <input type="text" id="NIK-anggota-edit" class="form-control" name="NIK" placeholder="NIK" required />
-                    <span id="error_NIK_anggota_kos" class="text-danger"></span>
-                    </br>
                     <input type="text" id="nama-anggota-edit" class="form-control" name="nama" placeholder="Nama Lengkap" required />
                     <span id="error_nama_anggota_kos" class="text-danger"></span>
                     <input type="text" id="id-kos" value="<?php echo $idKos; ?>" name="id-kos" hidden>
@@ -128,11 +118,9 @@ if ($allAnggota == "kosong") {
         }
     }
 
-    function editData(idAnggota, NIK, namaAnggota) {
+    function editData(idAnggota, namaAnggota) {
         $('#edit-anggota-modal').modal('show');
-
         document.getElementById("id-anggota").value = idAnggota;
-        document.getElementById("NIK-anggota-edit").value = NIK;
         document.getElementById("nama-anggota-edit").value = namaAnggota;
     }
 </script>
