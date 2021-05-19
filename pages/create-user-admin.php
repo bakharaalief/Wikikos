@@ -1,3 +1,8 @@
+<?php
+require_once("./authAdmin.php");
+?>
+
+
 <div class="container" id="edit-user">
     <h1>Tambah User</h1>
     <form action="?p=create-user-admin-action" method="post">

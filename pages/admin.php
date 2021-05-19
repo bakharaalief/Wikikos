@@ -1,3 +1,7 @@
+<?php
+require_once("./authAdmin.php");
+?>
+
 <div class="container" id="admin">
     <!-- info tentang nama dan status user -->
     <div class="col" id="info1">
@@ -101,9 +105,7 @@
                     <tr>
                         <th scope="col">Fullname</th>
                         <th scope="col">Username</th>
-                        <th scope="col">Password</th>
                         <th scope="col">Email</th>
-                        <th scope="col">NIK</th>
                         <th scope="col">Level</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
@@ -129,9 +131,7 @@
                             echo "<tr>";
                             echo "<td>$dataUser->fullname</td>";
                             echo "<td>$dataUser->username</td>";
-                            echo "<td>$dataUser->password</td>";
                             echo "<td>$dataUser->email</td>";
-                            echo "<td>$dataUser->NIK</td>";
 
                             if ($dataUser->level == 0) {
                                 echo "<td>Admin</td>";

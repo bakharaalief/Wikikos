@@ -18,25 +18,65 @@ if (empty($fullName) | empty($email) | empty($username) | empty($password)) {
 //not empty
 else {
     $user2 = new User2();
-    $user2->fullname = $fullName;
-    $user2->email = $email;
     $user2->username = $username;
-    $user2->password = $password;
-    $user2->level = $level;
+    $user2->email = $email;
 
-    $hasil = $user2->createUser();
+    //cek email dan username dulu
+    $cekEmail = $user2->cekEmail();
+    $cekUsername = $user2->cekUsername();
 
-    if ($hasil == "berhasil daftar") {
-        // include("./register-mail.php");
+    //email dan username belum ada di DB
+    if (!$cekEmail && !$cekUsername) {
+        $user2->fullname = $fullName;
+        $user2->password = password_hash($password, PASSWORD_DEFAULT);
+        $user2->level = $level;
 
+        $hasil = $user2->createUser();
+
+        if ($hasil == "berhasil daftar") {
+            // include("./register-mail.php");
+
+            echo "<script>
+            alert('Berhasil Mendaftarkan user, silahkan cek email anda untuk verifikasi')
+            window.location = '?p=login';
+            </script>";
+        } else {
+            echo "<script>
+            alert('Gagal Mendaftarkan user, Pastikan semua data benar')
+            window.location = '?p=create-user';
+            </script>";
+        }
+    }
+
+    //email sudah ada 
+    else if ($cekEmail) {
         echo "<script>
-        alert('Berhasil Mendaftarkan user, silahkan cek email anda untuk verifikasi')
-        window.location = '?p=login';
-        </script>";
-    } else {
+            alert('Gagal Mendaftarkan user, Email sudah terdaftar')
+            window.location = '?p=create-user';
+            </script>";
+    }
+
+    //username sudah ada 
+    else if ($cekUsername) {
         echo "<script>
-        alert('Gagal Mendaftarkan user, Pastikan semua data benar')
-        window.location = '?p=create-user';
-        </script>";
+            alert('Gagal Mendaftarkan user, Username sudah terdaftar')
+            window.location = '?p=create-user';
+            </script>";
+    }
+
+    //email tidak bisa di cek
+    else if ($cekEmail == "Email tidak bisa di cek") {
+        echo "<script>
+            alert('Gagal Mendaftarkan user, Pengecekan email sedang bermasalah')
+            window.location = '?p=create-user';
+            </script>";
+    }
+
+    //username tidak bisa di cek
+    else if ($cekEmail == "Username tidak bisa di cek") {
+        echo "<script>
+            alert('Gagal Mendaftarkan user, Pengecekan username sedang bermasalah')
+            window.location = '?p=create-user';
+            </script>";
     }
 }

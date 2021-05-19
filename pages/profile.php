@@ -1,3 +1,7 @@
+<?php
+require_once("./authPemilik.php");
+?>
+
 <div class="container" id="profile">
     <div class="row align-items-start">
         <!-- info tentang nama dan status user -->

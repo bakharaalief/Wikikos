@@ -1,6 +1,7 @@
 <?php
 require("./inc.connection2.php");
 require_once("./class/class.User2.php");
+require_once("./authPemilik.php");
 
 if (!isset($_SESSION)) {
     session_start();
@@ -59,7 +60,7 @@ $user2->level = $level;
                     <li class="nav-item-create">
                         <?php
                         if ($level == 0) {
-                            echo '<a class="nav-link" href="">' . $fullname .
+                            echo '<a class="nav-link" href="?p=admin">' . $username .
                                 '</a>';
                         } else {
                             echo '<a class="nav-link" href="?p=profile">' . $fullname .
@@ -87,11 +88,7 @@ $user2->level = $level;
             echo "Halaman Tidak Ditemukan";
         }
     } else {
-        if ($level == 0) {
-            include "./pages/admin.php";
-        } else {
-            include "./pages/home.php";
-        }
+        include "./pages/home.php";
     }
     ?>
 </body>

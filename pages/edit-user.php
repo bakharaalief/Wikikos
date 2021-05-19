@@ -1,4 +1,5 @@
 <?php
+require_once("./authPemilik.php");
 $idUser = $_GET['id-user'];
 
 //fetch data kosan by id
@@ -45,7 +46,7 @@ $user->getUserData();
                 <!-- password -->
                 <div class="form-group">
                     <label>Password</label>
-                    <input class="form-control" placeholder="Password" name="password" value="<?php echo $user->password; ?>" required>
+                    <input class="form-control" placeholder="Masukan Password jika ingin merubah" name="password">
                 </div>
 
                 <input type="hidden" name="id-user" value="<?php echo $idUser; ?>" />

@@ -1,3 +1,7 @@
+<?php
+require_once("./authAdmin.php");
+?>
+
 <div class="container" id="edit-user">
     <h1>Tambah Fasilitas</h1>
     <form action="?p=create-fasilitas-action" method="post">

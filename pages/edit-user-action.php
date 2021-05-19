@@ -9,7 +9,7 @@ $password = $_POST['password'];
 $idUser = $_POST['id-user'];
 
 //is data empty
-if (empty($fullName) | empty($email) | empty($username) | empty($password)) {
+if (empty($fullName) | empty($email) | empty($username)) {
     echo "<script>
     alert('Gagal Memperbaharui User, Pastikan semua data diiisi')
     window.location = 'dashboard.php?p=edit-user&id-user=$idUser';

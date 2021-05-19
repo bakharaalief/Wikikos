@@ -1,4 +1,5 @@
 <?php
+require_once("./authAdmin.php");
 require_once("./class/class.Fasilitas.php");
 
 $idFasilitas = $_GET['id-fasilitas'];
@@ -10,7 +11,7 @@ $fasilitas->getFasilitas();
 ?>
 
 <div class="container" id="edit-user">
-    <h1>Tambah Fasilitas</h1>
+    <h1>Edit Fasilitas</h1>
     <form action="?p=edit-fasilitas-action" method="post">
         <div class="row align-items-start">
             <div class="col">

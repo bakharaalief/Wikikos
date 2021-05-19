@@ -1,5 +1,6 @@
 <?php
 require_once("./class/class.Kos.php");
+require_once("./authPemilik.php");
 
 $idKos = $_GET['id-kos'];
 

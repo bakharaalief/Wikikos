@@ -5,7 +5,6 @@ require_once("class.Kos.php");
 class User2 extends Connection2
 {
     private $hasil;
-
     private $idUser;
     private $username;
     private $password;
@@ -29,12 +28,62 @@ class User2 extends Connection2
         }
     }
 
+    //cek email
+    public function cekEmail()
+    {
+        try {
+            $sql = "SELECT * FROM user WHERE email = :email";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':email', $this->email);
+            $stmt->execute();
+
+            $count = $stmt->rowCount(); ///menghitung row
+
+            // jika rownya ada
+            if ($count == 1) {
+                return true;
+            }
+
+            //jika tidak
+            else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            return "Email tidak bisa di cek";
+        }
+    }
+
+    public function cekUsername()
+    {
+        try {
+            $sql = "SELECT * FROM user WHERE username = :username";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':username', $this->username);
+            $stmt->execute();
+
+            $count = $stmt->rowCount(); ///menghitung row
+
+            // jika rownya ada
+            if ($count == 1) {
+                return true;
+            }
+
+            //jika tidak
+            else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            return "Username tidak bisa di cek";
+        }
+    }
+
+
     //create user
     public function createUser()
     {
         try {
-            $sql = "INSERT INTO user(fullname, NIK, email, level, username, password) 
-            VALUES ('$this->fullname', '$this->NIK', '$this->email', '$this->level', '$this->username', '$this->password')";
+            $sql = "INSERT INTO user(fullname, email, level, username, password) 
+            VALUES ('$this->fullname', '$this->email', '$this->level', '$this->username', '$this->password')";
             $this->conn->exec($sql);
 
             return "berhasil daftar";
@@ -57,32 +106,26 @@ class User2 extends Connection2
         }
     }
 
-
     //login function
     public function login($username, $password)
     {
         try {
-            $sql = "SELECT * FROM user WHERE username = :username AND password = :password";
+            $sql = "SELECT * FROM user WHERE username = :username";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':password', $password);
             $stmt->execute();
+            $row   = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $count = $stmt->rowCount(); ///menghitung row
-
-            // jika rownya ada
-            if ($count == 1) {
-
-                $this->hasil = "berhasil login";
-
-                $row   = $stmt->fetch(PDO::FETCH_ASSOC);
-
+            //berhasil login
+            if (!empty($row) && password_verify($password, $row['password'])) {
                 $this->idUser = $row['id_user']; // set sesion dengan variabel username
                 $this->username = $row['username'];
                 $this->password = $row['password'];
                 $this->email = $row['email'];
                 $this->fullname = $row['fullname'];
                 $this->level = $row['level'];
+
+                $this->hasil = "berhasil login";
             }
 
             //jika tidak
@@ -92,6 +135,40 @@ class User2 extends Connection2
         } catch (PDOException $e) {
             $this->hasil = "gagal login";
         }
+
+
+
+        // try {
+        //     $sql = "SELECT * FROM user WHERE username = :username AND password = :password";
+        //     $stmt = $this->conn->prepare($sql);
+        //     $stmt->bindParam(':username', $username);
+        //     $stmt->bindParam(':password', $password);
+        //     $stmt->execute();
+
+        //     $count = $stmt->rowCount(); ///menghitung row
+
+        //     // jika rownya ada
+        //     if ($count == 1) {
+
+        //         $this->hasil = "berhasil login";
+
+        //         $row   = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //         $this->idUser = $row['id_user']; // set sesion dengan variabel username
+        //         $this->username = $row['username'];
+        //         $this->password = $row['password'];
+        //         $this->email = $row['email'];
+        //         $this->fullname = $row['fullname'];
+        //         $this->level = $row['level'];
+        //     }
+
+        //     //jika tidak
+        //     else {
+        //         $this->hasil = "tidak ditemukan";
+        //     }
+        // } catch (PDOException $e) {
+        //     $this->hasil = "gagal login";
+        // }
     }
 
     //get user data
@@ -111,7 +188,6 @@ class User2 extends Connection2
             $this->password = $result['password'];
             $this->email = $result['email'];
             $this->fullname = $result['fullname'];
-            $this->NIK = $result['NIK'];
             $this->level = $result['level'];
         }
     }
@@ -120,9 +196,21 @@ class User2 extends Connection2
     public function editUserData()
     {
         try {
-            $sql = "UPDATE user SET username='$this->username', password='$this->password', email='$this->email', 
+            //if password null
+            if ($this->password == "") {
+                $sql = "UPDATE user SET username='$this->username', email='$this->email', 
                     fullname='$this->fullname', level='$this->level'
                     WHERE id_user=$this->idUser";
+            }
+
+            //if password not null
+            else {
+                $newPass = password_hash($this->password, PASSWORD_DEFAULT);
+                $sql = "UPDATE user SET username='$this->username', password='$newPass', email='$this->email', 
+                    fullname='$this->fullname', level='$this->level'
+                    WHERE id_user=$this->idUser";
+            }
+
             $this->conn->exec($sql);
 
             return "berhasil mengedit";
@@ -195,8 +283,6 @@ class User2 extends Connection2
         //gagal nambah nomor telpon
         catch (PDOException $e) {
             return "gagal";
-
-            echo $e;
         }
     }
 
@@ -274,11 +360,11 @@ class User2 extends Connection2
 
             //insert multiple fasilitas
             $jumlah_fasilitas = count($_POST['hidden_fasilitas_nama']); //jumlah fasilitas
-            $query = "INSERT INTO fasilitas_kos(id_fasilitas, nama_fasilitas, id_kosan) VALUES (:id_fasilitas, :nama_fasilitas, :id_kosan)";
+            $query = "INSERT INTO fasilitas_kos(id_fasilitas_kos, id_fasilitas, id_kosan) VALUES (:id_fasilitas_kos, :id_fasilitas, :id_kosan)";
             for ($count = 0; $count < $jumlah_fasilitas; $count++) {
                 $data = array(
-                    ':id_fasilitas' => 'K' . $last_id . 'F' . ($count + 1),
-                    ':nama_fasilitas' => $_POST['hidden_fasilitas_nama'][$count],
+                    ':id_fasilitas_kos' => 'K' . $this->idKos . 'F' . ($count + 1),
+                    ':id_fasilitas' => $_POST['hidden_fasilitas_nama'][$count],
                     ':id_kosan' => $last_id,
                 );
 
@@ -291,7 +377,9 @@ class User2 extends Connection2
 
         //gagal membuat kosan
         catch (PDOException $e) {
-            return "gagal membuat";
+            // return "gagal membuat";
+
+            echo $e;
         }
     }
 
@@ -314,7 +402,6 @@ class User2 extends Connection2
                 $user = new User2();
                 $user->idUser = $result['id_user']; // set sesion dengan variabel username
                 $user->username = $result['username'];
-                $user->password = $result['password'];
                 $user->email = $result['email'];
                 $user->fullname = $result['fullname'];
                 $user->level = $result['level'];

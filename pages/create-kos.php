@@ -1,3 +1,7 @@
+<?php
+require_once("./authPemilik.php");
+?>
+
 <div class="container" id="create-kosan">
     <h1>Buat Kosan</h1>
     <form action="?p=create-kos-action" method="post" enctype="multipart/form-data">
