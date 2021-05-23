@@ -2,6 +2,6 @@
 session_destroy();
 
 echo "<script>
-alert('Sampai Jumpa Kembali');
+alert('Sampai Jumpa!');
 window.location = 'index.php'
 </script>";

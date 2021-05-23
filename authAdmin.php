@@ -6,7 +6,7 @@ if (!isset($_SESSION)) {
 //jika belum login
 if (!isset($_SESSION["id_user"])) {
     echo "<script>
-        alert('Maaf Anda tidak punya hak mengakses halaman ini :)')
+        alert('Maaf, Anda tidak mempunyai hak akses halaman ini')
         window.location = 'index.php';
         </script>";
 }
@@ -14,7 +14,7 @@ if (!isset($_SESSION["id_user"])) {
 //jika level bukan admin
 else if ($_SESSION["level"] != 0) {
     echo "<script>
-        alert('Maaf Anda tidak punya hak mengakses halaman ini :)')
+        alert('Maaf, Anda tidak mempunyai hak akses halaman ini')
         window.location = 'dashboard.php';
         </script>";
 }

@@ -6,7 +6,7 @@ if (!isset($_SESSION)) {
 //belum login
 if (!isset($_SESSION['id_user'])) {
     echo "<script>
-        alert('Silahkan Login Dulu :)')
+        alert('Silahkan Login Terlebih Dahulu')
         window.location = 'index.php?p=login';
         </script>";
 }
