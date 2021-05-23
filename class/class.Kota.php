@@ -1,10 +1,10 @@
 <?php
-class Fasilitas extends Connection2
+
+class Kota extends Connection2
 {
-    private $idFasilitasKos;
+    //kosan
+    private $idKota;
     private $nama;
-    private $idFasilitas;
-    private $idKosan;
 
     //automatic create get
     public function __get($atribute)
@@ -23,9 +23,9 @@ class Fasilitas extends Connection2
     }
 
     //get all fasilitas
-    public function getAllFasilitas()
+    public function getAllKota()
     {
-        $sql = "SELECT * FROM fasilitas";
+        $sql = "SELECT * FROM kota";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
 
@@ -38,11 +38,11 @@ class Fasilitas extends Connection2
 
             while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
-                $fasilitas = new Fasilitas();
-                $fasilitas->idFasilitas = $result['id_fasilitas'];
-                $fasilitas->nama = $result['nama_fasilitas'];
+                $kota = new Kota();
+                $kota->idKota = $result['id_kota'];
+                $kota->nama = $result['nama_kota'];
 
-                $arrResult[$cnt] = $fasilitas;
+                $arrResult[$cnt] = $kota;
                 $cnt++;
             }
 
@@ -55,28 +55,28 @@ class Fasilitas extends Connection2
         }
     }
 
-    //get fasilitas data
-    public function getFasilitas()
+    //get kota data
+    public function getKota()
     {
-        $sql = "SELECT * FROM fasilitas WHERE id_fasilitas = :id_fasilitas";
+        $sql = "SELECT * FROM kota WHERE id_kota = :id_kota";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':id_fasilitas', $this->idFasilitas);
+        $stmt->bindParam(':id_kota', $this->idKota);
         $stmt->execute();
 
         $count = $stmt->rowCount();
 
         if ($count == 1) {
             $result   = $stmt->fetch(PDO::FETCH_ASSOC);
-            $this->idFasilitas = $result['id_fasilitas']; // set sesion dengan variabel username
-            $this->nama = $result['nama_fasilitas'];
+            $this->idKota = $result['id_kota']; // set sesion dengan variabel username
+            $this->nama = $result['nama_kota'];
         }
     }
 
-    //create fasilitas
-    public function createFasilitas()
+    //create kota
+    public function createKota()
     {
         try {
-            $sql = "INSERT INTO fasilitas(nama_fasilitas) 
+            $sql = "INSERT INTO kota(nama_kota) 
             VALUES ('$this->nama')";
             $this->conn->exec($sql);
 
@@ -86,13 +86,13 @@ class Fasilitas extends Connection2
         }
     }
 
-    //edit delete fasilitas
-    public function deleteFasilitas()
+    //edit delete kota
+    public function deleteKota()
     {
         try {
-            $sql = "DELETE FROM fasilitas WHERE id_fasilitas = :id_fasilitas";
+            $sql = "DELETE FROM kota WHERE id_kota = :id_kota";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':id_fasilitas', $this->idFasilitas);
+            $stmt->bindParam(':id_kota', $this->idKota);
             $stmt->execute();
 
             return "berhasil menghapus";
@@ -102,11 +102,11 @@ class Fasilitas extends Connection2
     }
 
     //edit fasilitas
-    public function editFasilitas()
+    public function editKota()
     {
         try {
-            $sql = "UPDATE fasilitas SET nama_fasilitas='$this->nama'
-                    WHERE id_fasilitas=$this->idFasilitas";
+            $sql = "UPDATE kota SET nama_kota='$this->nama'
+                    WHERE id_kota=$this->idKota";
             $this->conn->exec($sql);
 
             return "berhasil mengedit";

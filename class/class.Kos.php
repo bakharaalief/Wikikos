@@ -68,7 +68,7 @@ class Kos extends Connection2
     //get all kos
     public function getAllKos()
     {
-        $sql = "SELECT * FROM kosan INNER JOIN user ON kosan.id_user=user.id_user";
+        $sql = "SELECT * FROM kosan INNER JOIN user ON kosan.id_user=user.id_user Inner JOIN kota ON kosan.kota=kota.id_kota";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
 
@@ -87,7 +87,7 @@ class Kos extends Connection2
                 $kosUser->tipe = $result['tipe_kos'];
                 $kosUser->harga = $result['harga'];
                 $kosUser->kapasitas = $result['kapasitas'];
-                $kosUser->kota = $result['kota'];
+                $kosUser->kota = $result['nama_kota'];
                 $kosUser->idUser = $result['id_user'];
                 $kosUser->pemilik = $result['username'];
 

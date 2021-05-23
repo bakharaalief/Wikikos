@@ -9,7 +9,7 @@ $nama_fasilitas = $_POST['namaFasilitas'];
 if (empty($idFasilitas) | empty($nama_fasilitas)) {
     echo "<script>
     alert('Gagal Memperbaharui Fasilitas, Pastikan semua data benar')
-    window.location = 'dashboard.php?p=edit-fasilitass&id-fasilitas=$idFasilitas';
+    window.location = 'dashboard.php?p=edit-fasilitas&id-fasilitas=$idFasilitas';
     </script>";
 }
 
@@ -29,7 +29,7 @@ else {
     } else {
         echo "<script>
         alert('Gagal Memperbaharui Fasilitas, Pastikan semua data benar')
-        window.location = 'dashboard.php?p=edit-fasilitass&id-fasilitas=$idFasilitas';
+        window.location = 'dashboard.php?p=edit-fasilitas&id-fasilitas=$idFasilitas';
         </script>";
     }
 }

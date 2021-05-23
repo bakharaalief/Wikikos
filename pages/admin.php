@@ -13,6 +13,7 @@ require_once("./authAdmin.php");
         <div class="aa">
             <a class="btn btn-primary" href=<?php echo "?p=create-user-admin" ?>>Tambah User</a>
             <a class="btn btn-primary" href=<?php echo "?p=create-fasilitas" ?>>Tambah Fasilitas</a>
+            <a class="btn btn-primary" href=<?php echo "?p=create-kota" ?>>Tambah Kota</a>
         </div>
 
     </div>
@@ -27,6 +28,9 @@ require_once("./authAdmin.php");
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#fasilitas" role="tab" aria-controls="fasilitas" aria-selected="false">Fasilitas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#kota" role="tab" aria-controls="kota" aria-selected="false">Kota</a>
         </li>
     </ul>
 
@@ -153,7 +157,7 @@ require_once("./authAdmin.php");
         </div>
 
         <!-- fasilitas data -->
-        <div class="tab-pane fade" id="fasilitas" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="tab-pane fade" id="fasilitas" role="tabpanel" aria-labelledby="fasilitas-tab">
 
             <table class="table" id="data-kosan">
                 <thead>
@@ -195,6 +199,50 @@ require_once("./authAdmin.php");
                 </tbody>
             </table>
         </div>
+
+        <!-- fasilitas kota -->
+        <div class="tab-pane fade" id="kota" role="tabpanel" aria-labelledby="kota-tab">
+
+            <table class="table" id="data-kosan">
+                <thead>
+                    <tr>
+                        <th scope="col">Nama Kota</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Fasilitas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- kosan get from db -->
+                    <?php
+                    require_once("./class/class.Kota.php");
+
+                    $kota = new Kota();
+                    $allKota = $kota->getAllKota();
+
+                    //kosan kosong
+                    if ($allKota == "kosong") {
+                        echo "<tr>";
+                        echo "<td><p>Maaf Data Kosong</p></td>";
+                        echo "<tr>";
+                        $count = 0;
+                    }
+
+                    //kosan ada
+                    else {
+                        $count = count($allKota);
+                        foreach ($allKota as $dataKota) {
+                            echo "<tr>";
+                            echo "<td>$dataKota->nama</td>";
+                            echo "<td><a class='btn btn-primary' class='button' href='?p=edit-kota&id-kota=$dataKota->idKota'</a>Edit</a></td>";
+                            echo "<td><a class='btn btn-primary' onclick='confirmDataKota($dataKota->idKota)'>Delete</a></td>";
+                            echo "<tr>";
+                        }
+                    }
+                    ?>
+                    <a></a>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -220,6 +268,13 @@ require_once("./authAdmin.php");
         var data = confirm("Apakah anda ingin menghapus Fasilitas Ini ?");
         if (data) {
             window.location = "?p=remove-fasilitas-action&id_fasilitas=" + id;
+        }
+    }
+
+    function confirmDataKota(id) {
+        var data = confirm("Apakah anda ingin menghapus Kota Ini ?");
+        if (data) {
+            window.location = "?p=remove-kota-action&id-kota=" + id;
         }
     }
 </script>
