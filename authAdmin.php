@@ -15,7 +15,7 @@ if(!ISSET($_SESSION['id_user'])) {
 else if(!ISSET($_SESSION["level"] != 0)) {
     echo "<script>
           ALERT('Maaf, Anda Tidak Mempunyai Akses Ke Halaman Ini')
-          window.location = 'index.php';
+          window.location = 'dashboard.php';
           </script>";
 }
 ?>
