@@ -2,8 +2,6 @@
 session_destroy();
 
 echo "<script>
-      ALERT('Sampai Jumpa!');
+      alert('Sampai Jumpa!');
       window.location = 'index.php'
       </script>";
-
-?>

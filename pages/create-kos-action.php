@@ -62,7 +62,7 @@ else {
     //berhasil membuat
     if ($hasil == "berhasil membuat") {
         echo "<script>
-        alert('Berhasil Mendaftarkan Kosan')
+        alert('Berhasil Mendaftarkan Kosan, Silahkan Menunggu Konfirmasi Admin')
         window.location = 'dashboard.php?p=profile';
         </script>";
     }

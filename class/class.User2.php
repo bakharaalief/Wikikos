@@ -289,7 +289,8 @@ class User2 extends Connection2
     //get all kosan
     public function getAllKos()
     {
-        $sql = "SELECT * FROM kosan WHERE id_user = :id_user";
+        // $sql = "SELECT * FROM kosan WHERE id_user = :id_user";
+        $sql = "SELECT * FROM kosan Inner JOIN kota ON kosan.kota=kota.id_kota WHERE id_user = :id_user";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id_user', $this->idUser);
         $stmt->execute();
@@ -302,7 +303,6 @@ class User2 extends Connection2
             $arrResult  = array();
 
             while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-
                 $kosUser = new Kos();
                 $kosUser->idKos = $result['id_kosan'];
                 $kosUser->namaKos = $result['nama_kosan'];
@@ -310,6 +310,8 @@ class User2 extends Connection2
                 $kosUser->harga = $result['harga'];
                 $kosUser->kapasitas = $result['kapasitas'];
                 $kosUser->idUser = $result['id_user'];
+                $kosUser->kota = $result['nama_kota'];
+                $kosUser->status = $result['status'];
                 $arrResult[$cnt] = $kosUser;
                 $cnt++;
             }

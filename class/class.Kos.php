@@ -13,10 +13,12 @@ class Kos extends Connection2
     private $kecamatan;
     private $kota;
     private $idUser;
+    private $status;
+
 
     //user info
-
     private $pemilik;
+    private $email;
 
     //foto
     private $lokasi_file;
@@ -90,6 +92,7 @@ class Kos extends Connection2
                 $kosUser->kota = $result['nama_kota'];
                 $kosUser->idUser = $result['id_user'];
                 $kosUser->pemilik = $result['username'];
+                $kosUser->status = $result['status'];
 
                 $arrResult[$cnt] = $kosUser;
                 $cnt++;
@@ -186,6 +189,38 @@ class Kos extends Connection2
             return "berhasil mengedit";
         } catch (PDOException $e) {
 
+            return "gagal mengedit";
+        }
+    }
+
+    //get status kos
+    public function getStatusKos()
+    {
+        try {
+            $sql = "SELECT k.status, u.email FROM kosan k INNER JOIN user u ON u.id_user = k.id_user WHERE K.id_kosan=$this->idKos";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $this->status = $result['status'];
+            $this->email = $result['email'];
+
+            return "Berhasil mengambil data";
+        } catch (PDOException $e) {
+            return "gagal mengambil data";
+        }
+    }
+
+    //edit status kos
+    public function editStatusKos()
+    {
+        try {
+            $sql = "UPDATE kosan SET status='$this->status'
+                    WHERE id_kosan=$this->idKos";
+            $this->conn->exec($sql);
+
+            return "berhasil mengedit";
+        } catch (PDOException $e) {
             return "gagal mengedit";
         }
     }

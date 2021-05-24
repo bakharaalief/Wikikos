@@ -1,4 +1,5 @@
 :root {
+  --orange_black : #8f301d;
   --orange: #cf4427;
   --background: #f9f5f4;
   --brown: #ebe2c3;
@@ -392,6 +393,15 @@ body {
   margin-bottom: 0px;
 }
 
+#profile #info1 a {
+  margin-bottom: 15px;
+  background: var(--orange);
+  border-radius: 10px;
+  border: 1px solid var(--orange);
+  margin-top: 15px;
+  margin-bottom: 40px;
+}
+
 #profile #nomor-telpon label {
   color: var(--orange);
   font-weight: bold;
@@ -447,6 +457,13 @@ body {
   border-radius: 10px;
   font-size: 15px;
   border: 1px solid var(--orange);
+}
+
+#profile .semua-kosan #data-kosan #a2 {
+  background: var(--orange_black);
+  border-radius: 10px;
+  font-size: 15px;
+  border: 1px solid var(--orange_black);
 }
 
 /* create-kosan */

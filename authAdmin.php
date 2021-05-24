@@ -1,22 +1,20 @@
 <?php
-if(!ISSET($_SESSION)) {
+if (!isset($_SESSION)) {
     session_start();
 }
 
 //if not logged in
-if(!ISSET($_SESSION['id_user'])) {
+if (!isset($_SESSION['id_user'])) {
     echo "<script>
-          ALERT('Maaf, Anda Tidak Mempunyai Akses Ke Halaman Ini')
+          alert('Maaf, Anda Tidak Mempunyai Akses Ke Halaman Ini')
           window.location = 'index.php';
           </script>";
 }
 
 //if level is not admin's level
-else if(!ISSET($_SESSION["level"] != 0)) {
+else if ($_SESSION["level"] != 0) {
     echo "<script>
-          ALERT('Maaf, Anda Tidak Mempunyai Akses Ke Halaman Ini')
+          alert('Maaf, Anda Tidak Mempunyai Akses Ke Halaman Ini')
           window.location = 'dashboard.php';
           </script>";
 }
-?>
-

@@ -16,6 +16,8 @@ require_once("./authPemilik.php");
             }
             echo "<p> ID " . $idUser . "</p>";
             ?>
+
+            <a class="btn btn-primary" href="?p=create-kos">Edit Profile</a>
         </div>
 
         <!-- nomor telpon -->
@@ -90,6 +92,8 @@ require_once("./authPemilik.php");
                     <th scope="col">Harga</th>
                     <th scope="col">Kapasitas</th>
                     <th scope="col">Terisi</th>
+                    <th scope="col">Kota</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Anggota</th>
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
@@ -126,9 +130,32 @@ require_once("./authPemilik.php");
                         echo "<td>$dataKos->harga</td>";
                         echo "<td>$dataKos->kapasitas</td>";
                         echo "<td>$jumlahTerisi</td>";
-                        echo "<td><a class='btn btn-primary' href='?p=anggota-kos&id-kos=$dataKos->idKos'>Anggota</a></td>";
-                        echo "<td><a class='btn btn-primary' class='button' href='?p=edit-kos&id-kos=$dataKos->idKos'</a>Edit</a></td>";
-                        echo "<td><a class='btn btn-primary' onclick='confirmData($dataKos->idKos)'>Delete</a></td>";
+                        echo "<td>$dataKos->kota</td>";
+
+                        //show button status
+                        // direview
+                        if ($dataKos->status == 0) {
+                            echo "<td>Review</td>";
+                            echo "<td><a id='a2' class='btn btn-primary'>Anggota</a></td>";
+                            echo "<td><a id='a2' class='btn btn-primary'</a>Edit</a></td>";
+                            echo "<td><a id='a2' class='btn btn-primary'>Delete</a></td>";
+                        }
+                        //diterima
+                        else if ($dataKos->status == 1) {
+                            echo "<td>Aktif</td>";
+                            echo "<td><a class='btn btn-primary' href='?p=anggota-kos&id-kos=$dataKos->idKos'>Anggota</a></td>";
+                            echo "<td><a class='btn btn-primary' class='button' href='?p=edit-kos&id-kos=$dataKos->idKos'</a>Edit</a></td>";
+                            echo "<td><a class='btn btn-primary' onclick='confirmData($dataKos->idKos)'>Delete</a></td>";
+                        }
+                        //ditolak
+                        else if ($dataKos->status == 2) {
+                            echo "<td>Tolak</td>";
+                            echo "<td><a id='a2' class='btn btn-primary'>Anggota</a></td>";
+                            echo "<td><a id='a2' class='btn btn-primary'</a>Edit</a></td>";
+                            echo "<td><a class='btn btn-primary' onclick='confirmData($dataKos->idKos)'>Delete</a></td>";
+                        }
+
+
                         echo "<tr>";
                     }
                     $count = count($allKos);

@@ -39,9 +39,46 @@ require_once("./authPemilik.php");
                         <div class="col">
                             <input type="text" class="form-control" name="kecamatan-kos" placeholder="Nama Kecamatan" required>
                         </div>
+
+                        <!-- yg baru -->
                         <div class="col">
-                            <input type="text" class="form-control" name="kota-kos" placeholder="Nama Kota" required>
+                            <select class="form-control" id="exampleFormControlSelect1" name="kota-kos">
+                                <?php
+                                require_once("./class/class.Kota.php");
+
+                                $kota = new Kota();
+                                $allKota = $kota->getAllKota();
+
+                                //kota kosong
+                                if ($allKota == "kosong") {
+                                    echo "<tr>";
+                                    echo "<td><p>Maaf Data Kosong</p></td>";
+                                    echo "<tr>";
+                                    $count = 0;
+                                }
+
+                                //kota ada
+                                else {
+                                    $count = count($allKota);
+                                    $jumlahKota = 0;
+                                    foreach ($allKota as $dataKota) {
+                                        if ($dataKota->idKota == $kos->kota)
+                                            $output = "<option value=" . $dataKota->idKota  . " selected='selected'>" . $dataKota->nama . "</option>";
+                                        else {
+                                            $output = "<option value=" . $dataKota->idKota  . " >" . $dataKota->nama . "</option>";
+                                        }
+                                        echo $output;
+                                    }
+                                }
+                                ?>
+                            </select>
                         </div>
+
+
+                        <!-- yg lama -->
+                        <!-- <div class="col">
+                            <input type="text" class="form-control" name="kota-kos" placeholder="Nama Kota" required>
+                        </div> -->
                     </div>
                 </div>
             </div>

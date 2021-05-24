@@ -48,6 +48,7 @@ require_once("./authAdmin.php");
                         <th scope="col">Kapasitas</th>
                         <th scope="col">Terisi</th>
                         <th scope="col">Kota</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Anggota</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
@@ -88,6 +89,16 @@ require_once("./authAdmin.php");
                             echo "<td>$dataKos->kapasitas</td>";
                             echo "<td>$jumlahTerisi</td>";
                             echo "<td>$dataKos->kota</td>";
+
+                            //show button status
+                            if ($dataKos->status == 0) {
+                                echo "<td><a class='btn btn-primary' href='?p=edit-status-kos&id-kos=$dataKos->idKos'>Review</a></td>";
+                            } else if ($dataKos->status == 1) {
+                                echo "<td><a class='btn btn-primary' href='?p=edit-status-kos&id-kos=$dataKos->idKos'>Aktif</a></td>";
+                            } else if ($dataKos->status == 2) {
+                                echo "<td><a class='btn btn-primary' href='?p=edit-status-kos&id-kos=$dataKos->idKos'>Tolak</a></td>";
+                            }
+
                             echo "<td><a class='btn btn-primary' href='?p=anggota-kos&id-kos=$dataKos->idKos'>Anggota</a></td>";
                             echo "<td><a class='btn btn-primary' class='button' href='?p=edit-kos&id-kos=$dataKos->idKos'</a>Edit</a></td>";
                             echo "<td><a class='btn btn-primary' onclick='confirmData($dataKos->idKos)'>Delete</a></td>";
