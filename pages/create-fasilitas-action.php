@@ -1,4 +1,5 @@
 <?php
+require_once("./authAdmin.php");
 require_once("./class/class.Fasilitas.php");
 
 //get 

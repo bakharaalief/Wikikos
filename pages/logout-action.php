@@ -1,4 +1,5 @@
 <?php
+require_once("./authPemilik.php");
 session_destroy();
 
 echo "<script>

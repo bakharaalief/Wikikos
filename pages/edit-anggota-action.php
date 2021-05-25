@@ -1,4 +1,5 @@
 <?php
+require_once("./authPemilik.php");
 require_once("./class/class.Anggota_Kosan.php");
 
 //anggota info

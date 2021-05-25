@@ -1,5 +1,5 @@
 <?php
-
+require_once("./authPemilik.php");
 //get 
 $id_telpon =  $_GET['id_telpon'];
 
