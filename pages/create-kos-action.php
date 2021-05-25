@@ -1,4 +1,6 @@
 <?php
+require_once("./authPemilik.php");
+
 //kos info
 $namaKos = $_POST['nama-kos'];
 $tipeKos = $_POST['tipe-kos'];

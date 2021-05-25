@@ -1,5 +1,6 @@
 <?php
 //id kos
+require_once("./authPemilik.php");
 $idKos = $_GET['id-kos'];
 
 //is data empty

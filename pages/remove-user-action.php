@@ -1,4 +1,5 @@
 <?php
+require_once("./authAdmin.php");
 require_once("./class/class.User2.php");
 
 $idUser = $_GET['id-user'];
