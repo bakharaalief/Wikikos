@@ -156,7 +156,7 @@ require_once("./authAdmin.php");
                                 echo "<td>Pengguna</td>";
                             }
 
-                            echo "<td><a class='btn btn-primary' class='button' href='?p=edit-user&id-user=$dataUser->idUser'</a>Edit</a></td>";
+                            echo "<td><a class='btn btn-primary' class='button' href='?p=edit-user-admin&id-user=$dataUser->idUser'</a>Edit</a></td>";
                             echo "<td><a class='btn btn-primary' onclick='confirmDataUser($dataUser->idUser)'>Delete</a></td>";
                             echo "<tr>";
                         }

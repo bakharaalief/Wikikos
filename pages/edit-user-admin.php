@@ -1,5 +1,5 @@
 <?php
-require_once("./authPemilik.php");
+require_once("./authAdmin.php");
 $idUser = $_GET['id-user'];
 
 //fetch data kosan by id
@@ -10,8 +10,8 @@ $user->getUserData();
 ?>
 
 <div class="container" id="edit-user">
-    <h1>Edit User</h1>
-    <form action="?p=edit-user-action" method="post" enctype="multipart/form-data">
+    <h1>Edit User Admin</h1>
+    <form action="?p=edit-user-admin-action" method="post" enctype="multipart/form-data">
         <div class="row align-items-start">
             <div class="col">
 
@@ -22,12 +22,12 @@ $user->getUserData();
                 </div>
 
                 <!-- Email -->
-                <!-- <div class="form-group">
+                <div class="form-group">
                     <label>Email</label>
                     <input type="email" class="form-control" placeholder="Email" name="email" value="<?php echo $user->email; ?>" required>
-                </div> -->
+                </div>
 
-                <!-- Mau Jadi Apa
+                <!-- Mau Jadi Apa -->
                 <div class="form-group">
                     <label>Menjadi</label>
                     <select class="form-control" name="level">
@@ -35,13 +35,13 @@ $user->getUserData();
                         <option value="1" <?php if ($user->level == 1) echo 'selected="selected"'; ?>>Pemilik</option>
                         <option value="2" <?php if ($user->level == 2) echo 'selected="selected"'; ?>>Pengguna Kos</option>
                     </select>
-                </div> -->
+                </div>
 
                 <!-- Username -->
-                <!-- <div class="form-group">
+                <div class="form-group">
                     <label>Username</label>
                     <input type="text" class="form-control" placeholder="Username" name="username" value="<?php echo $user->username; ?>" required>
-                </div> -->
+                </div>
 
                 <!-- password -->
                 <div class="form-group">
@@ -49,10 +49,6 @@ $user->getUserData();
                     <input class="form-control" placeholder="Masukan Password jika ingin merubah" name="password">
                 </div>
 
-
-                <input type="hidden" name="email" value="<?php echo $user->email; ?>" />
-                <input type="hidden" name="username" value="<?php echo $user->username; ?>" />
-                <input type="hidden" name="level" value="<?php echo $user->level; ?>" />
                 <input type="hidden" name="id-user" value="<?php echo $idUser; ?>" />
 
                 <br>

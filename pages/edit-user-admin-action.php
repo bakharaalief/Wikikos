@@ -12,7 +12,7 @@ $idUser = $_POST['id-user'];
 if (empty($fullName) | empty($email) | empty($username)) {
     echo "<script>
     alert('Gagal Memperbaharui User, Pastikan semua data diiisi')
-    window.location = 'dashboard.php?p=edit-user&id-user=$idUser';
+    window.location = 'dashboard.php?p=edit-user-admin&id-user=$idUser';
     </script>";
 }
 
@@ -29,13 +29,9 @@ else {
 
     //berhasil edit
     if ($hasil == "berhasil mengedit") {
-
-        $_SESSION['fullname'] = $user->fullname;
-        $_SESSION['password'] = $user->password;
-
         echo "<script>
         alert('Berhasil memperbaharui User')
-        window.location = 'dashboard.php?p=profile';
+        window.location = 'dashboard.php?p=admin';
         </script>";
     }
 
@@ -43,7 +39,7 @@ else {
     else {
         echo "<script>
         alert('Gagal Memperbaharui User, Pastikan semua data benar')
-        window.location = 'dashboard.php?p=edit-user&id-user=$idUser';
+        window.location = 'dashboard.php?p=edit-user-admin&id-user=$idUser';
         </script>";
     }
 }

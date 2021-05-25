@@ -17,7 +17,7 @@ require_once("./authPemilik.php");
             echo "<p> ID " . $idUser . "</p>";
             ?>
 
-            <a class="btn btn-primary" href="?p=create-kos">Edit Profile</a>
+            <a class="btn btn-primary" href="?p=edit-user&id-user=<?php echo $idUser; ?>">Edit Profile</a>
         </div>
 
         <!-- nomor telpon -->
