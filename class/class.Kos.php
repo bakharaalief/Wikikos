@@ -312,6 +312,7 @@ class Kos extends Connection2
         //ada
         if ($count > 0) {
             $arrResult  = array();
+            require_once("class.Fasilitas.php");
 
             while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
 

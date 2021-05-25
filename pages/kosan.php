@@ -1,29 +1,86 @@
+<?php
+require_once("./class/class.Kos.php");
+require_once("./class/class.Foto_Kosan.php");
+
+$idKos = $_GET['id-kos'];
+
+//fetch data kosan by id
+$kos = new Kos();
+$kos->idKos = $idKos;
+$kos->getKosanData();
+
+?>
+
 <div class="container" id="kosan">
     <div class="row">
-        <div class="col" id="col-1">
+        <?php
+            //fetch foto kosan by id
+            $allFoto = $kos->getAllPhoto();
+
+            //kosong
+            if ($allFoto == "kosong") {
+                return;
+                }
+
+            //selain itu
+            else {
+                foreach ($allFoto as $dataFoto) {
+                    echo '<div class="col" id="col-1" />';
+                    echo '<img class="kos-photo" src="' . substr($dataFoto->Foto, 0) . '" alt="Card image cap">';
+                    echo '</div>';
+                    }
+                }
+        ?>
+        <!-- <div class="col" id="col-1">
             <img class="kos-photo" src="https://pix10.agoda.net/hotelImages/361/3612573/3612573_18012114440061220336.jpg?s=1024x768" alt="Card image cap">
-        </div>
+        </div> -->
         <div class="col" id="col-2">
-            <h1>Kosan Bu Haji</h1>
-            <div class="kos-rating-info">
-                <img src="./image/star-icon.png" alt="">
-                <h4 class="kos-rating">4/5</h4>
-            </div>
+            <h1><?php echo $kos->namaKos; ?> </h1>
             <div class="card-info">
                 <img src="./image/money-icon.png" width="20" height="20" alt="">
-                <p class="kos-harga">1.500.000</p>
+                <p class="kos-harga"><?php echo $kos->harga; ?></p>
             </div>
             <div class="card-info">
-                <img src="./image/house-icon.png" width="20" height="20" alt="">
-                <p class="kos-fasilitas">Tv, Meja Makan, Kursi</p>
+            <img src="./image/house-icon.png" width="20" height="20" alt="">
+                <?php
+                    //fetch fasilitas by id
+                    $allFasilitas = $kos->getAllFasilitas();
+
+                    //kosong
+                    if ($allFasilitas == "kosong") {
+                        return;
+                        }
+
+                    //selain itu
+                    else {
+                        foreach ($allFasilitas as $dataFasilitas) {
+                            echo '<p class="kos-fasilitas"> '.$dataFasilitas->nama. ' ' .' </p>';
+                            }
+                        }
+                ?>
             </div>
             <div class="card-info">
                 <img src="./image/person-icon.png" width="20" height="20" alt="">
-                <p class="kos-fasilitas">3 Mahasiswa Aktif ESQ</p>
+                <?php
+                    //fetch anggota by id
+                    $allAnggota = $kos->getAllAnggota();
+
+                    //kosong
+                    if ($allAnggota == "kosong") {
+                        return;
+                        }
+
+                    //selain itu
+                    else {
+                        foreach ($allAnggota as $dataAnggota) {
+                            echo '<p class="kos-anggota"> '.$dataAnggota->Nama. ' ' . ' </p>';
+                            }
+                        }
+                ?>
             </div>
             <div class="card-info">
                 <img src="./image/map-icon.png" width="20" height="20" alt="">
-                <p class="kos-lokasi">Kampus Menara 165, Lantai 18 & 19, Jl. Tb. Simatupang Kav. 1, Cilandak Timur, Pasar Minggu, RT.3/RW.3, Cilandak Tim., Kec. Ps. Minggu, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12560</p>
+                <p class="kos-lokasi"><?php echo $kos->namaJalan, ' ', $kos->kecamatan, ' ', $kos->kota ?></p>
             </div>
         </div>
     </div>
