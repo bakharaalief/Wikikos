@@ -16,7 +16,7 @@ function rupiah($angka)
 <div class="container" id="search">
 
     <!-- search form -->
-    <form action="/kuliah/project/index.php" method="get">
+    <form action="/kuliah/project/dashboard.php" method="get">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Cari Tempat" name="p" value="search" hidden>
             <input type="text" class="form-control" placeholder="Cari Tempat" name="search-data">
@@ -79,7 +79,7 @@ function rupiah($angka)
                 //info kos harga
                 echo "<div class='card-info'>";
                 echo "<img src='./image/money-icon.png' width='20' height='20' alt=''>";
-                echo "<p>" . rupiah($dataKos->harga) . " / bulan</p>";
+                echo "<p>" . rupiah($dataKos->harga) . " / bulan </p>";
                 echo "</div>";
 
 

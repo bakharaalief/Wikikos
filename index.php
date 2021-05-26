@@ -69,7 +69,7 @@ if (isset($_SESSION["level"])) {
             echo "Halaman Tidak Ditemukan";
         }
     } else {
-        include "./pages/home2.php";
+        include "./pages/search.php";
     }
     ?>
 </body>

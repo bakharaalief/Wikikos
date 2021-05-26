@@ -51,7 +51,7 @@ $(document).ready(function(){
   //remove fasilitas
   $(document).on('click', '.remove_fasilitas_nama', function() {
     var row_id = $(this).attr("id");
-    if (confirm("Are you sure you want to remove this row data?")) {
+    if (confirm("Yakin Ingin Menghapus Fasilitas Ini?")) {
         $('#row_' + row_id + '').remove();
     } else {
         return false;

@@ -290,7 +290,7 @@ class User2 extends Connection2
     public function getAllKos()
     {
         // $sql = "SELECT * FROM kosan WHERE id_user = :id_user";
-        $sql = "SELECT * FROM kosan Inner JOIN kota ON kosan.kota=kota.id_kota WHERE id_user = :id_user";
+        $sql = "SELECT * FROM kosan ks Inner JOIN kota k ON ks.kota=k.id_kota WHERE id_user = :id_user ORDER BY ks.nama_kosan ASC";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id_user', $this->idUser);
         $stmt->execute();

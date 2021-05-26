@@ -44,7 +44,7 @@ class Kos extends Connection2
     //get one kosan
     public function getKosanData()
     {
-        $sql = "SELECT * FROM kosan WHERE id_kosan = :id_kosan";
+        $sql = "SELECT * FROM kosan ks INNER JOIN Kota k ON ks.kota = k.id_kota WHERE ks.id_kosan = :id_kosan";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id_kosan', $this->idKos);
         $stmt->execute();
@@ -61,7 +61,7 @@ class Kos extends Connection2
             $this->kapasitas = $result['kapasitas'];
             $this->namaJalan = $result['nama_jalan'];
             $this->kecamatan = $result['kecamatan'];
-            $this->kota = $result['kota'];
+            $this->kota = $result['nama_kota'];
             $this->detail = $result['deskripsi'];
             $this->idUser = $result['id_user'];
         }
@@ -70,7 +70,7 @@ class Kos extends Connection2
     //get all kos
     public function getAllKos()
     {
-        $sql = "SELECT * FROM kosan INNER JOIN user ON kosan.id_user=user.id_user Inner JOIN kota ON kosan.kota=kota.id_kota";
+        $sql = "SELECT * FROM kosan INNER JOIN user ON kosan.id_user=user.id_user Inner JOIN kota ON kosan.kota=kota.id_kota ORDER BY kosan.nama_kosan ASC";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
 
@@ -237,6 +237,8 @@ class Kos extends Connection2
         $count = $stmt->rowCount();
         $cnt = 0;
 
+        require_once("class.Foto_Kosan.php");
+
         //ada
         if ($count > 0) {
             $arrResult  = array();
@@ -279,7 +281,6 @@ class Kos extends Connection2
             $arrResult  = array();
 
             while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-
                 $anggotaKos = new Anggota_Kosan();
                 $anggotaKos->idAnggota = $result['id_anggota'];
                 $anggotaKos->Nama = $result['nama_anggota'];

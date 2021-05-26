@@ -88,7 +88,7 @@ $user2->level = $level;
             echo "Halaman Tidak Ditemukan";
         }
     } else {
-        include "./pages/home.php";
+        include "./pages/search2.php";
     }
     ?>
 </body>
