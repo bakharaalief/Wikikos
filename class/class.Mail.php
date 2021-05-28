@@ -8,7 +8,7 @@ use PHPMailer\PHPMailer\Exception;
 
 require "vendor/autoload.php";
 
-class Mail
+class Mail extends Connection2
 {
     private $link;
     private $mail;
@@ -77,13 +77,18 @@ class Mail
         $mail->isHTML(true);
         $mail->addEmbeddedImage('./image/mail.png', 'image_cid2');
         $mail->Subject = "Reset Link Password";
+        //ganti sesuai dengan isi yang diingkan 
         $bodyContent = '
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-          <div class="card text-center"  style="text-align: center">
+        
+           
+            <!-- bootsrap css -->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+        <div class="card text-center"  style="text-align: center">
                 <div class="card-header">
                 <img src="cid:image_cid2">  
-                </div>
-            <div class="card-body"  style="text-align: center; " >
+             </div>
+        <div class="card-body"  style="text-align: center; " >
                     <h3 class="card-title"><b>Selamat, Berikut Link reset akun anda</b></h3>
                     <p class="card-text">
                 <p>Hi, Kami dari tim <b>Wikikos</b></p> 
@@ -96,11 +101,12 @@ class Mail
                     <button type="link" class="btn btn-primary">' . $link . '  </button>
             </div>
                 <br>        
-            <div class="card-footer text-muted"  style="text-align: center">
-            Terima Kasih sudah membaca email kami!.<br> 
-            Customer Care +6288000889911 24/7 services
-                </div>
+                <div class="card-footer text-muted"  style="text-align: center">
+                Terima Kasih sudah membaca email kami!.<br> 
+                Customer Care +6288000889911 24/7 services
+                    </div>
            </div>';
+
         $mail->Body = $bodyContent;
 
         $mail->send();
