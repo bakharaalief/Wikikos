@@ -35,19 +35,19 @@ require_once("./authAdmin.php");
     </ul>
 
     <!-- tab content -->
-    <!-- data-kosan -->
     <div class="tab-content" id="myTabContent">
+        <!-- kosan data -->
         <div class="tab-pane fade show active" id="kos" role="tabpanel" aria-labelledby="home-tab">
             <table class="table" id="data-kosan">
                 <thead>
                     <tr>
-                        <th scope="col">Username</th>
                         <th scope="col">Kosan</th>
                         <th scope="col">Tipe</th>
                         <th scope="col">Harga</th>
                         <th scope="col">Kapasitas</th>
                         <th scope="col">Terisi</th>
                         <th scope="col">Kota</th>
+                        <th scope="col">Pemilik</th>
                         <th scope="col">Status</th>
                         <th scope="col">Anggota</th>
                         <th scope="col">Edit</th>
@@ -82,13 +82,13 @@ require_once("./authAdmin.php");
                             }
 
                             echo "<tr>";
-                            echo "<td>$dataKos->pemilik</td>";
                             echo "<td>$dataKos->namaKos</td>";
                             echo "<td>$dataKos->tipe</td>";
                             echo "<td>$dataKos->harga</td>";
                             echo "<td>$dataKos->kapasitas</td>";
                             echo "<td>$jumlahTerisi</td>";
                             echo "<td>$dataKos->kota</td>";
+                            echo "<td>$dataKos->pemilik</td>";
 
                             //show button status
                             if ($dataKos->status == 0) {

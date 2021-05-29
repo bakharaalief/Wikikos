@@ -42,6 +42,7 @@ class Search extends Connection2
                 $kosUser->namaKos = $result['nama_kosan'];
                 $kosUser->tipe = $result['tipe_kos'];
                 $kosUser->harga = $result['harga'];
+                $kosUser->ukuran = $result['ukuran'];
                 $kosUser->kapasitas = $result['kapasitas'];
                 $kosUser->namaJalan = $result['nama_jalan'];
                 $kosUser->kecamatan = $result['kecamatan'];

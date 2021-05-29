@@ -333,7 +333,7 @@ body {
 #search .kos-found {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -342,6 +342,7 @@ body {
   width: 300px;
   height: max-content;
   cursor: pointer;
+  margin-bottom: 20px;
   background-color: var(--brown);
 }
 

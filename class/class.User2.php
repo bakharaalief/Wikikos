@@ -53,6 +53,38 @@ class User2 extends Connection2
         }
     }
 
+    //cek Email and get Data
+    public function cekEmailData()
+    {
+        try {
+            $sql = "SELECT * FROM user WHERE email = :email";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':email', $this->email);
+            $stmt->execute();
+
+            $count = $stmt->rowCount(); ///menghitung row
+
+            // jika rownya ada
+            if ($count == 1) {
+                $result   = $stmt->fetch(PDO::FETCH_ASSOC);
+                $this->idUser = $result['id_user']; // set sesion dengan variabel username
+                $this->username = $result['username'];
+                $this->password = $result['password'];
+                $this->email = $result['email'];
+                $this->fullname = $result['fullname'];
+                $this->level = $result['level'];
+                return true;
+            }
+
+            //jika tidak
+            else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            return "Email tidak bisa di cek";
+        }
+    }
+
     public function cekUsername()
     {
         try {
@@ -77,7 +109,6 @@ class User2 extends Connection2
         }
     }
 
-
     //create user
     public function createUser()
     {
@@ -93,16 +124,18 @@ class User2 extends Connection2
     }
 
     //reset pass user
-    public function resetUser()
+    public function resetPass()
     {
         try {
-            $sql = "SELECT * FROM user WHERE email = :email ";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':email', $this->email);
-            $stmt->execute();
-            return "berhasil reset email";
+
+            //if password null
+            $newPass = password_hash($this->password, PASSWORD_DEFAULT);
+            $sql = "UPDATE user SET password='$newPass' WHERE id_user=$this->idUser";
+            $this->conn->exec($sql);
+
+            return "berhasil mengedit";
         } catch (PDOException $e) {
-            return "gagal reset email";
+            return "gagal mengedit";
         }
     }
 

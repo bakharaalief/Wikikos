@@ -157,7 +157,7 @@ $kos->getKosanData();
                 //selain itu
                 else {
                     foreach ($allFoto as $dataFoto) {
-                        echo '<img id="image-crop" src="' . substr($dataFoto->Foto, 0) . '" alt="your image" />';
+                        echo '<img id="image-crop" src="' . substr($dataFoto->Foto, 0) . "?t=" . time() . '" alt="your image" />';
                         echo '<input type="file" id="gambar-kos" class="form-control" name="gambar-input" />';
                         echo '<input type="hidden" name="id-foto" value="' . $dataFoto->idFoto . '" />';
                     }
@@ -196,8 +196,8 @@ $kos->getKosanData();
 
                         //nomor telpon kosong
                         if ($allFasilitas == "kosong") {
-                            echo "<option>Maaf Data Kosong</option>";
                             $count = 0;
+                            echo "<option id='kosong'>Maaf Data Kosong</option>";
                         }
 
                         //nomor telpon ada

@@ -1,5 +1,4 @@
 <?php
-require_once("./authPemilik.php");
 require_once("./class/class.User2.php");
 
 $fullName = $_POST['namaLengkap'];
@@ -35,10 +34,8 @@ else {
         $hasil = $user2->createUser();
 
         if ($hasil == "berhasil daftar") {
-            // include("./register-mail.php");
-
             echo "<script>
-            alert('Berhasil Mendaftarkan user, silahkan cek email anda untuk verifikasi')
+            alert('Berhasil Mendaftarkan user, silahkan Login')
             window.location = '?p=login';
             </script>";
         } else {

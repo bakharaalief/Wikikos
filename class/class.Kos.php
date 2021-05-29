@@ -147,43 +147,80 @@ class Kos extends Connection2
                     $sql = "UPDATE foto_kos SET lokasi_foto='$new_destination', id_kosan='$this->idKos' 
                     WHERE id_foto='$this->idFoto'";
                     $this->conn->exec($sql);
+
+                    //delete all fasilitas before
+                    $sql = "SELECT * FROM fasilitas_kos WHERE id_kosan = :id_kosan";
+                    $stmt = $this->conn->prepare($sql);
+                    $stmt->bindParam(':id_kosan', $this->idKos);
+                    $stmt->execute();
+
+                    $sql = "DELETE FROM fasilitas_kos WHERE id_fasilitas = :id_fasilitas";
+                    while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        $idFasilitas = $result['id_fasilitas'];
+                        $data = array(
+                            ':id_fasilitas' => $idFasilitas,
+                        );
+                        $statement = $this->conn->prepare($sql);
+                        $statement->execute($data);
+                    }
+
+                    // $sql = "DELETE FROM fasilitas_kos WHERE id_fasilitas = :id_fasilitas";
+                    // $stmt = $this->conn->prepare($sql);
+                    // $stmt->bindParam(':id_fasilitas', $idFasilitas);
+                    // $stmt->execute();
+
+                    //insert multiple fasilitas
+                    $jumlah_fasilitas = count($_POST['hidden_fasilitas_nama']); //jumlah fasilitas
+                    $query = "INSERT INTO fasilitas_kos(id_fasilitas_kos, id_fasilitas, id_kosan) VALUES (:id_fasilitas_kos, :id_fasilitas, :id_kosan)";
+                    for ($count = 0; $count < $jumlah_fasilitas; $count++) {
+                        $data = array(
+                            ':id_fasilitas_kos' => 'K' . $this->idKos . 'F' . ($count + 1),
+                            ':id_fasilitas' => $_POST['hidden_fasilitas_nama'][$count],
+                            ':id_kosan' => $this->idKos,
+                        );
+
+                        $statement = $this->conn->prepare($query);
+                        $statement->execute($data);
+                    }
                 }
             }
 
-            //delete all fasilitas before
-            $sql = "SELECT * FROM fasilitas_kos WHERE id_kosan = :id_kosan";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':id_kosan', $this->idKos);
-            $stmt->execute();
+            //jika nggak
+            else {
+                //delete all fasilitas before
+                $sql = "SELECT * FROM fasilitas_kos WHERE id_kosan = :id_kosan";
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindParam(':id_kosan', $this->idKos);
+                $stmt->execute();
 
-            $sql = "DELETE FROM fasilitas_kos WHERE id_fasilitas = :id_fasilitas";
-            while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $idFasilitas = $result['id_fasilitas'];
-                $data = array(
-                    ':id_fasilitas' => $idFasilitas,
-                );
+                $sql = "DELETE FROM fasilitas_kos WHERE id_fasilitas = :id_fasilitas";
+                while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $idFasilitas = $result['id_fasilitas'];
+                    $data = array(
+                        ':id_fasilitas' => $idFasilitas,
+                    );
+                    $statement = $this->conn->prepare($sql);
+                    $statement->execute($data);
+                }
 
-                $statement = $this->conn->prepare($sql);
-                $statement->execute($data);
-            }
+                $sql = "DELETE FROM fasilitas_kos WHERE id_fasilitas = :id_fasilitas";
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindParam(':id_fasilitas', $idFasilitas);
+                $stmt->execute();
 
-            $sql = "DELETE FROM fasilitas_kos WHERE id_fasilitas = :id_fasilitas";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':id_fasilitas', $idFasilitas);
-            $stmt->execute();
+                //insert multiple fasilitas
+                $jumlah_fasilitas = count($_POST['hidden_fasilitas_nama']); //jumlah fasilitas
+                $query = "INSERT INTO fasilitas_kos(id_fasilitas_kos, id_fasilitas, id_kosan) VALUES (:id_fasilitas_kos, :id_fasilitas, :id_kosan)";
+                for ($count = 0; $count < $jumlah_fasilitas; $count++) {
+                    $data = array(
+                        ':id_fasilitas_kos' => 'K' . $this->idKos . 'F' . ($count + 1),
+                        ':id_fasilitas' => $_POST['hidden_fasilitas_nama'][$count],
+                        ':id_kosan' => $this->idKos,
+                    );
 
-            //insert multiple fasilitas
-            $jumlah_fasilitas = count($_POST['hidden_fasilitas_nama']); //jumlah fasilitas
-            $query = "INSERT INTO fasilitas_kos(id_fasilitas_kos, id_fasilitas, id_kosan) VALUES (:id_fasilitas_kos, :id_fasilitas, :id_kosan)";
-            for ($count = 0; $count < $jumlah_fasilitas; $count++) {
-                $data = array(
-                    ':id_fasilitas_kos' => 'K' . $this->idKos . 'F' . ($count + 1),
-                    ':id_fasilitas' => $_POST['hidden_fasilitas_nama'][$count],
-                    ':id_kosan' => $this->idKos,
-                );
-
-                $statement = $this->conn->prepare($query);
-                $statement->execute($data);
+                    $statement = $this->conn->prepare($query);
+                    $statement->execute($data);
+                }
             }
 
             return "berhasil mengedit";

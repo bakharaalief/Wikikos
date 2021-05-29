@@ -64,7 +64,7 @@ function rupiah($angka)
                 //selain itu
                 else {
                     foreach ($allFoto as $dataFoto) {
-                        echo '<img class="card-img-top" src="' . substr($dataFoto->Foto, 0) . '" alt="Card image cap">';
+                        echo '<img class="card-img-top" src="' . substr($dataFoto->Foto, 0) . "?t=" . time() . '" alt="Card image cap">';
                         echo "<div class='card-body' id='card-body'>";
                     }
                 }
@@ -159,13 +159,25 @@ function rupiah($angka)
                 echo "</div>";
 
 
+                //tipe kos
+                echo "<div class='card-info'>";
+                echo "<img src='./image/type-icon.png' width='20' height='20' alt=''>";
+                echo "<p>" . ucwords($dataKos->tipe) . "</p>";
+                echo "</div>";
+
+
+                //tipe kos
+                echo "<div class='card-info'>";
+                echo "<img src='./image/size-icon.png' width='20' height='20' alt=''>";
+                echo "<p>$dataKos->ukuran</p>";
+                echo "</div>";
+
 
                 //info kos lokasi
                 echo "<div class='card-info'>";
                 echo "<img src='./image/map-icon.png' width='20' height='20' alt=''>";
                 echo "<p>$dataKos->namaJalan, $dataKos->kecamatan, $dataKos->kota </p>";
                 echo "</div>";
-
 
 
                 //info mhs aktif

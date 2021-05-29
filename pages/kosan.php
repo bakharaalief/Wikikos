@@ -34,7 +34,7 @@ function rupiah($angka)
         else {
             foreach ($allFoto as $dataFoto) {
                 echo '<div class="col" id="col-1" />';
-                echo '<img class="kos-photo" src="' . substr($dataFoto->Foto, 0) . '" alt="Card image cap">';
+                echo '<img class="kos-photo" src="' . substr($dataFoto->Foto, 0) . "?t=" . time() . '" alt="Card image cap">';
                 echo '</div>';
             }
         }
@@ -44,6 +44,7 @@ function rupiah($angka)
         <div class="col" id="col-2">
             <!-- nama kos -->
             <h1><?php echo ucwords($kos->namaKos); ?> </h1>
+
 
             <!-- harga -->
             <div class="card-info">
@@ -124,11 +125,26 @@ function rupiah($angka)
                 ?>
             </div>
 
+            <!-- type-kos -->
+            <div class="card-info">
+                <img src="./image/type-icon.png" width="20" height="20" alt="">
+                <p class="kos-lokasi"><?php echo ucwords($kos->tipe); ?></p>
+            </div>
+
+
+            <!-- ukuran-kos -->
+            <div class="card-info">
+                <img src="./image/size-icon.png" width="20" height="20" alt="">
+                <p class="kos-lokasi"><?php echo ucwords($kos->ukuran); ?></p>
+            </div>
+
+
             <!-- alamat-kos -->
             <div class="card-info">
                 <img src="./image/map-icon.png" width="20" height="20" alt="">
                 <p class="kos-lokasi"><?php echo ucwords($kos->namaJalan) . ', ' . ucwords($kos->kecamatan) . ', ' . ucwords($kos->kota) ?></p>
             </div>
+
 
             <!-- anggota kos -->
             <div class="card-info">

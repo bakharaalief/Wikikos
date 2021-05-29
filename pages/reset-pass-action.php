@@ -15,39 +15,31 @@ if (empty($email)) {
 //not empty
 else {
     $user2 = new User2();
-
     $user2->email = $email;
+    $hasil = $user2->cekEmailData();
 
-    $hasil = $user2->cekEmail();
-
+    //terdaftar
     if ($hasil) {
-        // include("./reset-mail.php");
         $mail = new Mail();
-        $mail->resetMail();
+        $mail->namaUser = $user2->fullname;
+        $mail->mailUser = $email;
+        $mail->linkKirim = "http://localhost/kuliah/project/?p=reset-pass-user&id-user=$user2->idUser";
+        $mail->subject = "Reset Pass Akun";
+        $mail->message = "Reset Pass Akun Kamu";
+        $mail->resetPassTemplate();
+        $mail->sendMailAction();
+
         echo "<script>
         alert('Berhasil reset email user, silahkan cek email anda untuk reset link anda')
-        window.location = '?p=login';
+        window.location = '?p=reset-pass';
         </script>";
-    } else {
+    }
+
+    //tidak
+    else {
         echo "<script>
-        alert('Gagal reset user, Pastikan semua data benar')
+        alert('Gagal reset user, Pastikan email kamu terdatar :)')
         window.location = '?p=reset-pass';
         </script>";
     }
 }
-
-// if (isset($_POST['Submit'])) {
-//     $email = $_POST['email'];
-//     $objUser = new 
-//     $subject = "Informasi Reset Account";
-//     $header = "Reset Berhasi";
-//     $body = '<span style="font-family: Arial, Helvetica, sans-serif; font-size: 15px; color: #57697e;">
-// 			  Selamat <b>' . $name . '</b>, berhasil reset pass pada sistem kami.<br>
-// 			  Berikut ini informasi account Anda:<br>
-
-
-// 			</span>';
-
-//     $footer = 'Silakan login untuk mengakses sistem';
-
-// }

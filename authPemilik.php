@@ -9,4 +9,5 @@ if (!isset($_SESSION['id_user'])) {
     alert('Silahkan Login Terlebih Dahulu')
     window.location= 'index.php?p=login';
     </script>";
+    exit();
 }
