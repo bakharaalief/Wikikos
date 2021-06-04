@@ -57,15 +57,23 @@ function rupiah($angka)
                 $allFoto = $dataKos->getAllPhoto();
                 //kosong
                 if ($allFoto == "kosong") {
-                    echo '<img class="card-img-top" alt="Card image cap">';
-                    echo '</div>';
+                    echo '<img class="card-img-top" src="./image/no-image-found.png" alt="Card image cap">';
+                    echo "<div class='card-body' id='card-body'>";
                 }
 
                 //selain itu
                 else {
+                    $jumlah = count($allFoto);
+                    $i = 0;
+
                     foreach ($allFoto as $dataFoto) {
-                        echo '<img class="card-img-top" src="' . substr($dataFoto->Foto, 0) . "?t=" . time() . '" alt="Card image cap">';
-                        echo "<div class='card-body' id='card-body'>";
+                        $i++;
+
+                        //munculin satu gambar saja
+                        if ($i <= 1) {
+                            echo '<img class="card-img-top" src="' . substr($dataFoto->Foto, 0) . "?t=" . time() . '" alt="Card image cap">';
+                            echo "<div class='card-body' id='card-body'>";
+                        }
                     }
                 }
 

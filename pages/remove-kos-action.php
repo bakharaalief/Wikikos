@@ -5,10 +5,19 @@ $idKos = $_GET['id-kos'];
 
 //is data empty
 if (empty($idKos)) {
-    echo "<script>
-    alert('Gagal Menghapus Kos')
-    window.location = 'dashboard.php?p=profile';
-    </script>";
+    if ($level == 0) {
+        echo "<script>
+        alert('Gagal Menghapus Kosan');
+        window.location = 'dashboard.php?p=admin';
+        </script>";
+    }
+    //else
+    else {
+        echo "<script>
+        alert('Gagal Menghapus Kosan')
+        window.location = 'dashboard.php?p=profile';
+        </script>";
+    }
 }
 
 //not empty
@@ -37,9 +46,18 @@ else {
 
     //gagal menghapus
     else {
-        echo "<script>
-        alert('Gagal Menghapus Kosan')
-        window.location = 'dashboard.php?p=profile';
-        </script>";
+        if ($level == 0) {
+            echo "<script>
+            alert('Gagal Menghapus Kosan');
+            window.location = 'dashboard.php?p=admin';
+            </script>";
+        }
+        //else
+        else {
+            echo "<script>
+            alert('Gagal Menghapus Kosan')
+            window.location = 'dashboard.php?p=profile';
+            </script>";
+        }
     }
 }

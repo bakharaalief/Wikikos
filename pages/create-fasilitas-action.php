@@ -17,17 +17,30 @@ if (empty($nama)) {
 else {
     $fasilitas = new Fasilitas();
     $fasilitas->nama = $nama;
-    $result = $fasilitas->createFasilitas();
+    $cek = $fasilitas->cekFasilitas();
 
-    if ($result == "berhasil daftar") {
+    //sudah terdaftar
+    if ($cek) {
         echo "<script>
-        alert('Berhasil Menambahkan Fasilitas')
-        window.location = 'dashboard.php?p=admin';
-        </script>";
-    } else {
-        echo "<script>
-        alert('Gagal Menambahkan Fasilitas')
+        alert('Gagal Menambahkan Fasilitas, Sudah Terdaftar')
         window.location = '?p=create-fasilitas';
         </script>";
+    }
+
+    //belum
+    else {
+        $result = $fasilitas->createFasilitas();
+
+        if ($result == "berhasil daftar") {
+            echo "<script>
+            alert('Berhasil Menambahkan Fasilitas')
+            window.location = 'dashboard.php?p=admin';
+            </script>";
+        } else {
+            echo "<script>
+            alert('Gagal Menambahkan Fasilitas')
+            window.location = '?p=create-fasilitas';
+            </script>";
+        }
     }
 }

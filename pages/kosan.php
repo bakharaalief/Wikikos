@@ -19,26 +19,70 @@ function rupiah($angka)
 
 <div class="container" id="kosan">
     <div class="row">
-        <?php
-        //fetch foto kosan by id
-        $allFoto = $kos->getAllPhoto();
+        <div class="col" id="col-1">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <!-- foto -->
+                <div class="carousel-inner">
+                    <?php
+                    //fetch foto kosan by id
+                    $allFoto = $kos->getAllPhoto();
 
-        //kosong
-        if ($allFoto == "kosong") {
-            echo '<div class="col" id="col-1" />';
-            echo '<img class="kos-photo" alt="Card image cap">';
-            echo '</div>';
-        }
+                    //kosong
+                    if ($allFoto == "kosong") {
+                        echo '<div class="carousel-item active">';
+                        echo '<img class="d-block w-100" src="./image/no-image-found.png">';
+                        echo '</div>';
+                    }
 
-        //selain itu
-        else {
-            foreach ($allFoto as $dataFoto) {
-                echo '<div class="col" id="col-1" />';
-                echo '<img class="kos-photo" src="' . substr($dataFoto->Foto, 0) . "?t=" . time() . '" alt="Card image cap">';
-                echo '</div>';
-            }
-        }
-        ?>
+                    //selain itu
+                    else {
+                        $string = "";
+                        $jumlah = count($allFoto);
+
+                        //lebih dari 1
+                        if ($jumlah > 1) {
+                            $i = 0;
+                            foreach ($allFoto as $dataFoto) {
+                                $i++;
+                                if ($i == 1) {
+                                    $string = $string . '<div class="carousel-item active">
+                                    <img class="d-block w-100" src="' . substr($dataFoto->Foto, 0) . "?t=" . time() . '">
+                                    </div>';
+                                } else {
+                                    $string = $string . '<div class="carousel-item">
+                                    <img class="d-block w-100" src="' . substr($dataFoto->Foto, 0) . "?t=" . time() . '">
+                                    </div>';
+                                }
+                            }
+
+                            echo $string;
+
+                            // prev button
+                            echo '<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">';
+                            echo '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
+                            echo '</a>';
+
+                            //next button
+                            echo '<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">';
+                            echo '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
+                            echo '</a>';
+                        }
+
+                        //selain 1
+                        else if ($jumlah == 1) {
+                            foreach ($allFoto as $dataFoto) {
+                                $string = $string . '<div class="carousel-item active">
+                                <img class="d-block w-100" src="' . substr($dataFoto->Foto, 0) . "?t=" . time() . '">
+                                </div>';
+                            }
+
+                            echo $string;
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
 
         <!-- bagian info kosan -->
         <div class="col" id="col-2">
@@ -170,14 +214,19 @@ function rupiah($angka)
                             $i++;
                             //last index in array
                             if ($i == $count) {
-                                $string =  $string . " - " . $dataAnggota->nama;
+                                $string =  $string . " - " . $dataAnggota->Nama;
                             }
 
                             //first index
                             else if ($i == 1) {
-                                $string =  $string . $dataAnggota->nama;
+                                $string =  $string . $dataAnggota->Nama;
                             }
 
+                            //lebih dari 3
+                            else if ($i > 4) {
+                                $string =  $string . " - dll. ";
+                                break;
+                            }
 
                             //antara itu index
                             else {
@@ -221,7 +270,6 @@ function rupiah($angka)
                 <img src="./image/pencil-icon.png" width="20" height="20" alt="">
                 <p class="kos-lokasi"><?php echo $kos->detail; ?></p>
             </div>
-
         </div>
     </div>
 

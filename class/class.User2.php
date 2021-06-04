@@ -369,8 +369,6 @@ class User2 extends Connection2
         $kecamatanKos,
         $kotaKos,
         $deskripsiKos,
-        $lokasi_file,
-        $folder
     ) {
         //berhasil membuat kosan
         try {
@@ -380,40 +378,12 @@ class User2 extends Connection2
             '$kecamatanKos', '$kotaKos', '$deskripsiKos', '$this->idUser')";
             $this->conn->exec($sql);
 
-            //last id insert
-            $last_id = $this->conn->lastInsertId();
-
-            //move photo to foto folder
-            $succes_move = move_uploaded_file($lokasi_file, $folder . "P" . $last_id . ".png");
-            $new_destination = $folder . "P" . $last_id . ".png";
-
-            if ($succes_move) {
-                //save photo location to db
-                $sql = "INSERT INTO foto_kos(lokasi_foto, id_kosan) VALUES ('$new_destination', '$last_id')";
-                $this->conn->exec($sql);
-            }
-
-            //insert multiple fasilitas
-            $jumlah_fasilitas = count($_POST['hidden_fasilitas_nama']); //jumlah fasilitas
-            $query = "INSERT INTO fasilitas_kos(id_fasilitas_kos, id_fasilitas, id_kosan) VALUES (:id_fasilitas_kos, :id_fasilitas, :id_kosan)";
-            for ($count = 0; $count < $jumlah_fasilitas; $count++) {
-                $data = array(
-                    ':id_fasilitas_kos' => 'K' . $this->idKos . 'F' . ($count + 1),
-                    ':id_fasilitas' => $_POST['hidden_fasilitas_nama'][$count],
-                    ':id_kosan' => $last_id,
-                );
-
-                $statement = $this->conn->prepare($query);
-                $statement->execute($data);
-            }
-
             return "berhasil membuat";
         }
 
         //gagal membuat kosan
         catch (PDOException $e) {
             // return "gagal membuat";
-
             echo $e;
         }
     }

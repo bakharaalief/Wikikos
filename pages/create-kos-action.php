@@ -12,12 +12,6 @@ $kecamatanKos = $_POST['kecamatan-kos'];
 $kotaKos = $_POST['kota-kos'];
 $deskripsiKos = $_POST['deskripsi-kos'];
 
-//photo kos
-$lokasi_file = @$_FILES['gambar-input']['tmp_name'];
-$ukuran_file = @$_FILES['gambar-input']['size'];
-$type_file = @$_FILES['gambar-input']['type'];
-$folder = './upload/';
-
 // is data empty
 if (
     empty($namaKos) | empty($tipeKos) | empty($ukuranKos) | empty($kapasitasKos) | empty($hargaKos) | empty($jalanKos)
@@ -25,22 +19,6 @@ if (
 ) {
     echo "<script>
     alert('Gagal Mendaftarkan kosan, Pastikan semua data benar')
-    window.location = 'dashboard.php?p=create-kos&id_user=$idUser';
-    </script>";
-}
-
-//image not compatible
-else if ($type_file != "image/gif" and $type_file != "image/jpeg" and $type_file != "image/png") {
-    echo "<script>
-    alert('Gagal Mendaftarkan kosan, Pastikan yang dimasukkan gambar')
-    window.location = 'dashboard.php?p=create-kos&id_user=$idUser';
-    </script>";
-}
-
-//fasilitas kosong
-else if (!isset($_POST['hidden_fasilitas_nama'])) {
-    echo "<script>
-    alert('Gagal Mendaftarkan kosan, Pastikan fasilitas diisi');
     window.location = 'dashboard.php?p=create-kos&id_user=$idUser';
     </script>";
 }
@@ -57,8 +35,6 @@ else {
         $kecamatanKos,
         $kotaKos,
         $deskripsiKos,
-        $lokasi_file,
-        $folder
     );
 
     //berhasil membuat

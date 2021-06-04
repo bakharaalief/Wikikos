@@ -101,7 +101,7 @@ class Kota extends Connection2
         }
     }
 
-    //edit fasilitas
+    //edit kota
     public function editKota()
     {
         try {
@@ -112,6 +112,29 @@ class Kota extends Connection2
             return "berhasil mengedit";
         } catch (PDOException $e) {
             return "gagal mengedit";
+        }
+    }
+
+    //cek kota
+    public function cekKota()
+    {
+        //to make text trim and set to lower case
+        $trimLowercase = strtolower(trim($this->nama));
+
+        $sql = "SELECT * FROM kota WHERE LOWER(nama_kota) = :nama_kota";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':nama_kota', $trimLowercase);
+        $stmt->execute();
+
+        $count = $stmt->rowCount();
+
+        //sudah ada
+        if ($count >= 1) {
+            return true;
+        }
+        //tidak ada
+        else {
+            return false;
         }
     }
 }

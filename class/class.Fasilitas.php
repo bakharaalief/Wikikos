@@ -1,10 +1,8 @@
 <?php
 class Fasilitas extends Connection2
 {
-    private $idFasilitasKos;
     private $nama;
     private $idFasilitas;
-    private $idKosan;
 
     //automatic create get
     public function __get($atribute)
@@ -86,7 +84,7 @@ class Fasilitas extends Connection2
         }
     }
 
-    //edit delete fasilitas
+    //delete fasilitas
     public function deleteFasilitas()
     {
         try {
@@ -112,6 +110,29 @@ class Fasilitas extends Connection2
             return "berhasil mengedit";
         } catch (PDOException $e) {
             return "gagal mengedit";
+        }
+    }
+
+    //cek fasilitas terdaftar
+    public function cekFasilitas()
+    {
+        //to make text trim and set to lower case
+        $trimLowercase = strtolower(trim($this->nama));
+
+        $sql = "SELECT * FROM fasilitas WHERE LOWER(nama_fasilitas) = :nama_fasilitas";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':nama_fasilitas', $trimLowercase);
+        $stmt->execute();
+
+        $count = $stmt->rowCount();
+
+        //sudah ada
+        if ($count >= 1) {
+            return true;
+        }
+        //tidak ada
+        else {
+            return false;
         }
     }
 }

@@ -494,6 +494,12 @@ body {
   border-radius: 10px;
 }
 
+#create-kosan form .form-group textarea {
+  margin-bottom: 15px;
+  border: 1px solid var(--orange);
+  border-radius: 10px;
+}
+
 #create-kosan form button {
   margin-bottom: 15px;
   background: var(--orange);
@@ -502,28 +508,97 @@ body {
   margin-top: 10px;
 }
 
-#create-kosan #fasilitas-gambar label {
+/* edit-kosan */
+#edit-kosan h1 {
+  color: var(--orange);
+  font-weight: 600;
+}
+
+#edit-kosan .aa{
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+#edit-kosan .aa a{
+  background: var(--orange);
+  border-radius: 10px;
+  font-size: 15px;
+  margin-right: 20px;
+  border: 1px solid var(--orange);
+}
+
+#edit-kosan #myTab {
+  margin-top: 20px;
+}
+
+#edit-kosan #myTab .nav-link {
+  color: var(--orange);
+  font-weight: bold;
+  background-color: var(--brown);
+}
+
+#edit-kosan #myTab .nav-link.active {
+  background-color: var(--orange);
+  color: white;
+}
+
+#edit-kosan #myTabContent #profile{
+  margin-top: 20px;
+}
+
+#edit-kosan #myTabContent #fasilitas{
+  margin-top: 20px;
+  text-align: center;
+}
+
+#edit-kosan form .form-group label {
   color: var(--orange);
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-#create-kosan #fasilitas-gambar textarea {
+#edit-kosan form .form-group input {
   margin-bottom: 15px;
   border: 1px solid var(--orange);
   border-radius: 10px;
 }
 
-#create-kosan #fasilitas-gambar a {
+#edit-kosan form .form-group select {
+  margin-bottom: 15px;
+  border: 1px solid var(--orange);
+  border-radius: 10px;
+}
+
+#edit-kosan form button {
+  margin-bottom: 15px;
+  background: var(--orange);
+  border-radius: 10px;
+  border: 1px solid var(--orange);
+  margin-top: 10px;
+}
+
+#edit-kosan label {
+  color: var(--orange);
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#edit-kosan textarea {
+  margin-bottom: 15px;
+  border: 1px solid var(--orange);
+  border-radius: 10px;
+}
+
+/* #edit-kosan #profile a {
   margin-bottom: 15px;
   background: var(--orange);
   border-radius: 10px;
   border: 1px solid var(--orange);
   margin-top: 10px;
   margin-bottom: 40px;
-}
+} */
 
-#create-kosan #fasilitas-gambar #fasilitas-data a {
+#edit-kosan #profile a {
   margin-bottom: 0px;
   margin-top: 0px;
   background: var(--orange);
@@ -532,24 +607,65 @@ body {
   border: 1px solid var(--orange);
 }
 
-#create-kosan #fasilitas-gambar #image-crop {
-  width: 300px;
-  height: 160px;
+#edit-kosan #fasilitas a {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  background: var(--orange);
+  border-radius: 10px;
+  border: 1px solid var(--orange);
+}
+
+#edit-kosan #fasilitas #image-crop {
+  width: 320px;
+  height: 180px;
+  background-color: var(--orange);
+  object-fit: contain;
+  border: 1px solid black;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+/* edit foto */
+#edit-foto h1 {
+  color: var(--orange);
+  font-weight: 600;
+}
+
+#edit-foto form .form-group label {
+  color: var(--orange);
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#edit-foto form .form-group input {
+  margin-bottom: 15px;
+  border: 1px solid var(--orange);
+  border-radius: 10px;
+}
+
+#edit-foto form .form-group select {
+  margin-bottom: 15px;
+  border: 1px solid var(--orange);
+  border-radius: 10px;
+}
+
+#edit-foto form button {
+  margin-bottom: 15px;
+  background: var(--orange);
+  border-radius: 10px;
+  border: 1px solid var(--orange);
+  margin-top: 10px;
+}
+
+#edit-foto #image-crop {
+  width: 320px;
+  height: 180px;
   background-color: var(--orange);
   object-fit: contain;
   border: 1px solid black;
   margin-top: 20px;
   visibility: hidden;
   margin-bottom: 15px;
-}
-
-#create-kosan #fasilitas-gambar #gambar-data a {
-  margin-bottom: 0px;
-  margin-top: 0px;
-  background: var(--orange);
-  border-radius: 10px;
-  font-size: 15px;
-  border: 1px solid var(--orange);
 }
 
 /* anggota */
@@ -613,6 +729,45 @@ body {
   margin-top: 20px;
   margin-bottom: 15px;
 }
+
+#kosan #col-1 .carousel {
+  width: 600px;
+  height: 400px;
+}
+
+#kosan #col-1 .carousel-inner{
+  width: 600px;
+  height: 100%;
+} 
+
+#kosan #col-1 .carousel-inner img{
+  width: 600px;
+  height: 100%;
+  background-color: var(--orange);
+  object-fit: contain;
+  border: 1px solid black;
+  /* margin-top: 20px;
+  margin-bottom: 15px; */
+}
+
+#kosan #col-1 .carousel-control-prev span{
+  background-color: var(--orange);
+}
+
+#kosan #col-1 .carousel-control-next span{
+  background-color: var(--orange);
+}
+
+/* #kosan #col-1 .carousel-item {
+  width: 600px;
+  height: 400px;
+  background-color: var(--orange);
+  object-fit: contain;
+  border: 1px solid black;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  display: hidden;
+} */
 
 #kosan #col-2 h1 {
   color: var(--orange);

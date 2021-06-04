@@ -81,38 +81,15 @@ require_once("./authPemilik.php");
                         </div> -->
                     </div>
                 </div>
-            </div>
 
-            <!-- gambar dan fasilitas -->
-            <div class="col" id="fasilitas-gambar">
                 <div class="form-group">
                     <label>Deskripsi</label>
                     <textarea class="form-control" name="deskripsi-kos" rows="3" required></textarea>
                 </div>
-
-                <label id="fasilitas-aa">Fasilitas</label>
-                <table class="table" id="fasilitas-data">
-                    <thead>
-                        <tr>
-                            <th scope="col">Nama Fasiitas</th>
-                            <th scope="col">Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-                <a class="btn btn-primary" id="muncul-fasilitas-modal">Tambah Fasilitas</a>
-                <br>
-
-                <label>Gambar</label>
-                <input type="file" id="gambar-kos" class="form-control" name="gambar-input" required />
-                <img id="image-crop" src="" alt="your image" />
-
-                <br>
-
-                <button type="submit" class="btn btn-primary">Buat</button>
             </div>
         </div>
+
+        <button type="submit" class="btn btn-primary">Buat</button>
     </form>
 
 
@@ -185,4 +162,4 @@ require_once("./authPemilik.php");
     </div>
 </div>
 
-<script src="./js/create-kos.js" type="text/javascript"></script>
+<!-- <script src="./js/create-kos.js" type="text/javascript"></script> -->

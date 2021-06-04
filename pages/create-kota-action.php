@@ -17,17 +17,30 @@ if (empty($nama)) {
 else {
     $kota = new Kota();
     $kota->nama = $nama;
-    $result = $kota->createKota();
+    $cek = $kota->cekKota();
 
-    if ($result == "berhasil daftar") {
+    //sudah terdaftar
+    if ($cek) {
         echo "<script>
-        alert('Berhasil Menambahkan kota')
-        window.location = 'dashboard.php?p=admin';
-        </script>";
-    } else {
-        echo "<script>
-        alert('Gagal Menambahkan kota')
+        alert('Gagal Menambahkan kota Sudah Terdaftar')
         window.location = '?p=create-kota';
         </script>";
+    }
+
+    //belum terdaftar
+    else {
+        $result = $kota->createKota();
+
+        if ($result == "berhasil daftar") {
+            echo "<script>
+            alert('Berhasil Menambahkan kota')
+            window.location = 'dashboard.php?p=admin';
+            </script>";
+        } else {
+            echo "<script>
+            alert('Gagal Menambahkan kota')
+            window.location = '?p=create-kota';
+            </script>";
+        }
     }
 }
