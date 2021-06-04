@@ -23,7 +23,7 @@ class Search extends Connection2
         require_once("./class/class.Kos.php");
 
         //ini querynya
-        $sql = "SELECT * FROM kosan ks INNER JOIN Kota k ON ks.kota = k.id_kota WHERE ks.nama_kosan LIKE Concat(:search_data, '%') AND status = 1";
+        $sql = "SELECT * FROM kosan ks INNER JOIN Kota k ON ks.kota = k.id_kota WHERE ks.nama_kosan LIKE Concat('%', :search_data, '%') AND status = 1";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':search_data', $this->keywords);
         $stmt->execute();
