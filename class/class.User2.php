@@ -4,7 +4,6 @@ require_once("class.Kos.php");
 
 class User2 extends Connection2
 {
-    private $hasil;
     private $idUser;
     private $username;
     private $password;
@@ -140,17 +139,17 @@ class User2 extends Connection2
     }
 
     //login function
-    public function login($username, $password)
+    public function login()
     {
         try {
             $sql = "SELECT * FROM user WHERE username = :username";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':username', $this->username);
             $stmt->execute();
             $row   = $stmt->fetch(PDO::FETCH_ASSOC);
 
             //berhasil login
-            if (!empty($row) && password_verify($password, $row['password'])) {
+            if (!empty($row) && password_verify($this->password, $row['password'])) {
                 $this->idUser = $row['id_user']; // set sesion dengan variabel username
                 $this->username = $row['username'];
                 $this->password = $row['password'];
@@ -158,50 +157,16 @@ class User2 extends Connection2
                 $this->fullname = $row['fullname'];
                 $this->level = $row['level'];
 
-                $this->hasil = "berhasil login";
+                return "berhasil login";
             }
 
             //jika tidak
             else {
-                $this->hasil = "tidak ditemukan";
+                return "tidak ditemukan";
             }
         } catch (PDOException $e) {
-            $this->hasil = "gagal login";
+            return "gagal login";
         }
-
-
-
-        // try {
-        //     $sql = "SELECT * FROM user WHERE username = :username AND password = :password";
-        //     $stmt = $this->conn->prepare($sql);
-        //     $stmt->bindParam(':username', $username);
-        //     $stmt->bindParam(':password', $password);
-        //     $stmt->execute();
-
-        //     $count = $stmt->rowCount(); ///menghitung row
-
-        //     // jika rownya ada
-        //     if ($count == 1) {
-
-        //         $this->hasil = "berhasil login";
-
-        //         $row   = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        //         $this->idUser = $row['id_user']; // set sesion dengan variabel username
-        //         $this->username = $row['username'];
-        //         $this->password = $row['password'];
-        //         $this->email = $row['email'];
-        //         $this->fullname = $row['fullname'];
-        //         $this->level = $row['level'];
-        //     }
-
-        //     //jika tidak
-        //     else {
-        //         $this->hasil = "tidak ditemukan";
-        //     }
-        // } catch (PDOException $e) {
-        //     $this->hasil = "gagal login";
-        // }
     }
 
     //get user data

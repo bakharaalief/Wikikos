@@ -27,6 +27,9 @@ require_once("./authAdmin.php");
             <a class="nav-link" data-toggle="tab" href="#user" role="tab" aria-controls="user" aria-selected="false">User</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#nomor_telp" role="tab" aria-controls="nomor_telp" aria-selected="false">No. Telp User</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#fasilitas" role="tab" aria-controls="fasilitas" aria-selected="false">Fasilitas</a>
         </li>
         <li class="nav-item">
@@ -75,6 +78,7 @@ require_once("./authAdmin.php");
                         foreach ($allKos as $dataKos) {
                             //untuk mencari tahu yang terisi
                             $data = $dataKos->getAllAnggota();
+
                             if ($data == "kosong") {
                                 $jumlahTerisi = 0;
                             } else {
@@ -167,6 +171,52 @@ require_once("./authAdmin.php");
             </table>
         </div>
 
+        <!-- telpon data -->
+        <div class="tab-pane fade" id="nomor_telp" role="tabpanel" aria-labelledby="telepon-tab">
+
+            <table class="table" id="data-kosan">
+                <thead>
+                    <tr>
+                        <th scope="col">Pemilik</th>
+                        <th scope="col">Nomor Telpon</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- kosan get from db -->
+                    <?php
+                    require_once("./class/class.Telp_User.php");
+
+                    $telpon = new Telp_User();
+                    $allTelpon = $telpon->getAllNoTelp();
+
+                    //kosan kosong
+                    if ($allTelpon == "kosong") {
+                        echo "<tr>";
+                        echo "<td><p>Maaf Data Kosong</p></td>";
+                        echo "<tr>";
+                        $count = 0;
+                    }
+
+                    //kosan ada
+                    else {
+                        $count = count($allTelpon);
+                        foreach ($allTelpon as $dataTelpon) {
+                            echo "<tr>";
+                            echo "<td>$dataTelpon->pemilik</td>";
+                            echo "<td>$dataTelpon->NoTelp</td>";
+                            echo "<td><a class='btn btn-primary' class='button' href='?p=edit-telpon&id-telpon=$dataTelpon->idNoTelp'</a>Edit</a></td>";
+                            echo "<td><a class='btn btn-primary' onclick='confirmDataTelpon($dataTelpon->idNoTelp)'>Delete</a></td>";
+                            echo "<tr>";
+                        }
+                    }
+                    ?>
+                    <a></a>
+                </tbody>
+            </table>
+        </div>
+
         <!-- fasilitas data -->
         <div class="tab-pane fade" id="fasilitas" role="tabpanel" aria-labelledby="fasilitas-tab">
 
@@ -211,7 +261,7 @@ require_once("./authAdmin.php");
             </table>
         </div>
 
-        <!-- fasilitas kota -->
+        <!-- kota data -->
         <div class="tab-pane fade" id="kota" role="tabpanel" aria-labelledby="kota-tab">
 
             <table class="table" id="data-kosan">
@@ -257,9 +307,6 @@ require_once("./authAdmin.php");
     </div>
 </div>
 
-</div>
-
-<script src="./js/create-nomor-telpon.js" type="text/javascript"></script>
 <script>
     function confirmData(id) {
         var data = confirm("Apakah anda ingin menghapus kosan ?");
@@ -275,10 +322,17 @@ require_once("./authAdmin.php");
         }
     }
 
+    function confirmDataTelpon(id) {
+        var data = confirm("Apakah anda ingin menghapus Telpon Ini ?");
+        if (data) {
+            window.location = "?p=remove-telpon-action&id-telpon=" + id;
+        }
+    }
+
     function confirmDataFasilitas(id) {
         var data = confirm("Apakah anda ingin menghapus Fasilitas Ini ?");
         if (data) {
-            window.location = "?p=remove-fasilitas-action&id_fasilitas=" + id;
+            window.location = "?p=remove-fasilitas-action&id-fasilitas=" + id;
         }
     }
 

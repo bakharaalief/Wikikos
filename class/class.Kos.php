@@ -14,15 +14,7 @@ class Kos extends Connection2
     private $kota;
     private $idUser;
     private $status;
-
-    //user info
     private $pemilik;
-    private $email;
-
-    //foto
-    private $lokasi_file;
-    private $folder;
-    private $idFoto;
 
     //automatic create get
     public function __get($atribute)
@@ -69,7 +61,8 @@ class Kos extends Connection2
     //get all kos
     public function getAllKos()
     {
-        $sql = "SELECT * FROM kosan INNER JOIN user ON kosan.id_user=user.id_user Inner JOIN kota ON kosan.kota=kota.id_kota ORDER BY kosan.nama_kosan ASC";
+        $sql = "SELECT * FROM kosan k INNER JOIN user u ON k.id_user=u.id_user Inner JOIN kota kt ON k.kota=kt.id_kota 
+                ORDER BY k.nama_kosan ASC";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
 
@@ -90,8 +83,8 @@ class Kos extends Connection2
                 $kosUser->kapasitas = $result['kapasitas'];
                 $kosUser->kota = $result['nama_kota'];
                 $kosUser->idUser = $result['id_user'];
-                $kosUser->pemilik = $result['username'];
                 $kosUser->status = $result['status'];
+                $kosUser->pemilik = $result['username'];
 
                 $arrResult[$cnt] = $kosUser;
                 $cnt++;
@@ -124,110 +117,6 @@ class Kos extends Connection2
             return "gagal menghapus";
         }
     }
-
-    //edit kos
-    // public function editKos()
-    // {
-    //     try {
-    //         //insert bio to kosan
-    //         $sql = "UPDATE kosan SET nama_kosan='$this->namaKos', tipe_kos='$this->tipe', ukuran='$this->ukuran', 
-    //         harga='$this->harga', kapasitas='$this->kapasitas', nama_jalan='$this->namaJalan', 
-    //         kecamatan='$this->kecamatan', kota='$this->kota', deskripsi='$this->detail', id_user='$this->idUser'
-    //         WHERE id_kosan=$this->idKos";
-    //         $this->conn->exec($sql);
-
-    //         //save photo location to db jika diperbaharui
-    //         if ($this->lokasi_file != "") {
-    //             //move photo to foto folder
-    //             $succes_move = move_uploaded_file($this->lokasi_file, $this->folder . "P" . $this->idKos . ".png");
-    //             $new_destination =  $this->folder . "P" . $this->idKos . ".png";
-
-    //             if ($succes_move) {
-    //                 $sql = "UPDATE foto_kos SET lokasi_foto='$new_destination', id_kosan='$this->idKos' 
-    //                 WHERE id_foto='$this->idFoto'";
-    //                 $this->conn->exec($sql);
-
-    //                 //delete all fasilitas before
-    //                 $sql = "SELECT * FROM fasilitas_kos WHERE id_kosan = :id_kosan";
-    //                 $stmt = $this->conn->prepare($sql);
-    //                 $stmt->bindParam(':id_kosan', $this->idKos);
-    //                 $stmt->execute();
-
-    //                 $sql = "DELETE FROM fasilitas_kos WHERE id_fasilitas = :id_fasilitas";
-    //                 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    //                     $idFasilitas = $result['id_fasilitas'];
-    //                     $data = array(
-    //                         ':id_fasilitas' => $idFasilitas,
-    //                     );
-    //                     $statement = $this->conn->prepare($sql);
-    //                     $statement->execute($data);
-    //                 }
-
-    //                 // $sql = "DELETE FROM fasilitas_kos WHERE id_fasilitas = :id_fasilitas";
-    //                 // $stmt = $this->conn->prepare($sql);
-    //                 // $stmt->bindParam(':id_fasilitas', $idFasilitas);
-    //                 // $stmt->execute();
-
-    //                 //insert multiple fasilitas
-    //                 $jumlah_fasilitas = count($_POST['hidden_fasilitas_nama']); //jumlah fasilitas
-    //                 $query = "INSERT INTO fasilitas_kos(id_fasilitas_kos, id_fasilitas, id_kosan) VALUES (:id_fasilitas_kos, :id_fasilitas, :id_kosan)";
-    //                 for ($count = 0; $count < $jumlah_fasilitas; $count++) {
-    //                     $data = array(
-    //                         ':id_fasilitas_kos' => 'K' . $this->idKos . 'F' . ($count + 1),
-    //                         ':id_fasilitas' => $_POST['hidden_fasilitas_nama'][$count],
-    //                         ':id_kosan' => $this->idKos,
-    //                     );
-
-    //                     $statement = $this->conn->prepare($query);
-    //                     $statement->execute($data);
-    //                 }
-    //             }
-    //         }
-
-    //         //jika nggak
-    //         else {
-    //             //delete all fasilitas before
-    //             $sql = "SELECT * FROM fasilitas_kos WHERE id_kosan = :id_kosan";
-    //             $stmt = $this->conn->prepare($sql);
-    //             $stmt->bindParam(':id_kosan', $this->idKos);
-    //             $stmt->execute();
-
-    //             $sql = "DELETE FROM fasilitas_kos WHERE id_fasilitas = :id_fasilitas";
-    //             while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    //                 $idFasilitas = $result['id_fasilitas'];
-    //                 $data = array(
-    //                     ':id_fasilitas' => $idFasilitas,
-    //                 );
-    //                 $statement = $this->conn->prepare($sql);
-    //                 $statement->execute($data);
-    //             }
-
-    //             $sql = "DELETE FROM fasilitas_kos WHERE id_fasilitas = :id_fasilitas";
-    //             $stmt = $this->conn->prepare($sql);
-    //             $stmt->bindParam(':id_fasilitas', $idFasilitas);
-    //             $stmt->execute();
-
-    //             //insert multiple fasilitas
-    //             $jumlah_fasilitas = count($_POST['hidden_fasilitas_nama']); //jumlah fasilitas
-    //             $query = "INSERT INTO fasilitas_kos(id_fasilitas_kos, id_fasilitas, id_kosan) VALUES (:id_fasilitas_kos, :id_fasilitas, :id_kosan)";
-    //             for ($count = 0; $count < $jumlah_fasilitas; $count++) {
-    //                 $data = array(
-    //                     ':id_fasilitas_kos' => 'K' . $this->idKos . 'F' . ($count + 1),
-    //                     ':id_fasilitas' => $_POST['hidden_fasilitas_nama'][$count],
-    //                     ':id_kosan' => $this->idKos,
-    //                 );
-
-    //                 $statement = $this->conn->prepare($query);
-    //                 $statement->execute($data);
-    //             }
-    //         }
-
-    //         return "berhasil mengedit";
-    //     } catch (PDOException $e) {
-
-    //         return "gagal mengedit";
-    //     }
-    // }
 
     //edit kos profile
     public function editKosProfile()
@@ -277,7 +166,6 @@ class Kos extends Connection2
             return "gagal mengedit";
         }
     }
-
 
     //get all foto Kosan
     public function getAllPhoto()

@@ -9,7 +9,6 @@ $idKos = $_GET['id-kos'];
 $kos = new Kos();
 $kos->idKos = $idKos;
 $kos->getKosanData();
-
 ?>
 
 <div class="container" id="edit-kosan">
@@ -275,12 +274,11 @@ $kos->getKosanData();
     </div>
 </div>
 
-<!-- <script src="./js/edit-kos.js"></script> -->
 <script>
     function confirmDataFasilitas(id, idKos) {
         var data = confirm("Apakah anda ingin menghapus Fasilitas ?");
         if (data) {
-            window.location = "?p=remove-fasilitas-kos-action&id_fasilitas_kos=" + id + "&id-kos=" + idKos
+            window.location = "?p=remove-fasilitas-kos-action&id-fasilitas-kos=" + id + "&id-kos=" + idKos
         }
     }
 

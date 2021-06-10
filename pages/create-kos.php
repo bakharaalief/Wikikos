@@ -73,12 +73,6 @@ require_once("./authPemilik.php");
                                 ?>
                             </select>
                         </div>
-
-
-                        <!-- yg lama -->
-                        <!-- <div class="col">
-                            <input type="text" class="form-control" name="kota-kos" placeholder="Nama Kota" required>
-                        </div> -->
                     </div>
                 </div>
 
@@ -126,19 +120,6 @@ require_once("./authPemilik.php");
                         ?>
                     </select>
 
-                    <!-- yg lama -->
-                    <!-- <input list="fasilitas" id="fasilitas-kos" class="form-control" name="fasilitas" />
-                    <datalist id="fasilitas">
-                        <option value="AC">
-                        <option value="Kulkas">
-                        <option value="Gym">
-                        <option value="Kasur">
-                        <option value="Meja Belajar">
-                        <option value="Lemari">
-                        <option value="Kamar Mandi Dalam">
-                        <option value="Kamar Mandi Luar">
-                    </datalist> -->
-
                     <span id="error_fasilitas_kos" class="text-danger"></span>
                 </div>
                 <div class="modal-footer">
@@ -153,13 +134,8 @@ require_once("./authPemilik.php");
                         echo '<button type="submit" class="btn btn-primary" id="tambah-fasilitas">Tambah Fasilitas</button>';
                     }
                     ?>
-
-                    <!-- button lama -->
-                    <!-- <button type="submit" class="btn btn-primary" id="tambah-fasilitas">Tambah Fasilitas</button> -->
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<!-- <script src="./js/create-kos.js" type="text/javascript"></script> -->

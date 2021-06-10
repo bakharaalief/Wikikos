@@ -1,6 +1,5 @@
 $(document).ready(function(){
     $('#gambar-kos').change(()=>{
-
         var gambar_file = $('#gambar-kos')[0].files[0]
     
         var reader = new FileReader();

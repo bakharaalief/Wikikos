@@ -4,7 +4,7 @@ require_once("./class/class.Fasilitas_Kos.php");
 
 //get 
 $idKos =  $_GET['id-kos'];
-$id_fasilitas_kos =  $_GET['id_fasilitas_kos'];
+$id_fasilitas_kos =  $_GET['id-fasilitas-kos'];
 
 //is data empty
 if (empty($id_fasilitas_kos)) {

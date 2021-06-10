@@ -14,13 +14,6 @@ $kotaKos = $_POST['kota-kos'];
 $deskripsiKos = $_POST['deskripsi-kos'];
 $idUser = $_POST['id-user'];
 
-//photo kos
-$lokasi_file = @$_FILES['gambar-input']['tmp_name'];
-$ukuran_file = @$_FILES['gambar-input']['size'];
-$type_file = @$_FILES['gambar-input']['type'];
-$folder = './upload/';
-// $idFoto = $_POST['id-foto'];
-
 // is data empty
 if (
     empty($namaKos) | empty($tipeKos) | empty($ukuranKos) | empty($kapasitasKos) | empty($hargaKos) | empty($jalanKos)
@@ -31,14 +24,6 @@ if (
     window.location = '/kuliah/project/dashboard.php?p=edit-kos&id-kos=$idKos';
     </script>";
 }
-
-//fasilitas kosong
-// else if (!isset($_POST['hidden_fasilitas_nama'])) {
-//     echo "<script>
-//     alert('Gagal Memperbaharui kosan, Pastikan fasilitas diisi');
-//     window.location = '/kuliah/project/dashboard.php?p=edit-kos&id-kos=$idKos';
-//     </script>";
-// }
 
 //not empty
 else {
@@ -54,10 +39,6 @@ else {
     $kos->kota = $kotaKos;
     $kos->detail = $deskripsiKos;
     $kos->idUser = $idUser;
-
-    // $kos->lokasi_file = $lokasi_file;
-    // $kos->folder = $folder;
-    // $kos->idFoto = $idFoto;
 
     $hasil = $kos->editKosProfile();
 

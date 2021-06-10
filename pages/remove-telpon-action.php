@@ -1,14 +1,23 @@
 <?php
 require_once("./authPemilik.php");
 //get 
-$id_telpon =  $_GET['id_telpon'];
+$id_telpon =  $_GET['id-telpon'];
 
 //is data empty
 if (empty($id_telpon)) {
-    echo "<script>
-    alert('Gagal Menghapus Nomor Telpon')
-    window.location = 'dashboard.php?p=profile';
-    </script>";
+    if ($level == 0) {
+        echo "<script>
+        alert('Gagal Menghapus Nomor Telpon')
+        window.location = 'dashboard.php?p=admin';
+        </script>";
+    }
+    //else
+    else {
+        echo "<script>
+        alert('Gagal Menghapus Nomor Telpon')
+        window.location = 'dashboard.php?p=profile';
+        </script>";
+    }
 }
 
 //not empty
@@ -18,14 +27,28 @@ else {
     $status = $telponUser->removeTelpon();
 
     if ($status == "berhasil menghapus") {
-        echo "<script>
-        alert('Berhasil Menghapus Nomor Telpon')
-        window.location = 'dashboard.php?p=profile';
-        </script>";
+        if ($level == 0) {
+            echo "<script>
+            alert('Berhasil Menghapus Nomor Telpon')
+            window.location = 'dashboard.php?p=admin';
+            </script>";
+        } else {
+            echo "<script>
+            alert('Berhasil Menghapus Nomor Telpon')
+            window.location = 'dashboard.php?p=profile';
+            </script>";
+        }
     } else {
-        echo "<script>
-        alert('Gagal Menghapus Nomor Telpon')
-        window.location = 'dashboard.php?p=profile';
-        </script>";
+        if ($level == 0) {
+            echo "<script>
+            alert('Gagal Menghapus Nomor Telpon')
+            window.location = 'dashboard.php?p=admin';
+            </script>";
+        } else {
+            echo "<script>
+            alert('Gagal Menghapus Nomor Telpon')
+            window.location = 'dashboard.php?p=profile';
+            </script>";
+        }
     }
 }

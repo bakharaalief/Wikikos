@@ -19,7 +19,7 @@ function rupiah($angka)
     <form action="/kuliah/project/dashboard.php" method="get">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Cari Tempat" name="p" value="search" hidden>
-            <input type="text" class="form-control" placeholder="Cari Tempat" name="search-data">
+            <input type="text" class="form-control" placeholder="Cari Tempat, Kota" name="search-data">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit">
                     <img src="./image/search-icon.png" width="20" height="20" alt="">

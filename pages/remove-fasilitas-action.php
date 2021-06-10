@@ -3,7 +3,7 @@ require_once("./authAdmin.php");
 require_once("./class/class.Fasilitas.php");
 
 //get 
-$id_fasilitas =  $_GET['id_fasilitas'];
+$id_fasilitas =  $_GET['id-fasilitas'];
 
 //is data empty
 if (empty($id_fasilitas)) {

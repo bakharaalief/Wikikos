@@ -17,10 +17,12 @@ else {
     $user2 = new User2();
 
     //login
-    $user2->login($username, $password);
+    $user2->username = $username;
+    $user2->password = $password;
+    $hasil = $user2->login();
 
     //berhasil login
-    if ($user2->hasil == "berhasil login") {
+    if ($hasil == "berhasil login") {
 
         if (!isset($_SESSION)) {
             session_start();
@@ -41,7 +43,7 @@ else {
     }
 
     //user not found
-    else if ($user2->hasil == "tidak ditemukan") {
+    else if ($hasil == "tidak ditemukan") {
         echo "<script>
             alert('Maaf Password anda salah')
             window.location = '?p=login';
@@ -49,7 +51,7 @@ else {
     }
 
     //gagal login
-    else if ($user2->hasil == "gagal login") {
+    else if ($hasil == "gagal login") {
         echo "<script>
             alert('Gagal Login')
             window.location = '?p=login';

@@ -27,6 +27,7 @@ require_once("./authPemilik.php");
                 <thead>
                     <tr>
                         <th scope="col">Nomor Telpon</th>
+                        <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
@@ -50,7 +51,8 @@ require_once("./authPemilik.php");
                         foreach ($allTelpon as $dataTelpon) {
                             echo "<tr>";
                             echo "<td>" . $dataTelpon->NoTelp . "</td>";
-                            echo '<td><a type="button" class="btn btn-danger btn-xs" href="?p=remove-telpon-action&id_telpon=' . $dataTelpon->idNoTelp . '">Delete</a></td>';
+                            echo '<td><a type="button" class="btn btn-danger btn-xs" href="?p=edit-telpon&id-telpon=' . $dataTelpon->idNoTelp . '">Edit</a></td>';
+                            echo '<td><a type="button" class="btn btn-danger btn-xs" href="?p=remove-telpon-action&id-telpon=' . $dataTelpon->idNoTelp . '">Delete</a></td>';
                             echo "<tr>";
                         }
                     }
@@ -60,19 +62,21 @@ require_once("./authPemilik.php");
 
             <!-- control add nomor telpon button -->
             <?php
+            //level 0 ( Admin )
             if ($level == 0) {
                 echo '<a class="btn btn-primary" id="muncul-nomor-telpon-modal">Tambah Nomor</a>';
             }
-            if ($level == 1) {
+            //level 1 (Pemilik kos)
+            else if ($level == 1) {
                 if ($count < 2) {
                     echo '<a class="btn btn-primary" id="muncul-nomor-telpon-modal">Tambah Nomor</a>';
                 }
             }
-            if ($level == 2) {
-                if ($count < 1) {
-                    echo '<a class="btn btn-primary" id="muncul-nomor-telpon-modal">Tambah Nomor</a>';
-                }
-            }
+            // if ($level == 2) {
+            //     if ($count < 1) {
+            //         echo '<a class="btn btn-primary" id="muncul-nomor-telpon-modal">Tambah Nomor</a>';
+            //     }
+            // }
             ?>
 
         </div>
