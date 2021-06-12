@@ -149,11 +149,12 @@ class Mail extends Connection2
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
 
+
         //ganti dengan email dan password yang akan di gunakan sebagai email pengirim
         $mail->Username = 'zhirosec@gmail.com';
         $mail->Password = 'faizthunder13+';
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;
+        $mail->SMTPSecure = "ssl";
+        $mail->Port       = 465;
 
         //ganti dengan email yg akan di gunakan sebagai email pengirim
         $mail->setFrom('zhirosec@gmail.com', 'Admin Wikikos');
