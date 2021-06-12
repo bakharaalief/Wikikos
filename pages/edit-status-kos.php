@@ -25,7 +25,7 @@ $kos->getStatusKos();
                     </select>
                 </div>
 
-                <input type="hidden" name="email-kos" value="<?php echo $kos->email; ?>" />
+                <input type="hidden" name="email-kos" value="<?php echo $kos->user->email; ?>" />
                 <input type="hidden" name="id-kos" value="<?php echo $kos->idKos; ?>" />
 
                 <br>

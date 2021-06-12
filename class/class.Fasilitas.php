@@ -4,6 +4,12 @@ class Fasilitas extends Connection2
     private $nama;
     private $idFasilitas;
 
+    //construct
+    function __construct()
+    {
+        parent::__construct();
+    }
+
     //automatic create get
     public function __get($atribute)
     {

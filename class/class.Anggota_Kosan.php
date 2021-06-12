@@ -5,6 +5,12 @@ class Anggota_Kosan extends Connection2
     private $Nama;
     private $idKos;
 
+    //construct
+    function __construct()
+    {
+        parent::__construct();
+    }
+
     //automatic create get
     public function __get($atribute)
     {

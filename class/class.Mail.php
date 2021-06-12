@@ -7,6 +7,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require "vendor/autoload.php";
+require_once("class.Kos.php");
 
 class Mail extends Connection2
 {
@@ -18,8 +19,14 @@ class Mail extends Connection2
     private $template;
 
     //untuk kos
-    private $namaKos;
-    private $status;
+    private $kos;
+
+    //construct
+    function __construct()
+    {
+        parent::__construct();
+        $this->kos = new Kos();
+    }
 
     //auto get
     public function __get($atribute)
@@ -119,8 +126,8 @@ class Mail extends Connection2
             
                     <p>Kami Ingin Mengabarkan Tentang ' . $this->message . '</p>
             
-                    <p>Nama : <b>' . $this->namaKos . '</b></p>
-                    <p>status : <b>' . $this->status . '</b></p>
+                    <p>Nama : <b>' . $this->kos->namaKos . '</b></p>
+                    <p>status : <b>' . $this->kos->status . '</b></p>
             
                     <p><b>Wikikos</b> akan selalu membuatmu aman dan nyaman, cari kos ya Wikikos.</p>
                     <p>Wikikos solusi bagi para pencari kos.</p>

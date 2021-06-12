@@ -1,10 +1,20 @@
 <?php
+require_once("class.User2.php");
+
 class Telp_User extends Connection2
 {
     private $idNoTelp;
     private $NoTelp;
-    private $idUser;
-    private $pemilik;
+
+    //pemilik
+    private $user;
+
+    //construct
+    function __construct()
+    {
+        parent::__construct();
+        $this->user = new User2();
+    }
 
     //automatic create get
     public function __get($atribute)
@@ -58,7 +68,7 @@ class Telp_User extends Connection2
                 $telpon = new Telp_User();
                 $telpon->idNoTelp = $result['id_telpon'];
                 $telpon->NoTelp = $result['nomor_telpon'];
-                $telpon->pemilik = $result['username'];
+                $telpon->user->username = $result['username'];
 
                 $arrResult[$cnt] = $telpon;
                 $cnt++;

@@ -1,7 +1,15 @@
 <?php
+require_once("./class/class.Kos.php");
+
 class Search extends Connection2
 {
     private $keywords;
+
+    //construct
+    function __construct()
+    {
+        parent::__construct();
+    }
 
     //automatic create get
     public function __get($atribute)
@@ -20,10 +28,8 @@ class Search extends Connection2
 
     public function search()
     {
-        require_once("./class/class.Kos.php");
-
         //ini querynya
-        $sql = "SELECT * FROM kosan ks INNER JOIN Kota k ON ks.kota = k.id_kota WHERE ks.nama_kosan LIKE Concat('%', :search_data, '%') OR k.nama_kota LIKE Concat('%', :search_data, '%') AND status = 1";
+        $sql = "SELECT * FROM kosan ks INNER JOIN Kota k ON ks.kota = k.id_kota WHERE ( ks.nama_kosan LIKE Concat('%', :search_data, '%') AND status = 1 ) OR ( k.nama_kota LIKE Concat('%', :search_data, '%') AND status = 1 )";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':search_data', $this->keywords);
         $stmt->execute();
@@ -34,9 +40,7 @@ class Search extends Connection2
 
         if ($count > 0) {
             $arrResult  = array();
-
             while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-
                 $kosUser = new Kos();
                 $kosUser->idKos = $result['id_kosan'];
                 $kosUser->namaKos = $result['nama_kosan'];
@@ -47,7 +51,7 @@ class Search extends Connection2
                 $kosUser->namaJalan = $result['nama_jalan'];
                 $kosUser->kecamatan = $result['kecamatan'];
                 $kosUser->kota = $result['nama_kota'];
-                $kosUser->idUser = $result['id_user'];
+                $kosUser->user->idUser = $result['id_user'];
 
                 $arrResult[$cnt] = $kosUser;
                 $cnt++;
@@ -61,18 +65,4 @@ class Search extends Connection2
             return $arrResult = "kosong";
         }
     }
-
-    // while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    //     $idKos = $result['id_kosan'];
-    //     $namaKos = $result['nama_kosan'];
-    //     $tipeKos = $result['tipe_kos'];
-    //     $ukuranKos = $result['ukuran'];
-    //     $hargaKos = $result['harga'];
-    //     $kapasitasKos = $result['kapasitas'];
-    //     $namaJalan = $result['nama_jalan'];
-    //     $kecamatan = $result['kecamatan'];
-    //     $kota = $result['kota'];
-    //     $detail = $result['deskripsi'];
-    //     $idUser = $result['id_user'];
-    // }
 }

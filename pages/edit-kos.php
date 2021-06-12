@@ -35,8 +35,7 @@ $kos->getKosanData();
 
     <div class="tab-content" id="myTabContent">
         <!-- profile -->
-        <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="home-tab">
-
+        <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             <form action="?p=edit-kos-action" method="post" enctype="multipart/form-data">
                 <!-- info kosan -->
                 <div class="col">
@@ -118,16 +117,15 @@ $kos->getKosanData();
                     </div>
 
                     <input type="hidden" name="id-kos" value="<?php echo $kos->idKos; ?>" />
-                    <input type="hidden" name="id-user" value="<?php echo $kos->idUser; ?>" />
+                    <input type="hidden" name="id-user" value="<?php echo $kos->user->idUser; ?>" />
 
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
-
             </form>
         </div>
 
         <!-- fasilitas -->
-        <div class="tab-pane fade" id="fasilitas" role="tabpanel" aria-labelledby="home-tab">
+        <div class="tab-pane fade" id="fasilitas" role="tabpanel" aria-labelledby="fasilitas-tab">
 
             <table class="table" id="fasilitas">
                 <thead>
@@ -166,7 +164,7 @@ $kos->getKosanData();
         </div>
 
         <!-- foto -->
-        <div class="tab-pane fade" id="foto" role="tabpanel" aria-labelledby="home-tab">
+        <div class="tab-pane fade" id="foto" role="tabpanel" aria-labelledby="foto-tab">
 
             <table class="table" id="fasilitas">
                 <thead>
@@ -201,75 +199,6 @@ $kos->getKosanData();
                     ?>
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
-
-<!-- Modal fasilitas -->
-<div class="modal fade" id="fasilitas-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Fasilitas</h5>
-                <button type="button" class="btn btn-secondary" id="close-fasilitas-modal">Close</button>
-            </div>
-
-            <div class="modal-body">
-
-                <!-- yg baru -->
-                <select class="form-control" id="fasilitas-kos" name="fasilitas">
-                    <?php
-                    require_once("./class/class.Fasilitas.php");
-
-                    $fasilitas = new Fasilitas();
-                    $allFasilitas = $fasilitas->getAllFasilitas();
-
-                    //nomor telpon kosong
-                    if ($allFasilitas == "kosong") {
-                        $count = 0;
-                        echo "<option id='kosong'>Maaf Data Kosong</option>";
-                    }
-
-                    //nomor telpon ada
-                    else {
-                        $count = count($allFasilitas);
-                        foreach ($allFasilitas as $dataFasilitas) {
-                            echo "<option value='" . $dataFasilitas->nama . '-' . $dataFasilitas->idFasilitas . "' >" . $dataFasilitas->nama . "</option>";
-                        }
-                    }
-                    ?>
-                </select>
-
-                <!-- yg lama -->
-                <!-- <input list="fasilitas" id="fasilitas-kos" class="form-control" name="fasilitas" required />
-                    <datalist id="fasilitas">
-                        <option value="AC">
-                        <option value="Kulkas">
-                        <option value="Gym">
-                        <option value="Kasur">
-                        <option value="Meja Belajar">
-                        <option value="Lemari">
-                        <option value="Kamar Mandi Dalam">
-                        <option value="Kamar Mandi Luar">
-                    </datalist> -->
-
-                <span id="error_fasilitas_kos" class="text-danger"></span>
-            </div>
-            <div class="modal-footer">
-                <input type="hidden" name="id-kos" value="<?php echo $kos->idKos; ?>" />
-
-                <!-- handle tambah fasilitas button -->
-                <?php
-                if ($count == 0) {
-                    echo '<button type="submit" class="btn btn-primary" id="tambah-fasilitas2" disabled>Tambah Fasilitas</button>';
-                } else {
-                    echo '<button type="submit" class="btn btn-primary" id="tambah-fasilitas">Tambah Fasilitas</button>';
-                }
-                ?>
-
-                <!-- yg lama -->
-                <!-- <button type="submit" class="btn btn-primary" id="tambah-fasilitas">Tambah Fasilitas</button> -->
-            </div>
         </div>
     </div>
 </div>

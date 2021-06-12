@@ -11,6 +11,12 @@ class User2 extends Connection2
     private $fullname;
     private $level;
 
+    //construct
+    function __construct()
+    {
+        parent::__construct();
+    }
+
     //auto get
     public function __get($atribute)
     {
@@ -252,7 +258,7 @@ class User2 extends Connection2
                 $telpUser = new Telp_User();
                 $telpUser->idNoTelp = $result['id_telpon'];
                 $telpUser->NoTelp = $result['nomor_telpon'];
-                $telpUser->idUser = $result['id_user'];
+                $telpUser->user->idUser = $result['id_user'];
 
                 $arrResult[$cnt] = $telpUser;
                 $cnt++;
@@ -333,7 +339,7 @@ class User2 extends Connection2
         $jalanKos,
         $kecamatanKos,
         $kotaKos,
-        $deskripsiKos,
+        $deskripsiKos
     ) {
         //berhasil membuat kosan
         try {

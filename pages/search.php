@@ -16,7 +16,7 @@ function rupiah($angka)
 <div class="container" id="search">
 
     <!-- search form -->
-    <form action="/kuliah/project/index.php" method="get">
+    <form action="index.php" method="get">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Cari Tempat" name="p" value="search" hidden>
             <input type="text" class="form-control" placeholder="Cari Tempat, Kota" name="search-data">

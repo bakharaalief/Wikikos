@@ -1,4 +1,6 @@
 <?php
+require_once("class.User2.php");
+
 class Kos extends Connection2
 {
     //kosan
@@ -12,9 +14,17 @@ class Kos extends Connection2
     private $namaJalan;
     private $kecamatan;
     private $kota;
-    private $idUser;
     private $status;
-    private $pemilik;
+
+    //pemilik
+    private $user;
+
+    //construct
+    function __construct()
+    {
+        parent::__construct();
+        $this->user = new User2();
+    }
 
     //automatic create get
     public function __get($atribute)
@@ -54,7 +64,7 @@ class Kos extends Connection2
             $this->kecamatan = $result['kecamatan'];
             $this->kota = $result['nama_kota'];
             $this->detail = $result['deskripsi'];
-            $this->idUser = $result['id_user'];
+            $this->user->idUser = $result['id_user'];
         }
     }
 
@@ -82,9 +92,9 @@ class Kos extends Connection2
                 $kosUser->harga = $result['harga'];
                 $kosUser->kapasitas = $result['kapasitas'];
                 $kosUser->kota = $result['nama_kota'];
-                $kosUser->idUser = $result['id_user'];
+                $kosUser->user->idUser = $result['id_user'];
                 $kosUser->status = $result['status'];
-                $kosUser->pemilik = $result['username'];
+                $kosUser->user->username = $result['username'];
 
                 $arrResult[$cnt] = $kosUser;
                 $cnt++;
@@ -125,7 +135,7 @@ class Kos extends Connection2
             //insert bio to kosan
             $sql = "UPDATE kosan SET nama_kosan='$this->namaKos', tipe_kos='$this->tipe', ukuran='$this->ukuran', 
             harga='$this->harga', kapasitas='$this->kapasitas', nama_jalan='$this->namaJalan', 
-            kecamatan='$this->kecamatan', kota='$this->kota', deskripsi='$this->detail', id_user='$this->idUser'
+            kecamatan='$this->kecamatan', kota='$this->kota', deskripsi='$this->detail', id_user=" . $this->user->idUser . "
             WHERE id_kosan=$this->idKos";
             $this->conn->exec($sql);
 
@@ -145,7 +155,7 @@ class Kos extends Connection2
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
             $this->status = $result['status'];
-            $this->email = $result['email'];
+            $this->user->email = $result['email'];
 
             return "Berhasil mengambil data";
         } catch (PDOException $e) {

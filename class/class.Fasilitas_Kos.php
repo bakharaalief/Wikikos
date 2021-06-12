@@ -6,6 +6,12 @@ class Fasilitas_Kos extends Connection2
     private $nama;
     private $idKosan;
 
+    //construct
+    function __construct()
+    {
+        parent::__construct();
+    }
+
     //automatic create get
     public function __get($atribute)
     {

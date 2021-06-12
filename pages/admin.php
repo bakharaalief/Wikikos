@@ -15,7 +15,6 @@ require_once("./authAdmin.php");
             <a class="btn btn-primary" href=<?php echo "?p=create-fasilitas" ?>>Tambah Fasilitas</a>
             <a class="btn btn-primary" href=<?php echo "?p=create-kota" ?>>Tambah Kota</a>
         </div>
-
     </div>
 
     <!-- tab -->
@@ -92,7 +91,7 @@ require_once("./authAdmin.php");
                             echo "<td>$dataKos->kapasitas</td>";
                             echo "<td>$jumlahTerisi</td>";
                             echo "<td>$dataKos->kota</td>";
-                            echo "<td>$dataKos->pemilik</td>";
+                            echo "<td>" . $dataKos->user->username . "</td>";
 
                             //show button status
                             if ($dataKos->status == 0) {
@@ -204,7 +203,7 @@ require_once("./authAdmin.php");
                         $count = count($allTelpon);
                         foreach ($allTelpon as $dataTelpon) {
                             echo "<tr>";
-                            echo "<td>$dataTelpon->pemilik</td>";
+                            echo "<td>" . $dataTelpon->user->username . "</td>";
                             echo "<td>$dataTelpon->NoTelp</td>";
                             echo "<td><a class='btn btn-primary' class='button' href='?p=edit-telpon&id-telpon=$dataTelpon->idNoTelp'</a>Edit</a></td>";
                             echo "<td><a class='btn btn-primary' onclick='confirmDataTelpon($dataTelpon->idNoTelp)'>Delete</a></td>";

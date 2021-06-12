@@ -38,7 +38,7 @@ else {
     $kos->kecamatan = $kecamatanKos;
     $kos->kota = $kotaKos;
     $kos->detail = $deskripsiKos;
-    $kos->idUser = $idUser;
+    $kos->user->idUser = $idUser;
 
     $hasil = $kos->editKosProfile();
 

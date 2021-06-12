@@ -5,6 +5,12 @@ class Foto_Kosan extends Connection2
     private $Foto;
     private $idKos;
 
+    //construct
+    function __construct()
+    {
+        parent::__construct();
+    }
+
     //automatic create get
     public function __get($atribute)
     {
