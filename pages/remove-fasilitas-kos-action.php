@@ -10,7 +10,7 @@ $id_fasilitas_kos =  $_GET['id-fasilitas-kos'];
 if (empty($id_fasilitas_kos)) {
     echo "<script>
     alert('Gagal Menghapus Fasilitas')
-    window.location = '/kuliah/project/dashboard.php?p=edit-kos&id-kos=$idKos';
+    window.location = 'dashboard.php?p=edit-kos&id-kos=$idKos';
     </script>";
 }
 
@@ -23,12 +23,12 @@ else {
     if ($status == "berhasil menghapus") {
         echo "<script>
         alert('Berhasil Menghapus fasilitas')
-        window.location = '/kuliah/project/dashboard.php?p=edit-kos&id-kos=$idKos';
+        window.location = 'dashboard.php?p=edit-kos&id-kos=$idKos';
         </script>";
     } else {
         echo "<script>
         alert('Gagal Menghapus Fasilitas')
-        window.location = '/kuliah/project/dashboard.php?p=edit-kos&id-kos=$idKos';
+        window.location = 'dashboard.php?p=edit-kos&id-kos=$idKos';
         </script>";
     }
 }

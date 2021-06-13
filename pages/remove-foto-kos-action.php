@@ -11,7 +11,7 @@ $lokasi = $_GET['lokasi'];
 if (empty($idFoto)) {
     echo "<script>
     alert('Gagal Menghapus Foto')
-    window.location = '/kuliah/project/dashboard.php?p=edit-kos&id-kos=$idKos';
+    window.location = 'dashboard.php?p=edit-kos&id-kos=$idKos';
     </script>";
 }
 
@@ -25,12 +25,12 @@ else {
         unlink($lokasi);
         echo "<script>
         alert('Berhasil Menghapus foto')
-        window.location = '/kuliah/project/dashboard.php?p=edit-kos&id-kos=$idKos';
+        window.location = 'dashboard.php?p=edit-kos&id-kos=$idKos';
         </script>";
     } else {
         echo "<script>
         alert('Gagal Menghapus Foto')
-        window.location = '/kuliah/project/dashboard.php?p=edit-kos&id-kos=$idKos';
+        window.location = 'dashboard.php?p=edit-kos&id-kos=$idKos';
         </script>";
     }
 }

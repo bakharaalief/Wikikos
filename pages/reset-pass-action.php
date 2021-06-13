@@ -23,7 +23,7 @@ else {
         $mail = new Mail();
         $mail->namaUser = $user2->fullname;
         $mail->mailUser = $email;
-        $mail->linkKirim = "http://localhost/kuliah/project/?p=reset-pass-user&id-user=$user2->idUser";
+        $mail->linkKirim = "http://wikikos.my.id/?p=reset-pass-user&id-user=$user2->idUser";
         $mail->subject = "Reset Pass Akun";
         $mail->message = "Reset Pass Akun Kamu";
         $mail->resetPassTemplate();
@@ -31,7 +31,7 @@ else {
 
         echo "<script>
         alert('Berhasil reset email user, silahkan cek email anda untuk reset link anda')
-        window.location = '?p=reset-pass';
+        window.location = '?p=login';
         </script>";
     }
 

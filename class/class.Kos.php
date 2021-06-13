@@ -45,7 +45,7 @@ class Kos extends Connection2
     //get one kosan
     public function getKosanData()
     {
-        $sql = "SELECT * FROM kosan ks INNER JOIN Kota k ON ks.kota = k.id_kota WHERE ks.id_kosan = :id_kosan";
+        $sql = "SELECT * FROM kosan ks INNER JOIN kota k ON ks.kota = k.id_kota WHERE ks.id_kosan = :id_kosan";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id_kosan', $this->idKos);
         $stmt->execute();

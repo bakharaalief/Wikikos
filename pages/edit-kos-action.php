@@ -21,7 +21,7 @@ if (
 ) {
     echo "<script>
     alert('Gagal Memperbaharui kosan, Pastikan semua data benar')
-    window.location = '/kuliah/project/dashboard.php?p=edit-kos&id-kos=$idKos';
+    window.location = 'dashboard.php?p=edit-kos&id-kos=$idKos';
     </script>";
 }
 
