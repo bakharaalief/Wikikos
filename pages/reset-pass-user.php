@@ -2,9 +2,8 @@
 $idUser = $_GET['id-user'];
 ?>;
 
-
 <div class="container" id="edit-user">
-    <h1>Reset Pass</h1>
+    <h1>Lupa Password</h1>
     <form action="?p=reset-pass-user-action" method="post">
         <div class="row align-items-start">
             <div class="col">
